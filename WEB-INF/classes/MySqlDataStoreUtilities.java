@@ -625,4 +625,26 @@ public class MySqlDataStoreUtilities
 
         return allStores;
     }
+
+    public static List<String> getAllProducts() {
+        List<String> allProducts = new ArrayList<>();
+
+        try {
+            getConnection();
+
+            String getAllProductsQuery = "Select * from productDetails";
+            PreparedStatement pst = conn.prepareStatement(getAllProductsQuery);
+
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                allProducts.add(rs.getString("productName"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("error getting all products: " + e.getMessage());
+        }
+
+        return allProducts;
+    }
 }	

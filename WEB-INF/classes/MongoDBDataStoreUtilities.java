@@ -120,7 +120,7 @@ public class MongoDBDataStoreUtilities
             while(cursor.hasNext())
             {
                 BasicDBObject obj = (BasicDBObject) cursor.next();
-                String prodcutnm = obj.get("productName").toString();
+                String prodcutnm = obj.get("productModelName").toString();
                 String rating = obj.get("reviewRating").toString();
                 Bestrating best = new Bestrating(prodcutnm,rating);
                 Bestrate.add(best);
@@ -134,44 +134,43 @@ public class MongoDBDataStoreUtilities
         return Bestrate;
     }
 
-    public static ArrayList <Mostsoldzip> mostsoldZip()
+    public static ArrayList <Mostsoldzip> mostSoldZip()
     {
-        ArrayList <Mostsoldzip> mostsoldzip = new ArrayList <Mostsoldzip> ();
+        ArrayList <Mostsoldzip> mostSoldzip = new ArrayList <Mostsoldzip> ();
         try
         {
 
             getConnection();
-            DBObject groupProducts = new BasicDBObject("_id","$retailerpin");
-            groupProducts.put("count",new BasicDBObject("$sum",1));
-            DBObject group = new BasicDBObject("$group",groupProducts);
+            DBObject groupProducts = new BasicDBObject("_id", "$storeZip");
+            groupProducts.put("count", new BasicDBObject("$sum",1));
+            DBObject group = new BasicDBObject("$group", groupProducts);
             DBObject limit=new BasicDBObject();
-            limit=new BasicDBObject("$limit",5);
+            limit=new BasicDBObject("$limit", 5);
 
-            DBObject sortFields = new BasicDBObject("count",-1);
-            DBObject sort = new BasicDBObject("$sort",sortFields);
-            AggregationOutput output = myReviews.aggregate(group,sort,limit);
+            DBObject sortFields = new BasicDBObject("count", -1);
+            DBObject sort = new BasicDBObject("$sort", sortFields);
+            AggregationOutput output = myReviews.aggregate(group, sort, limit);
             for (DBObject res : output.results())
             {
                 String zipcode =(res.get("_id")).toString();
                 String count = (res.get("count")).toString();
                 Mostsoldzip mostsldzip = new Mostsoldzip(zipcode,count);
-                mostsoldzip.add(mostsldzip);
+                mostSoldzip.add(mostsldzip);
             }
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return mostsoldzip;
+        return mostSoldzip;
     }
 
-    public static ArrayList <Mostsold> mostsoldProducts()
+    public static ArrayList <Mostsold> mostSoldProducts()
     {
-        ArrayList <Mostsold> mostsold = new ArrayList <Mostsold> ();
+        ArrayList <Mostsold> mostSold = new ArrayList <Mostsold> ();
         try
         {
             getConnection();
-            DBObject groupProducts = new BasicDBObject("_id","$productName");
+            DBObject groupProducts = new BasicDBObject("_id","$productModelName");
             groupProducts.put("count",new BasicDBObject("$sum",1));
             DBObject group = new BasicDBObject("$group",groupProducts);
             DBObject limit=new BasicDBObject();
@@ -186,33 +185,32 @@ public class MongoDBDataStoreUtilities
                 String prodcutname =(res.get("_id")).toString();
                 String count = (res.get("count")).toString();
                 Mostsold mostsld = new Mostsold(prodcutname,count);
-                mostsold.add(mostsld);
+                mostSold.add(mostsld);
             }
         }
         catch (Exception e)
         {
             System.out.println(e.getMessage());
         }
-        return mostsold;
+        return mostSold;
     }
 
     //Get all the reviews grouped by product and zip code;
-    public static ArrayList<Review> selectReviewForChart()
-    {
-        ArrayList<Review> reviewList = new ArrayList<Review>();
-        try
-        {
+    public static ArrayList<Review> selectReviewForChart() {
+        ArrayList<Review> reviewList = new ArrayList<>();
+        try {
+
             getConnection();
             Map<String, Object> dbObjIdMap = new HashMap<String, Object>();
-            dbObjIdMap.put("retailerpin", "$retailerpin");
-            dbObjIdMap.put("productName", "$productName");
+            dbObjIdMap.put("storeZip", "$storeZip");
+            dbObjIdMap.put("productModelName", "$productModelName");
             DBObject groupFields = new BasicDBObject("_id", new BasicDBObject(dbObjIdMap));
             groupFields.put("count", new BasicDBObject("$sum", 1));
             DBObject group = new BasicDBObject("$group", groupFields);
 
             DBObject projectFields = new BasicDBObject("_id", 0);
-            projectFields.put("retailerpin", "$_id");
-            projectFields.put("productName", "$productName");
+            projectFields.put("storeZip", "$_id");
+            projectFields.put("productModelName", "$productModelName");
             projectFields.put("reviewCount", "$count");
             DBObject project = new BasicDBObject("$project", projectFields);
 
@@ -222,21 +220,50 @@ public class MongoDBDataStoreUtilities
             DBObject orderby = new BasicDBObject();
             orderby = new BasicDBObject("$sort",sort);
 
+
             AggregationOutput aggregate = myReviews.aggregate(group, project, orderby);
 
+            System.out.println("Aggregate: " + aggregate.toString());
+
             for (DBObject result : aggregate.results()) {
+
+                System.out.println("Aggregate result: " + result.toString());
+
                 BasicDBObject obj = (BasicDBObject) result;
-                Object o = com.mongodb.util.JSON.parse(obj.getString("retailerpin"));
+                Object o = com.mongodb.util.JSON.parse(obj.getString("storeZip"));
                 BasicDBObject dbObj = (BasicDBObject) o;
-                Review review = new Review();
+
+                System.out.println("dbObj: " + dbObj.toString());
+
+                Review review = new Review(
+                        dbObj.getString("productModelName"),
+                        null,
+                        0,
+                        null,
+                        null,
+                        null,
+                        dbObj.getString("storeZip"),
+                        null,
+                        null,
+                        null,
+                        null,
+                        0,
+                        null,
+                        null,
+                        obj.getInt("reviewCount"),
+                        null,
+                        null
+                );
                 reviewList.add(review);
             }
-            return reviewList;
 
+            System.out.println("reviewList: " + reviewList.toArray().toString());
+            return reviewList;
         }
-        catch (Exception e)
-        {
+
+        catch (Exception e) {
             reviewList = null;
+
             return reviewList;
         }
     }

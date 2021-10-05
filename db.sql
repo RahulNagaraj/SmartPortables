@@ -76,3 +76,20 @@ CREATE TABLE store (
     state varchar(80),
     zipcode varchar(6)
 );
+
+create table transactions (
+	transactionId int not null primary key auto_increment,
+	orderId integer,
+    userName varchar(80),
+    customerName varchar(80),
+    creditCardNo varchar(12),
+    deliveryMethod varchar(40),
+    pickupStoreName varchar(40),
+    orderDate varchar(12),
+    deliveryDate varchar(12),
+    maxOrderCancellationDate varchar(12),
+    maxPickupDate varchar(12),
+    
+    FOREIGN KEY (orderId) REFERENCES customerOrders(orderId) ON DELETE SET NULL
+        ON UPDATE CASCADE
+);

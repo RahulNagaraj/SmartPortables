@@ -465,7 +465,8 @@ hr {
 /* Best Seller Products display on Home Screen*/
 
 #bestseller {
-	width: 100%
+	width: 100%;
+	font-size: 14px;
 }
 
 /* Best Seller Products display Table Data Decoration*/
