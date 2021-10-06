@@ -35,23 +35,16 @@ public class MySqlDataStoreUtilities
         try {
             getConnection();
             String insertCustomerOrderQuery = "Insert into customerOrders (" +
-                    "OrderId," +
-                    "UserName," +
-                    "OrderName," +
-                    "OrderPrice," +
-                    "streetAddress," +
-                    "cityAddress," +
-                    "stateAddress," +
-                    "zipcode," +
-                    "customerName," +
-                    "creditCardNo," +
-                    "hasWarranty," +
-                    "deliveryMethod," +
-                    "orderDate," +
-                    "deliveryDate," +
-                    "maxOrderCancellationDate" +
+                    "orderId," +
+                    "userName," +
+                    "orderName," +
+                    "orderPrice," +
+                    "isWarrantyIncluded," +
+                    "discountPrice," +
+                    "orderTotal," +
+                    "warrantyPrice" +
                     ") "
-                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+                    + "VALUES (?,?,?,?,?,?,?,?);";
 
             PreparedStatement pst = conn.prepareStatement(insertCustomerOrderQuery);
             //set the parameter for each column and execute the prepared statement
@@ -59,18 +52,10 @@ public class MySqlDataStoreUtilities
             pst.setString(2,order.getUserName());
             pst.setString(3,order.getOrderName());
             pst.setDouble(4,order.getOrderPrice());
-            pst.setString(5,order.getStreetAddress());
-            pst.setString(6,order.getCityAddress());
-            pst.setString(7,order.getStateAddress());
-            pst.setString(8,order.getZipcode());
-            pst.setString(9,order.getCustomerName());
-            pst.setString(10,order.getCreditCardNo());
-            pst.setString(11,order.isHasWarranty());
-            pst.setString(12,order.getDeliveryMethod());
-            pst.setString(13,order.getOrderDate());
-            pst.setString(14,order.getDeliveryDate());
-            pst.setString(15,order.getMaxOrderCancellationDate());
-
+            pst.setBoolean(5,order.getIsWarrantyIncluded());
+            pst.setDouble(6,order.getDiscountPrice());
+            pst.setDouble(7,order.getOrderTotal());
+            pst.setDouble(8,order.getWarrantyPrice());
             System.out.println("insert customer order Query: " + pst.toString());
 
             pst.executeUpdate();
@@ -85,7 +70,6 @@ public class MySqlDataStoreUtilities
         HashMap<Integer, ArrayList<CustomerOrder>> customerOrders = new HashMap<>();
 
         try {
-
             getConnection();
             //select the table 
             String selectOrderQuery ="select * from customerOrders";
@@ -100,23 +84,16 @@ public class MySqlDataStoreUtilities
                 ArrayList<CustomerOrder> listCustomerOrders = customerOrders.get(rs.getInt("orderId"));
                 System.out.println("data is: " + rs.getInt("orderId") + customerOrders.get(rs.getInt("orderId")));
 
-                //add to orderpayment hashmap
+                //add to order payment hashmap
                 CustomerOrder order = new CustomerOrder(
                         rs.getInt("orderId"),
                         rs.getString("userName"),
                         rs.getString("orderName"),
                         rs.getDouble("orderPrice"),
-                        rs.getString("streetAddress"),
-                        rs.getString("cityAddress"),
-                        rs.getString("stateAddress"),
-                        rs.getString("zipcode"),
-                        rs.getString("customerName"),
-                        rs.getString("hasWarranty"),
-                        rs.getString("creditCardNo"),
-                        rs.getString("deliveryMethod"),
-                        rs.getString("orderDate"),
-                        rs.getString("deliveryDate"),
-                        rs.getString("maxOrderCancellationDate")
+                        rs.getBoolean("isWarrantyIncluded"),
+                        rs.getDouble("discountPrice"),
+                        rs.getDouble("orderTotal"),
+                        rs.getDouble("warrantyPrice")
                 );
                 listCustomerOrders.add(order);
             }
@@ -129,8 +106,7 @@ public class MySqlDataStoreUtilities
 
 
     public static void registerUser(String username, String password, String repassword, String usertype) {
-        try
-        {
+        try {
 
             getConnection();
             String registerUserQuery = "Insert into registration(" +
@@ -162,9 +138,10 @@ public class MySqlDataStoreUtilities
             ResultSet rs = stmt.executeQuery(selectCustomerQuery);
             while(rs.next()) {
                 User user = new User(
-                        rs.getString("username"),
-                        rs.getString("password"),
-                        rs.getString("usertype"));
+                    rs.getString("username"),
+                    rs.getString("password"),
+                    rs.getString("usertype")
+                );
                 hm.put(rs.getString("username"), user);
             }
         }
@@ -383,7 +360,9 @@ public class MySqlDataStoreUtilities
                         rs.getString("productCondition"),
                         rs.getDouble("productDiscount"),
                         rs.getString("productRebate"),
-                        rs.getString("productDescription")
+                        rs.getString("productDescription"),
+                        rs.getBoolean("productHasWarranty"),
+                        rs.getDouble("productWarranty")
                 );
                 hm.put(rs.getString("productId"), phone);
                 phone.setId(rs.getString("productId"));
@@ -472,6 +451,8 @@ public class MySqlDataStoreUtilities
             double productDiscount,
             String productRebate,
             String productDescription,
+            boolean productHasWarranty,
+            double productWarranty,
             String prod
     ) {
         String msg = "Product is added successfully";
@@ -488,9 +469,11 @@ public class MySqlDataStoreUtilities
                     "productCondition," +
                     "productDiscount," +
                     "productRebate," +
-                    "productDescription" +
+                    "productDescription," +
+                    "productHasWarranty," +
+                    "productWarranty" +
                     ")" +
-                    "VALUES (?,?,?,?,?,?,?,?,?,?);";
+                    "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
 
             String name = productType;
 
@@ -505,6 +488,9 @@ public class MySqlDataStoreUtilities
             pst.setDouble(8,productDiscount);
             pst.setString(9,productRebate);
             pst.setString(10,productDescription);
+            pst.setBoolean(11,productHasWarranty);
+            pst.setDouble(12,productWarranty);
+
 
             pst.executeUpdate();
             try {
@@ -544,7 +530,9 @@ public class MySqlDataStoreUtilities
             String productCondition,
             double productDiscount,
             String productRebate,
-            String productDescription
+            String productDescription,
+            boolean productHasWarranty,
+            double productWarranty
     ) {
         String msg = "Product is updated successfully";
         try
@@ -559,7 +547,9 @@ public class MySqlDataStoreUtilities
                     "productCondition=?," +
                     "productDiscount=?, " +
                     "productRebate=?, " +
-                    "productDescription=? " +
+                    "productDescription=?, " +
+                    "productHasWarranty=?," +
+                    "productWarranty=?," +
                     "where productId =?;" ;
             PreparedStatement pst = conn.prepareStatement(updateProductQurey);
 
@@ -572,7 +562,9 @@ public class MySqlDataStoreUtilities
             pst.setDouble(7,productDiscount);
             pst.setString(8,productRebate);
             pst.setString(9,productDescription);
-            pst.setString(10,productId);
+            pst.setBoolean(9,productHasWarranty);
+            pst.setDouble(10,productWarranty);
+            pst.setString(11,productId);
             pst.executeUpdate();
         }
         catch(Exception e) {
@@ -647,4 +639,132 @@ public class MySqlDataStoreUtilities
 
         return allProducts;
     }
-}	
+
+    public static void insertCustomerInfo(Customer customer) {
+        try {
+            getConnection();
+
+            String addProductQurey = "Insert into customer(" +
+                    "customerName," +
+                    "street," +
+                    "city," +
+                    "state," +
+                    "zipcode" +
+                    ")" +
+                    "VALUES (?,?,?,?,?);";
+
+            PreparedStatement pst = conn.prepareStatement(addProductQurey);
+            pst.setString(1, customer.getCustomerName());
+            pst.setString(2, customer.getStreet());
+            pst.setString(3, customer.getCity());
+            pst.setString(4, customer.getState());
+            pst.setString(5, customer.getZipcode());
+
+            pst.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("error inserting customer info: " + e.getMessage());
+        }
+    }
+
+    public static void insertTransaction(Transaction transaction) {
+        try {
+            getConnection();
+
+            String insertTransactionQurey = "Insert into transactions(" +
+                    "orderId, " +
+                    "customerName," +
+                    "streetAddress," +
+                    "cityAddress," +
+                    "stateAddress," +
+                    "zipcode," +
+                    "creditCardNo," +
+                    "deliveryMethod," +
+                    "pickupStoreName," +
+                    "orderDate," +
+                    "deliveryDate," +
+                    "maxOrderCancellationDate," +
+                    "maxPickupDate," +
+                    "userName" +
+                    ")" +
+                    "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+
+            PreparedStatement pst = conn.prepareStatement(insertTransactionQurey);
+            pst.setInt(1, transaction.getOrderId());
+            pst.setString(2, transaction.getCustomerName());
+            pst.setString(3, transaction.getStreetAddress());
+            pst.setString(4, transaction.getCityAddress());
+            pst.setString(5, transaction.getStateAddress());
+            pst.setString(6, transaction.getZipcode());
+            pst.setString(7, transaction.getCreditCardNo());
+            pst.setString(8, transaction.getDeliveryMethod());
+            pst.setString(9, transaction.getPickupStoreName());
+            pst.setString(10, transaction.getOrderDate());
+            pst.setString(11, transaction.getDeliveryDate());
+            pst.setString(12, transaction.getMaxOrderCancellationDate());
+            pst.setString(13, transaction.getMaxPickupDate());
+            pst.setString(14, transaction.getUserName());
+
+            System.out.println("insert transaction query" + pst.toString());
+
+            pst.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("error inserting transaction: " + e.getMessage());
+        }
+    }
+
+    public static Transaction selectTransaction(int orderId) {
+        Transaction transaction = new Transaction();
+
+        try {
+            getConnection();
+
+            String getTransactionQuery = "Select * from transactions where orderId=?";
+
+            PreparedStatement pst = conn.prepareStatement(getTransactionQuery);
+            pst.setInt(1, orderId);
+
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                /*orderId integer,
+                userName varchar(80),
+                        streetAddress varchar(40),
+                        cityAddress varchar(40),
+                        stateAddress varchar(40),
+                        zipcode varchar(40),
+                        creditCardNo varchar(12),
+                        deliveryMethod varchar(40),
+                        pickupStoreName varchar(40),
+                        orderDate varchar(12),
+                        deliveryDate varchar(12),
+                        maxOrderCancellationDate varchar(12),
+                        maxPickupDate varchar(12),*/
+                transaction = new Transaction(
+                        rs.getInt("orderId"),
+                        rs.getString("userName"),
+                        rs.getString("customerName"),
+                        rs.getString("streetAddress"),
+                        rs.getString("cityAddress"),
+                        rs.getString("stateAddress"),
+                        rs.getString("zipcode"),
+                        rs.getString("creditCardNo"),
+                        rs.getString("deliveryMethod"),
+                        rs.getString("pickupStoreName"),
+                        rs.getString("orderDate"),
+                        rs.getString("deliveryDate"),
+                        rs.getString("maxOrderCancellationDate"),
+                        rs.getString("maxPickupDate")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("error getting transaction: " + e.getMessage());
+        }
+
+        return transaction;
+    }
+}

@@ -3,53 +3,23 @@ public class CustomerOrder {
     private String userName;
     private String orderName;
     private double orderPrice;
-    private String streetAddress;
-    private String cityAddress;
-    private String stateAddress;
-    private String zipcode;
-    private String customerName;
-    private String hasWarranty;
-    private String creditCardNo;
-    private String deliveryMethod;
-    private String orderDate;
-    private String deliveryDate;
-    private String maxOrderCancellationDate;
+    private boolean isWarrantyIncluded;
+    private double discountPrice;
+    private double orderTotal;
+    private double warrantyPrice;
 
     public CustomerOrder() {
     }
 
-    public CustomerOrder(
-            int orderId,
-            String userName,
-            String orderName,
-            double orderPrice,
-            String streetAddress,
-            String cityAddress,
-            String stateAddress,
-            String zipcode,
-            String customerName,
-            String hasWarranty,
-            String creditCardNo,
-            String deliveryMethod,
-            String orderDate,
-            String deliveryDate,
-            String maxOrderCancellationDate
-    ) {
+    public CustomerOrder(int orderId, String userName, String orderName, double orderPrice, boolean isWarrantyIncluded, double discountPrice, double orderTotal, double warrantyPrice) {
         this.orderId = orderId;
         this.userName = userName;
         this.orderName = orderName;
         this.orderPrice = orderPrice;
-        this.streetAddress = streetAddress;
-        this.cityAddress = cityAddress;
-        this.stateAddress = stateAddress;
-        this.zipcode = zipcode;
-        this.customerName = customerName;
-        this.hasWarranty = hasWarranty;
-        this.creditCardNo = creditCardNo;
-        this.deliveryMethod = deliveryMethod;
-        this.orderDate = orderDate;
-        this.deliveryDate = deliveryDate;
-        this.maxOrderCancellationDate = maxOrderCancellationDate;
+        this.isWarrantyIncluded = isWarrantyIncluded;
+        this.discountPrice = discountPrice;
+        this.orderTotal = orderTotal;
+        this.warrantyPrice = warrantyPrice;
     }
 
     public int getOrderId() {
@@ -84,92 +54,36 @@ public class CustomerOrder {
         this.orderPrice = orderPrice;
     }
 
-    public String getStreetAddress() {
-        return streetAddress;
+    public boolean getIsWarrantyIncluded() {
+        return isWarrantyIncluded;
     }
 
-    public void setStreetAddress(String streetAddress) {
-        this.streetAddress = streetAddress;
+    public void setIsWarrantyIncluded(boolean isWarrantyIncluded) {
+        this.isWarrantyIncluded = isWarrantyIncluded;
     }
 
-    public String getCityAddress() {
-        return cityAddress;
+    public double getDiscountPrice() {
+        return discountPrice;
     }
 
-    public void setCityAddress(String cityAddress) {
-        this.cityAddress = cityAddress;
+    public void setDiscountPrice(double discountPrice) {
+        this.discountPrice = discountPrice;
     }
 
-    public String getStateAddress() {
-        return stateAddress;
+    public double getOrderTotal() {
+        return orderTotal;
     }
 
-    public void setStateAddress(String stateAddress) {
-        this.stateAddress = stateAddress;
+    public void setOrderTotal(double orderTotal) {
+        this.orderTotal = orderTotal;
     }
 
-    public String getZipcode() {
-        return zipcode;
+    public double getWarrantyPrice() {
+        return warrantyPrice;
     }
 
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
-    }
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public String isHasWarranty() {
-        return hasWarranty;
-    }
-
-    public void setHasWarranty(String hasWarranty) {
-        this.hasWarranty = hasWarranty;
-    }
-
-    public String getCreditCardNo() {
-        return creditCardNo;
-    }
-
-    public void setCreditCardNo(String creditCardNo) {
-        this.creditCardNo = creditCardNo;
-    }
-
-    public String getDeliveryMethod() {
-        return deliveryMethod;
-    }
-
-    public void setDeliveryMethod(String deliveryMethod) {
-        this.deliveryMethod = deliveryMethod;
-    }
-
-    public String getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(String orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public String getMaxOrderCancellationDate() {
-        return maxOrderCancellationDate;
-    }
-
-    public void setMaxOrderCancellationDate(String maxOrderCancellationDate) {
-        this.maxOrderCancellationDate = maxOrderCancellationDate;
-    }
-
-    public String getDeliveryDate() {
-        return deliveryDate;
-    }
-
-    public void setDeliveryDate(String deliveryDate) {
-        this.deliveryDate = deliveryDate;
+    public void setWarrantyPrice(double warrantyPrice) {
+        this.warrantyPrice = warrantyPrice;
     }
 
     @Override
@@ -179,17 +93,10 @@ public class CustomerOrder {
                 ", userName='" + userName + '\'' +
                 ", orderName='" + orderName + '\'' +
                 ", orderPrice=" + orderPrice +
-                ", streetAddress='" + streetAddress + '\'' +
-                ", cityAddress='" + cityAddress + '\'' +
-                ", stateAddress='" + stateAddress + '\'' +
-                ", zipcode='" + zipcode + '\'' +
-                ", customerName='" + customerName + '\'' +
-                ", hasWarranty=" + hasWarranty +
-                ", creditCardNo='" + creditCardNo + '\'' +
-                ", deliveryMethod='" + deliveryMethod + '\'' +
-                ", orderDate='" + orderDate + '\'' +
-                ", deliveryDate='" + deliveryDate + '\'' +
-                ", maxOrderCancellationDate='" + maxOrderCancellationDate + '\'' +
+                ", isWarrantyIncluded=" + isWarrantyIncluded +
+                ", discountPrice=" + discountPrice +
+                ", orderTotal=" + orderTotal +
+                ", warrantyPrice=" + warrantyPrice +
                 '}';
     }
 }

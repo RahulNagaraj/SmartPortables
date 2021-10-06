@@ -62,6 +62,7 @@ public class Utilities extends HttpServlet{
 					result = result + "<li><a href='ProductModify?button=Addproduct'><span class='glyphicon'>Addproduct</span></a></li>"
 							+ "<li><a href='DataVisualization'><span class='glyphicon'>DataVisualization</span></a></li>"
 							+ "<li><a href='DataAnalytics'><span class='glyphicon'>DataAnalytics</span></a></li>"
+							+ "<li><a href='ViewOrder'><span class='glyphicon'>ViewOrder</span></a></li>"
 							+ "<li><a><span class='glyphicon'>Hello,"+username+"</span></a></li>"
 							+ "<li><a href='Logout'><span class='glyphicon'>Logout</span></a></li>";
 				}
@@ -82,7 +83,7 @@ public class Utilities extends HttpServlet{
 				}
 			}
 			else
-				result = result +"<li><a href='ViewOrder'><span class='glyphicon'>View Order</span></a></li>"+ "<li><a href='Login'><span class='glyphicon'>Login</span></a></li>";
+				result = result +"<li><a href='ViewOrder'><span class='glyphicon'>ViewOrder</span></a></li>"+ "<li><a href='Login'><span class='glyphicon'>Login</span></a></li>";
 			result = result +"<li><a href='Cart'><span class='glyphicon'>Cart("+CartCount()+")</span></a></li></ul></div></div><div id='page'>";
 			pw.print(result);
 		} else
@@ -228,7 +229,7 @@ public class Utilities extends HttpServlet{
 
 	/* StoreProduct Function stores the Purchased product in Orders HashMap according to the User Names.*/
 
-	public void storeProduct(String name,String type,String maker, String acc)
+	public void storeProduct(String name,String type,String maker, String acc, boolean isWarrantyIncluded)
 	{
 		if(!OrdersHashMap.orders.containsKey(username()))
 		{
@@ -280,7 +281,15 @@ public class Utilities extends HttpServlet{
 		if(type.equals("accessories"))
 		{
 			Accessory accessory = SaxParserDataStore.accessories.get(name);
-			OrderItem orderitem = new OrderItem(accessory.getName(), accessory.getPrice(), accessory.getImage(), accessory.getRetailer(), "No");
+			OrderItem orderitem = new OrderItem(
+					accessory.getName(),
+					accessory.getPrice(),
+					accessory.getImage(),
+					accessory.getRetailer(),
+					false,
+					0.0,
+					0.0
+					);
 			orderItems.add(orderitem);
 		}
 		if(type.equals("phones"))
@@ -295,7 +304,15 @@ public class Utilities extends HttpServlet{
 
 			}
 			phone = allPhones.get(name);
-			OrderItem orderitem = new OrderItem(phone.getName(), phone.getPrice(), phone.getImage(), phone.getRetailer(), "No");
+			OrderItem orderitem = new OrderItem(
+					phone.getName(),
+					phone.getPrice(),
+					phone.getImage(),
+					phone.getRetailer(),
+					isWarrantyIncluded,
+					phone.getDiscount(),
+					phone.getWarrantyPrice()
+			);
 			orderItems.add(orderitem);
 		}
 		if(type.equals("laptops"))
@@ -310,7 +327,9 @@ public class Utilities extends HttpServlet{
 
 			}
 			laptop = allLaptops.get(name);
-			OrderItem orderitem = new OrderItem(laptop.getName(), laptop.getPrice(), laptop.getImage(), laptop.getRetailer(), "No");
+			OrderItem orderitem = new OrderItem(laptop.getName(), laptop.getPrice(), laptop.getImage(), laptop.getRetailer(), false,
+					0.0,
+					0.0);
 			orderItems.add(orderitem);
 		}
 		if(type.equals("voiceAssistants")) {
@@ -324,7 +343,9 @@ public class Utilities extends HttpServlet{
 
 			}
 			voiceAssistant = allVoiceAssistants.get(name);
-			OrderItem orderitem = new OrderItem(voiceAssistant.getName(), voiceAssistant.getPrice(), voiceAssistant.getImage(), voiceAssistant.getRetailer(), "No");
+			OrderItem orderitem = new OrderItem(voiceAssistant.getName(), voiceAssistant.getPrice(), voiceAssistant.getImage(), voiceAssistant.getRetailer(), false,
+					0.0,
+					0.0);
 			orderItems.add(orderitem);
 		}
 		if(type.equals("fitnessWatches"))
@@ -339,7 +360,9 @@ public class Utilities extends HttpServlet{
 
 			}
 			fitnessWatch = allFitnessWatches.get(name);
-			OrderItem orderitem = new OrderItem(fitnessWatch.getName(), fitnessWatch.getPrice(), fitnessWatch.getImage(), fitnessWatch.getRetailer(), "No");
+			OrderItem orderitem = new OrderItem(fitnessWatch.getName(), fitnessWatch.getPrice(), fitnessWatch.getImage(), fitnessWatch.getRetailer(), false,
+					0.0,
+					0.0);
 			orderItems.add(orderitem);
 		}
 		if(type.equals("smartWatches"))
@@ -354,7 +377,9 @@ public class Utilities extends HttpServlet{
 
 			}
 			smartWatch = allSmartWatches.get(name);
-			OrderItem orderitem = new OrderItem(smartWatch.getName(), smartWatch.getPrice(), smartWatch.getImage(), smartWatch.getRetailer(), "No");
+			OrderItem orderitem = new OrderItem(smartWatch.getName(), smartWatch.getPrice(), smartWatch.getImage(), smartWatch.getRetailer(), false,
+					0.0,
+					0.0);
 			orderItems.add(orderitem);
 		}
 		if(type.equals("headphones"))
@@ -369,7 +394,9 @@ public class Utilities extends HttpServlet{
 
 			}
 			headphone = allHeadphones.get(name);
-			OrderItem orderitem = new OrderItem(headphone.getName(), headphone.getPrice(), headphone.getImage(), headphone.getRetailer(), "No");
+			OrderItem orderitem = new OrderItem(headphone.getName(), headphone.getPrice(), headphone.getImage(), headphone.getRetailer(), false,
+					0.0,
+					0.0);
 			orderItems.add(orderitem);
 		}
 		if(type.equals("petTracker"))
@@ -390,7 +417,9 @@ public class Utilities extends HttpServlet{
 					petTracker.getPrice(),
 					petTracker.getImage(),
 					petTracker.getRetailer(),
-					"No"
+					false,
+					0.0,
+					0.0
 			);
 			orderItems.add(orderitem);
 		}
@@ -493,6 +522,10 @@ public class Utilities extends HttpServlet{
 
 			return "Successfull";
 		}
+	}
+
+	public void storeCustomer(Customer customer) {
+		MySqlDataStoreUtilities.insertCustomerInfo(customer);
 	}
 
 	/* getConsoles Functions returns the Hashmap with all consoles in the store.*/

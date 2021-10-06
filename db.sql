@@ -13,28 +13,11 @@ Create table customerOrders (
 	userName varchar(40),
 	orderName varchar(40),
 	orderPrice double,
-    streetAddress varchar(40),
-    cityAddress varchar(40),
-    stateAddress varchar(40),
-    zipcode varchar(40),
-    customerName varchar(40),
-    hasWarranty varchar(8),
-	creditCardNo varchar(40),
-    deliveryMethod varchar(40),
-    orderDate varchar(12),
-    deliveryDate varchar(12),
-    maxOrderCancellationDate varchar(12),
+    discountPrice double,
+    orderTotal double,
+    isWarrantyIncluded bool,
+    warrantyPrice double,
 	Primary key(OrderId, userName, orderName)
-);
-
-Create table orderPickup(
-	orderId int,
-    userName varchar(40),
-    orderName varchar(40),
-    pickupStore varchar(20),
-    orderDate varchar(12),
-    pickupDate varchar(20),
-    primary key(orderId, userName, orderName)
 );
 
 Create table productDetails (
@@ -47,6 +30,8 @@ Create table productDetails (
 	productCondition varchar(40),
 	productDiscount double,
     productRebate varchar(10),
+    productHasWarranty bool,
+    productWarranty double,
     productDescription varchar(255),
 	Primary key(productId)
 );
@@ -81,7 +66,10 @@ create table transactions (
 	transactionId int not null primary key auto_increment,
 	orderId integer,
     userName varchar(80),
-    customerName varchar(80),
+    streetAddress varchar(40),
+    cityAddress varchar(40),
+    stateAddress varchar(40),
+    zipcode varchar(40),
     creditCardNo varchar(12),
     deliveryMethod varchar(40),
     pickupStoreName varchar(40),
@@ -92,4 +80,15 @@ create table transactions (
     
     FOREIGN KEY (orderId) REFERENCES customerOrders(orderId) ON DELETE SET NULL
         ON UPDATE CASCADE
+);
+
+create table customer (
+	customerId int not null auto_increment,
+    customerName varchar(80),
+    street varchar(80), 
+    city varchar(80),
+    state varchar(80),
+    zipcode varchar(80),
+    
+    primary key(customerId, customerName)
 );

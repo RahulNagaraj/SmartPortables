@@ -32,7 +32,8 @@ public class ProductCrud extends HttpServlet {
                 productRebate="",
                 productDescription="",
                 prod = "";
-        double productPrice=0.0,productDiscount = 0.0;
+        double productPrice = 0.0, productDiscount = 0.0, productWarranty = 0.0;
+        boolean productHasWarranty = false;
         /*
         HashMap<String,Console> allconsoles = new HashMap<String,Console> ();
         HashMap<String,Tablet> alltablets = new HashMap<String,Tablet> ();
@@ -56,6 +57,8 @@ public class ProductCrud extends HttpServlet {
             productDiscount = Double.parseDouble(request.getParameter("productDiscount"));
             productRebate = request.getParameter("productRebate");
             productDescription = request.getParameter("productDescription");
+            productWarranty = Double.parseDouble(request.getParameter("productWarranty"));
+            productHasWarranty = productWarranty > 0.0;
         } else {
             productId   = request.getParameter("productId");
         }
@@ -143,6 +146,8 @@ public class ProductCrud extends HttpServlet {
                             productDiscount,
                             productRebate,
                             productDescription,
+                            productHasWarranty,
+                            productWarranty,
                             prod);
                 }
                 catch(Exception e) {
@@ -228,7 +233,9 @@ public class ProductCrud extends HttpServlet {
                             productCondition,
                             productDiscount,
                             productRebate,
-                            productDescription
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty
                     );
                 }
                 catch(Exception e) {
@@ -294,7 +301,8 @@ public class ProductCrud extends HttpServlet {
                 productDescription="",
                 fileName="",
                 prod = "";
-        double productPrice=0.0,productDiscount = 0.0;
+        double productPrice = 0.0, productDiscount = 0.0, productWarranty = 0.0;
+        boolean productHasWarranty = false;
         Part part = null;
 
         HashMap<String, FitnessWatch> allFitnessWatches = new HashMap<>();
@@ -318,6 +326,8 @@ public class ProductCrud extends HttpServlet {
             productDiscount = Double.parseDouble(request.getParameter("productDiscount"));
             productRebate = request.getParameter("productRebate");
             productDescription = request.getParameter("productDescription");
+            productWarranty = Double.parseDouble(request.getParameter("productWarranty"));
+            productHasWarranty = productWarranty > 0.0;
         } else {
             productId   = request.getParameter("productId");
         }
@@ -405,6 +415,8 @@ public class ProductCrud extends HttpServlet {
                             productDiscount,
                             productRebate,
                             productDescription,
+                            productHasWarranty,
+                            productWarranty,
                             prod);
 
                     uploadFile(part, productType);
@@ -469,7 +481,9 @@ public class ProductCrud extends HttpServlet {
                             productCondition,
                             productDiscount,
                             productRebate,
-                            productDescription
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty
                     );
 
                     uploadFile(part, productType);

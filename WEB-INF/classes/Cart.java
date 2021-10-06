@@ -26,6 +26,7 @@ public class Cart extends HttpServlet {
 		String type = request.getParameter("type");
 		String maker = request.getParameter("maker");
 		String access = request.getParameter("access");
+		boolean isWarrantyIncluded = request.getParameter("productWarranty") != null;
 		/*
 		double orderPrice = 0;
 		//double orderPrice = Double.parseDouble(request.getParameter("orderPrice"));
@@ -64,7 +65,7 @@ public class Cart extends HttpServlet {
 
 		/* StoreProduct Function stores the Purchased product in Orders HashMap.*/	
 		
-		utility.storeProduct(name, type, maker, access);
+		utility.storeProduct(name, type, maker, access, isWarrantyIncluded);
 		displayCart(request, response);
 	}
 	
@@ -93,21 +94,36 @@ public class Cart extends HttpServlet {
 		{
 			pw.print("<table  class='gridtable'>");
 			int i = 1;
-			double total = 0;
+			double totalOrderPrice = 0;
+			double discount = 0;
+			double warranty = 0;
+			double finalOrderTotal = 0;
 			for (OrderItem oi : utility.getCustomerOrders()) 
 			{
 				pw.print("<tr>");
-				pw.print("<td>"+i+".</td><td>"+oi.getName()+"</td><td>: "+oi.getPrice()+"</td>");
+				pw.print("<td>"+i+".</td>" +
+						"<td>"+oi.getName()+"</td>" +
+						"<td>Price: $"+oi.getPrice()+"</td>" +
+						"<td>Discount: $"+oi.getDiscount()+"</td>"+
+						"<td>Warranty Price: $"+getWarrantyPrice(oi)+"</td>"
+				);
 				pw.print("<input type='hidden' name='orderName' value='"+oi.getName()+"'>");
 				pw.print("<input type='hidden' name='orderPrice' value='"+oi.getPrice()+"'>");
+				pw.print("<input type='hidden' name='discount' value='"+oi.getDiscount()+"'>");
+				pw.print("<input type='hidden' name='warrantyPrice' value='"+oi.getWarrantyPrice()+"'>");
 				pw.print("<td><a href='DeleteFromCart?name="+oi.getName()+"&price="+oi.getPrice()+"'>Delete Item</a></td>");
 				/* <form action='Cart' method='POST'><input type='hidden' name='orderPrice' value='"+oi.getPrice()+"'><input type='hidden' name='orderName' value='"+oi.getName()+"'><input type='submit' name='deleteItemFromCart' value='DeleteItem' /></form> */
 				pw.print("</tr>");
-				total = total +oi.getPrice();
+				totalOrderPrice = totalOrderPrice + oi.getPrice();
+				if (oi.isWarrantyIncluded()) totalOrderPrice += oi.getWarrantyPrice();
+				discount = discount + oi.getDiscount();
 				i++;
 			}
-			pw.print("<input type='hidden' name='orderTotal' value='"+total+"'>");	
-			pw.print("<tr><th></th><th>Total</th><th>"+total+"</th>");
+			finalOrderTotal = totalOrderPrice - discount;
+			pw.print("<input type='hidden' name='orderTotal' value='"+finalOrderTotal+"'>");
+			pw.print("<tr><th></th><th>Total Cost: $</th><th>"+totalOrderPrice+"</th>");
+			pw.print("<tr><th></th><th>Total Discount: $</th><th>"+discount+"</th>");
+			pw.print("<tr><th></th><th>Final Cost: $</th><th>"+finalOrderTotal+"</th>");
 			pw.print("<tr><td></td><td></td><td><input type='submit' name='CheckOut' value='CheckOut' class='btnbuy' /></td>");
 			pw.print("</table></form>");
 			/* This code is calling Carousel.java code to implement carousel feature*/
@@ -128,5 +144,9 @@ public class Cart extends HttpServlet {
 		Utilities utility = new Utilities(request, pw);
 		
 		displayCart(request, response);
+	}
+
+	private double getWarrantyPrice(OrderItem orderItem) {
+		return orderItem.isWarrantyIncluded() ? orderItem.getWarrantyPrice() : 0;
 	}
 }

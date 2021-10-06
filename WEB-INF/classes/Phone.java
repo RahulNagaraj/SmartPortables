@@ -17,8 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 */
 
-public class Phone extends HttpServlet
-{
+public class Phone extends HttpServlet {
 	private String id;
 	private String name;
 	private double price;
@@ -28,9 +27,11 @@ public class Phone extends HttpServlet
 	private double discount;
 	private String rebate;
 	private String description;
+	private boolean hasWarranty;
+	private double warrantyPrice;
 	
 	public Phone(String name, double price, String image, String retailer,String condition,double discount,String rebate,
-				 String description)
+				 String description, boolean hasWarranty, double warrantyPrice)
 	{
 		this.name=name;
 		this.price=price;
@@ -40,6 +41,8 @@ public class Phone extends HttpServlet
 		this.discount = discount;
 		this.rebate = rebate;
 		this.description = description;
+		this.hasWarranty = hasWarranty;
+		this.warrantyPrice = warrantyPrice;
 	}
 	
 	public Phone()
@@ -126,5 +129,21 @@ public class Phone extends HttpServlet
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public boolean isHasWarranty() {
+		return hasWarranty;
+	}
+
+	public void setHasWarranty(boolean hasWarranty) {
+		this.hasWarranty = hasWarranty;
+	}
+
+	public double getWarrantyPrice() {
+		return warrantyPrice;
+	}
+
+	public void setWarrantyPrice(double warrantyPrice) {
+		this.warrantyPrice = warrantyPrice;
 	}
 }

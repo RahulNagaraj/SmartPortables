@@ -45,6 +45,8 @@ public class ProductModify extends HttpServlet {
 					"</select></td></tr>");
 			pw.print("<tr><td>Price</td>");
 			pw.print("<td><input class='input' type='number' name='productPrice' id ='productPrice' placeholder='please enter numeric data' /></td></tr>");
+			pw.print("<tr><td>Warranty</td>");
+			pw.print("<td><input class='input' type='number' name='productWarranty' id ='productWarranty' placeholder='please enter numeric data' /></td></tr>");
 			pw.print("<tr><td>Image</td>");
 			pw.print("<td><input class='input' type='file' accept='image/png, image/jpeg' name='productImage' id ='productImage' /></td></tr>");
 			pw.print("<tr><td>Manufacturer</td>");
@@ -118,6 +120,8 @@ public class ProductModify extends HttpServlet {
 			double productDiscount = Double.parseDouble(request.getParameter("productDiscount"));
 			String productRebate = request.getParameter("productRebate");
 			String productDescription = request.getParameter("productDescription");
+			double productWarranty = Double.parseDouble(request.getParameter("productWarranty"));
+
 			pw.print("<div id='content'><div class='post'>");
 			pw.print("<h2 class='title meta'><a style='font-size: 24px;'>Update Product</a></h2>"
 					+ "<div class='entry'>");
@@ -142,6 +146,8 @@ public class ProductModify extends HttpServlet {
 					"</select></td></tr>");
 			pw.print("<tr><td>Price</td>");
 			pw.print("<td><input class='input' type='number' name='productPrice' id ='productPrice' placeholder='please enter numeric data' value='" + productPrice + "' /></td></tr>");
+			pw.print("<tr><td>Warranty</td>");
+			pw.print("<td><input class='input' type='number' name='productWarranty' id ='productWarranty' placeholder='please enter numeric data' value='" + productWarranty + "' /></td></tr>");
 			pw.print("<tr><td>Image</td>");
 			pw.print("<td><input class='input' type='file' accept='image/png, image/jpeg' name='productImage' id ='productImage' /></td></tr>");
 			pw.print("<tr><td>Manufacturer</td>");

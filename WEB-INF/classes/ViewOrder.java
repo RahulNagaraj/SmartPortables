@@ -53,6 +53,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		//hashmap gets all the order details from file 
 
 		HashMap<Integer, ArrayList<CustomerOrder>> customerOrder = new HashMap<>();
+		Transaction transaction = new Transaction();
 		/*
 		String TOMCAT_HOME = System.getProperty("catalina.home");
 
@@ -86,9 +87,11 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 					orderPayments = (HashMap)objectInputStream.readObject();
 					*/
 					customerOrder = MySqlDataStoreUtilities.selectOrder();
+					transaction = MySqlDataStoreUtilities.selectTransaction(orderId);
+
+					System.out.println("customer orders: " + customerOrder.get(orderId).toString());
 				}
-				catch(Exception e)
-				{
+				catch(Exception e) {
 			
 				}
 				int size=0;
@@ -107,43 +110,39 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 				if(size>0) {
 					pw.print("<table  class='gridtable'>");
 					pw.print("<tr><td></td>");
-					pw.print("<td>OrderId:</td>");
-					pw.print("<td>UserName:</td>");
-					pw.print("<td>productOrdered:</td>");
-					pw.print("<td>productPrice:</td></tr>");
+					pw.print("<td>Order ID:</td>");
+					pw.print("<td>User Name:</td>");
+					pw.print("<td>Product Name:</td>");
+					pw.print("<td>Product Price:</td></tr>");
 					for (CustomerOrder oi : customerOrder.get(orderId))
 					{
 						pw.print("<tr>");			
 						pw.print("<td><input type='radio' name='orderName' value='"+oi.getOrderName()+"'></td>");			
-						pw.print("<td>"+oi.getOrderId()+".</td><td>"+oi.getUserName()+"</td><td>"+oi.getOrderName()+"</td><td>Price: "+oi.getOrderPrice()+"</td>");
+						pw.print("<td>"+oi.getOrderId()+".</td>" +
+								"<td>"+oi.getUserName()+"</td>" +
+								"<td>"+oi.getOrderName()+"</td>" +
+								"<td>Price: "+oi.getOrderPrice()+"</td>");
 						pw.print("<td><input type='submit' name='Order' value='CancelOrder' class='btnbuy'></td>");
 						pw.print("</tr>");
-					
 					}
 					pw.print("</table>");
 				}
-				else
-				{
+				else {
 					pw.print("<h4 style='color:red'>You have not placed any order with this order id</h4>");
 				}
-			}else
-				
-			{
+			} else {
 				pw.print("<h4 style='color:red'>Please enter the valid order number</h4>");	
 			}
 		}
 		//if the user presses cancel order from order details shown then process to cancel the order
-		if(request.getParameter("Order")!=null && request.getParameter("Order").equals("CancelOrder"))
-		{
-			if(request.getParameter("orderName") != null)
-			{
+		if(request.getParameter("Order")!=null && request.getParameter("Order").equals("CancelOrder")) {
+			if(request.getParameter("orderName") != null) {
 				String orderName=request.getParameter("orderName");
 				int orderId=0;
 				orderId=Integer.parseInt(request.getParameter("orderId"));
 				ArrayList<CustomerOrder> ListOrderPayment =new ArrayList<>();
 				//get the order from file
-				try
-				{
+				try {
 					/*
 					FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\Assignment_2\\PaymentDetails.txt"));
 					ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
@@ -151,16 +150,13 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 					*/
 					customerOrder = MySqlDataStoreUtilities.selectOrder();
 				}
-				catch(Exception e)
-				{
+				catch(Exception e) {
 			
 				}
 				//get the exact order with same ordername and add it into cancel list to remove it later
-				for (CustomerOrder oi : customerOrder.get(orderId))
-				{
-					if(oi.getOrderName().equals(orderName))
-					{
-						String maxDate = oi.getMaxOrderCancellationDate();
+				for (CustomerOrder oi : customerOrder.get(orderId)) {
+					if(oi.getOrderName().equals(orderName)) {
+						String maxDate = transaction.getMaxOrderCancellationDate();
 						SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 						//Date maxDate = sdf.parse(maxdate); //date1
 						try

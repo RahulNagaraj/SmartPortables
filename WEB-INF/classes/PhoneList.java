@@ -19,12 +19,13 @@ public class PhoneList extends HttpServlet
 		String name = null;
 		String CategoryName = request.getParameter("maker");
 		
-		HashMap<String, Phone> allPhones = new HashMap<String, Phone>();
-		HashMap<String, Phone> hm = new HashMap<String, Phone>();
+		HashMap<String, Phone> allPhones = new HashMap<>();
+		HashMap<String, Phone> hm = new HashMap<>();
 
 		try
 		{
 			allPhones = MySqlDataStoreUtilities.getPhones();
+			System.out.println("All Phones: " + allPhones.size());
 		}
 		catch(Exception e)
 		{
@@ -110,6 +111,7 @@ public class PhoneList extends HttpServlet
 		pw.print("<a style='font-size: 24px;'>"+name+" Phones</a>");
 		pw.print("</h2><div class='entry'><table id='bestseller'>");
 		int i = 1; int size= hm.size();
+		System.out.println("Size: " + size);
 		for(Map.Entry<String, Phone> entry : hm.entrySet())
 		{
 			Phone phone = entry.getValue();
@@ -118,14 +120,15 @@ public class PhoneList extends HttpServlet
 			pw.print("<h3>"+phone.getName()+"</h3>");
 			pw.print("<h4>" + phone.getDescription() + "</h5>");
 			pw.print("<strong>$"+phone.getPrice()+"</strong>");
-			pw.print("<strong> Discount: $" + phone.getDiscount() + "</strong><ul>");
+			pw.print("<h4> Discount: $" + phone.getDiscount() + "</h4><ul>");
 			pw.print("<li id='item'><img src='images/phones/"+phone.getImage()+"' alt='' /></li>");
 			
 			pw.print("<li><form method='post' action='Cart'>" +
 					"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
 					"<input type='hidden' name='type' value='phones'>"+
 					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
-					"<input type='hidden' name='access' value=''>"+
+					"<input type='hidden' name='access' value=''>" +
+					warrantyCheckbox(phone) +
 					"<input type='submit' class='btnbuy' value='Buy Now'></form></li>");
 			pw.print("<div style='display:flex; justify-content:space-evenly'><li><form method='post' action='WriteReview'>"+
 					"<input type='hidden' name='type' value='Phone'>"+
@@ -139,7 +142,8 @@ public class PhoneList extends HttpServlet
 					"<input type='hidden' name='access' value=''>"+
 				    "<input type='submit' value='ViewReview' class='btnreview'></form></li></div>");
 
-			if (utility.usertype().equals("storeManager")) {
+			if (utility.usertype() != null && utility.usertype().equals("storeManager")) {
+
 				pw.print("<div style='display:flex; justify-content:space-evenly'><li><form method='post' action='ProductModify'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
 						"<input type='hidden' name='productId' value='" + phone.getId() + "'>"+
 						"<input type='hidden' name='productManufacturer' value='"+ name +"'>"+
@@ -163,5 +167,11 @@ public class PhoneList extends HttpServlet
 		pw.print("</table></div></div></div>");
    
 		utility.printHtml("Footer.html");
+	}
+
+	private String warrantyCheckbox(Phone phone) {
+		return phone.isHasWarranty()
+				? "<input type='checkbox' name='productWarranty' value='yes'><label> Life Time Warranty" + phone.getWarrantyPrice() + "</label>"
+				: "";
 	}
 }
