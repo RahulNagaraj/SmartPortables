@@ -150,6 +150,7 @@ public class PhoneList extends HttpServlet
 						"<input type='hidden' name='productType' value='Phone'>"+
 						"<input type='hidden' name='productName' value='" + phone.getName() + "'>"+
 						"<input type='hidden' name='productPrice' value='" + phone.getPrice() + "'>"+
+						"<input type='hidden' name='productWarranty' value='" + phone.getWarrantyPrice() + "'>"+
 						"<input type='hidden' name='productDiscount' value='" + phone.getDiscount() + "'>"+
 						"<input type='hidden' name='productRebate' value='" + phone.getRebate() + "'>"+
 						"<input type='hidden' name='productCondition' value='" + phone.getCondition() + "'>"+
@@ -171,7 +172,7 @@ public class PhoneList extends HttpServlet
 
 	private String warrantyCheckbox(Phone phone) {
 		return phone.isHasWarranty()
-				? "<input type='checkbox' name='productWarranty' value='yes'><label> Life Time Warranty" + phone.getWarrantyPrice() + "</label>"
-				: "";
+				? "<input type='checkbox' name='productWarranty' value='yes'><label> Life Time Warranty: $" + phone.getWarrantyPrice() + "</label>"
+				: "<p>Warranty not available</p>";
 	}
 }

@@ -327,7 +327,9 @@ public class MySqlDataStoreUtilities
                         rs.getString("productCondition"),
                         rs.getDouble("productDiscount"),
                         rs.getString("productRebate"),
-                        rs.getString("productDescription")
+                        rs.getString("productDescription"),
+                        rs.getBoolean("productHasWarranty"),
+                        rs.getDouble("productWarranty")
                 );
                 hm.put(rs.getString("productId"), laptop);
                 laptop.setId(rs.getString("productId"));
@@ -428,7 +430,9 @@ public class MySqlDataStoreUtilities
                         rs.getString("productCondition"),
                         rs.getDouble("productDiscount"),
                         rs.getString("productRebate"),
-                        rs.getString("productDescription")
+                        rs.getString("productDescription"),
+                        rs.getBoolean("productHasWarranty"),
+                        rs.getDouble("productWarranty")
                 );
                 hm.put(rs.getString("productId"), voiceAssistant);
                 voiceAssistant.setId(rs.getString("productId"));
@@ -549,7 +553,7 @@ public class MySqlDataStoreUtilities
                     "productRebate=?, " +
                     "productDescription=?, " +
                     "productHasWarranty=?," +
-                    "productWarranty=?," +
+                    "productWarranty=?" +
                     "where productId =?;" ;
             PreparedStatement pst = conn.prepareStatement(updateProductQurey);
 
@@ -562,9 +566,9 @@ public class MySqlDataStoreUtilities
             pst.setDouble(7,productDiscount);
             pst.setString(8,productRebate);
             pst.setString(9,productDescription);
-            pst.setBoolean(9,productHasWarranty);
-            pst.setDouble(10,productWarranty);
-            pst.setString(11,productId);
+            pst.setBoolean(10,productHasWarranty);
+            pst.setDouble(11,productWarranty);
+            pst.setString(12,productId);
             pst.executeUpdate();
         }
         catch(Exception e) {

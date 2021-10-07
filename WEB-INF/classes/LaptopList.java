@@ -19,8 +19,8 @@ public class LaptopList extends HttpServlet
 		String name = null;
 		String CategoryName = request.getParameter("maker");
 		
-		HashMap<String, Laptop> allLaptops = new HashMap<String, Laptop>();
-		HashMap<String, Laptop> hm = new HashMap<String, Laptop>();
+		HashMap<String, Laptop> allLaptops = new HashMap<>();
+		HashMap<String, Laptop> hm = new HashMap<>();
 
 		try
 		{
@@ -39,9 +39,31 @@ public class LaptopList extends HttpServlet
 		}
 		else
 		{
-			if(CategoryName.equals("microsoft"))
+			if(CategoryName.equals("apple"))
 			{
 				//for(Map.Entry<String,Laptop> entry : SaxParserDataStore.laptops.entrySet())
+				for(Map.Entry<String,Laptop> entry : allLaptops.entrySet())
+				{
+					if(entry.getValue().getRetailer().equals("Dell"))
+					{
+						hm.put(entry.getValue().getId(),entry.getValue());
+					}
+				}
+				name = "Apple";
+			}
+			else if(CategoryName.equals("dell"))
+			{
+				for(Map.Entry<String,Laptop> entry : allLaptops.entrySet())
+				{
+					if(entry.getValue().getRetailer().equals("Dell"))
+					{
+						hm.put(entry.getValue().getId(),entry.getValue());
+					}
+				}
+				name = "dell";
+			}
+			else if(CategoryName.equals("microsoft"))
+			{
 				for(Map.Entry<String,Laptop> entry : allLaptops.entrySet())
 				{
 					if(entry.getValue().getRetailer().equals("Microsoft"))
@@ -51,49 +73,16 @@ public class LaptopList extends HttpServlet
 				}
 				name = "Microsoft";
 			}
-			else if(CategoryName.equals("sony"))
+			else if(CategoryName.equals("hp"))
 			{
 				for(Map.Entry<String,Laptop> entry : allLaptops.entrySet())
 				{
-					if(entry.getValue().getRetailer().equals("Sony"))
+					if(entry.getValue().getRetailer().equals("HP"))
 					{
 						hm.put(entry.getValue().getId(),entry.getValue());
 					}
 				}
-				name = "Sony";
-			}
-			else if(CategoryName.equals("lg"))
-			{
-				for(Map.Entry<String,Laptop> entry : allLaptops.entrySet())
-				{
-					if(entry.getValue().getRetailer().equals("LG"))
-					{
-						hm.put(entry.getValue().getId(),entry.getValue());
-					}
-				}
-				name = "LG";
-			}
-			else if(CategoryName.equals("samsung"))
-			{
-				for(Map.Entry<String,Laptop> entry : allLaptops.entrySet())
-				{
-					if(entry.getValue().getRetailer().equals("Samsung"))
-					{
-						hm.put(entry.getValue().getId(),entry.getValue());
-					}
-				}
-				name = "Samsung";
-			}
-			else if(CategoryName.equals("onida"))
-			{
-				for(Map.Entry<String,Laptop> entry : allLaptops.entrySet())
-				{
-					if(entry.getValue().getRetailer().equals("Onida"))
-					{
-						hm.put(entry.getValue().getId(),entry.getValue());
-					}
-				}
-				name = "Onida";
+				name = "HP";
 			}
 		}
 		
@@ -117,25 +106,47 @@ public class LaptopList extends HttpServlet
 			pw.print("<td><div id='shop_item'>");
 			pw.print("<h3>"+laptop.getName()+"</h3>");
 			pw.print("<strong>$"+laptop.getPrice()+"</strong><ul>");
+			pw.print("<h4> Discount: $" + laptop.getDiscount() + "</h4><ul>");
 			pw.print("<li id='item'><img src='images/laptops/"+laptop.getImage()+"' alt='' /></li>");
-			
+
 			pw.print("<li><form method='post' action='Cart'>" +
 					"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
 					"<input type='hidden' name='type' value='laptops'>"+
 					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
-					"<input type='hidden' name='access' value=''>"+
+					"<input type='hidden' name='access' value=''>" +
+					warrantyCheckbox(laptop) +
 					"<input type='submit' class='btnbuy' value='Buy Now'></form></li>");
-			pw.print("<li><form method='post' action='WriteReview'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
-					"<input type='hidden' name='type' value='laptops'>"+
-					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
-					"<input type='hidden' name='access' value=''>"+
+			pw.print("<div style='display:flex; justify-content:space-evenly'><li><form method='post' action='WriteReview'>"+
+					"<input type='hidden' name='type' value='Laptop'>"+
+					"<input type='hidden' name='name' value='" + laptop.getName() +"'>"+
+					"<input type='hidden' name='maker' value='"+laptop.getRetailer()+"'>"+
 					"<input type='hidden' name='price' value='"+laptop.getPrice()+"'>"+
-				    "<input type='submit' value='WriteReview' class='btnreview'></form></li>");
-			pw.print("<li><form method='post' action='ViewReview'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
-					"<input type='hidden' name='type' value='laptops'>"+
-					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
+					"<input type='submit' value='WriteReview' class='btnreview'></form></li>");
+			pw.print("<li><form method='post' action='ViewReview'>"+"<input type='hidden' name='name' value='" + laptop.getName() + "'>"+
+					"<input type='hidden' name='type' value='Laptop'>"+
+					"<input type='hidden' name='maker' value='"+laptop.getRetailer()+"'>"+
 					"<input type='hidden' name='access' value=''>"+
-				    "<input type='submit' value='ViewReview' class='btnreview'></form></li>");
+					"<input type='submit' value='ViewReview' class='btnreview'></form></li></div>");
+
+			if (utility.usertype() != null && utility.usertype().equals("storeManager")) {
+
+				pw.print("<div style='display:flex; justify-content:space-evenly'><li><form method='post' action='ProductModify'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
+						"<input type='hidden' name='productId' value='" + laptop.getId() + "'>"+
+						"<input type='hidden' name='productManufacturer' value='"+ name +"'>"+
+						"<input type='hidden' name='productType' value='Phone'>"+
+						"<input type='hidden' name='productName' value='" + laptop.getName() + "'>"+
+						"<input type='hidden' name='productPrice' value='" + laptop.getPrice() + "'>"+
+						"<input type='hidden' name='productWarranty' value='" + laptop.getWarrantyPrice() + "'>"+
+						"<input type='hidden' name='productDiscount' value='" + laptop.getDiscount() + "'>"+
+						"<input type='hidden' name='productRebate' value='" + laptop.getRebate() + "'>"+
+						"<input type='hidden' name='productCondition' value='" + laptop.getCondition() + "'>"+
+						"<input type='hidden' name='productDescription' value='" + laptop.getDescription() + "'>"+
+						"<input type='submit' name='button' value='Update' class='btnreview'></form></li>");
+				pw.print("<li><form method='post' action='ProductCrud'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
+						"<input type='hidden' name='productId' value='" + laptop.getId() + "'>"+
+						"<input type='submit' name='button' value='Delete' class='btnreview'></form></li></div>");
+			}
+
 			pw.print("</ul></div></td>");
 			if(i%3==0 || i == size) pw.print("</tr>");
 			i++;
@@ -143,5 +154,11 @@ public class LaptopList extends HttpServlet
 		pw.print("</table></div></div></div>");
    
 		utility.printHtml("Footer.html");
+	}
+
+	private String warrantyCheckbox(Laptop laptop) {
+		return laptop.isHasWarranty()
+				? "<input type='checkbox' name='productWarranty' value='yes'><label> Life Time Warranty: $" + laptop.getWarrantyPrice() + "</label>"
+				: "<p>Warranty not available</p>";
 	}
 }

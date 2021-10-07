@@ -327,9 +327,9 @@ public class Utilities extends HttpServlet{
 
 			}
 			laptop = allLaptops.get(name);
-			OrderItem orderitem = new OrderItem(laptop.getName(), laptop.getPrice(), laptop.getImage(), laptop.getRetailer(), false,
-					0.0,
-					0.0);
+			OrderItem orderitem = new OrderItem(laptop.getName(), laptop.getPrice(), laptop.getImage(), laptop.getRetailer(), isWarrantyIncluded,
+					laptop.getDiscount(),
+					laptop.getWarrantyPrice());
 			orderItems.add(orderitem);
 		}
 		if(type.equals("voiceAssistants")) {
@@ -343,9 +343,9 @@ public class Utilities extends HttpServlet{
 
 			}
 			voiceAssistant = allVoiceAssistants.get(name);
-			OrderItem orderitem = new OrderItem(voiceAssistant.getName(), voiceAssistant.getPrice(), voiceAssistant.getImage(), voiceAssistant.getRetailer(), false,
-					0.0,
-					0.0);
+			OrderItem orderitem = new OrderItem(voiceAssistant.getName(), voiceAssistant.getPrice(), voiceAssistant.getImage(), voiceAssistant.getRetailer(), isWarrantyIncluded,
+					voiceAssistant.getDiscount(),
+					voiceAssistant.getWarrantyPrice());
 			orderItems.add(orderitem);
 		}
 		if(type.equals("fitnessWatches"))
