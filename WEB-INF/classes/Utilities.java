@@ -71,7 +71,8 @@ public class Utilities extends HttpServlet{
 					//salesman can add/update/delete customer orders, add customers
 					/*result = result + "<li><a href='AddCustomer'><span class='glyphicon'>AddCustomers</span></a></li>"
 									+ "<li><a href='CustomerOrders'><span class='glyphicon'>CustomerOrders</span></a></li>";*/
-					result = result + "<li><a href='Registration'><span class='glyphicon'>Create Customer</span></a></li>"
+					result = result + "<li><a href='Registration'><span class='glyphicon'>AddCustomers</span></a></li>"
+							+ "<li><a href='CustomerOrders'><span class='glyphicon'>CustomerOrders</span></a></li>"
 							+ "<li><a href='ViewOrder'><span class='glyphicon'>ViewOrder</span></a></li>"
 							+ "<li><a><span class='glyphicon'>Hello,"+username+"</span></a></li>"
 							+ "<li><a href='Logout'><span class='glyphicon'>Logout</span></a></li>";
@@ -288,7 +289,8 @@ public class Utilities extends HttpServlet{
 					accessory.getRetailer(),
 					false,
 					0.0,
-					0.0
+					0.0,
+					"Accessory"
 					);
 			orderItems.add(orderitem);
 		}
@@ -311,7 +313,8 @@ public class Utilities extends HttpServlet{
 					phone.getRetailer(),
 					isWarrantyIncluded,
 					phone.getDiscount(),
-					phone.getWarrantyPrice()
+					phone.getWarrantyPrice(),
+					"Phone"
 			);
 			orderItems.add(orderitem);
 		}
@@ -329,7 +332,7 @@ public class Utilities extends HttpServlet{
 			laptop = allLaptops.get(name);
 			OrderItem orderitem = new OrderItem(laptop.getName(), laptop.getPrice(), laptop.getImage(), laptop.getRetailer(), isWarrantyIncluded,
 					laptop.getDiscount(),
-					laptop.getWarrantyPrice());
+					laptop.getWarrantyPrice(), "Laptop");
 			orderItems.add(orderitem);
 		}
 		if(type.equals("voiceAssistants")) {
@@ -345,7 +348,7 @@ public class Utilities extends HttpServlet{
 			voiceAssistant = allVoiceAssistants.get(name);
 			OrderItem orderitem = new OrderItem(voiceAssistant.getName(), voiceAssistant.getPrice(), voiceAssistant.getImage(), voiceAssistant.getRetailer(), isWarrantyIncluded,
 					voiceAssistant.getDiscount(),
-					voiceAssistant.getWarrantyPrice());
+					voiceAssistant.getWarrantyPrice(), "Voice Assistant");
 			orderItems.add(orderitem);
 		}
 		if(type.equals("fitnessWatches"))
@@ -362,7 +365,7 @@ public class Utilities extends HttpServlet{
 			fitnessWatch = allFitnessWatches.get(name);
 			OrderItem orderitem = new OrderItem(fitnessWatch.getName(), fitnessWatch.getPrice(), fitnessWatch.getImage(), fitnessWatch.getRetailer(), false,
 					0.0,
-					0.0);
+					0.0, "Fitness Watch");
 			orderItems.add(orderitem);
 		}
 		if(type.equals("smartWatches"))
@@ -379,7 +382,7 @@ public class Utilities extends HttpServlet{
 			smartWatch = allSmartWatches.get(name);
 			OrderItem orderitem = new OrderItem(smartWatch.getName(), smartWatch.getPrice(), smartWatch.getImage(), smartWatch.getRetailer(), false,
 					0.0,
-					0.0);
+					0.0, "Smart Watch");
 			orderItems.add(orderitem);
 		}
 		if(type.equals("headphones"))
@@ -396,7 +399,7 @@ public class Utilities extends HttpServlet{
 			headphone = allHeadphones.get(name);
 			OrderItem orderitem = new OrderItem(headphone.getName(), headphone.getPrice(), headphone.getImage(), headphone.getRetailer(), false,
 					0.0,
-					0.0);
+					0.0, "Headphone");
 			orderItems.add(orderitem);
 		}
 		if(type.equals("petTracker"))
@@ -419,7 +422,8 @@ public class Utilities extends HttpServlet{
 					petTracker.getRetailer(),
 					false,
 					0.0,
-					0.0
+					0.0,
+					"Pet Tracker"
 			);
 			orderItems.add(orderitem);
 		}

@@ -36,7 +36,6 @@ public class Payment extends HttpServlet {
 		String stateAddress=request.getParameter("stateAddress");
 		String zipcode=request.getParameter("zipcode");
 		String customerName=request.getParameter("customerName");
-		boolean isWarrantyIncluded = request.getParameter("hasWarranty").equals("true");
 		String deliveryMethod = request.getParameter("deliveryMethod");
 		String creditCardNo=request.getParameter("creditCardNo");
 		String userName = session.getAttribute("username").toString();
@@ -44,70 +43,43 @@ public class Payment extends HttpServlet {
 		double orderTotal = Double.parseDouble(request.getParameter("orderTotal"));
 		double warrantyPrice = Double.parseDouble(request.getParameter("warrantyPrice"));
 		double discountPrice = Double.parseDouble(request.getParameter("discount"));
+		double shippingCost = 25;
+
 
 		List<Store> storeList = MySqlDataStoreUtilities.getAllStores();
 
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 		String orderDate = new SimpleDateFormat("MM/dd/yyyy").format(new Date());
 		Calendar cal = Calendar.getInstance();
+
 		cal.setTime(new Date());
 		cal.add(Calendar.DATE, 14);
 		String deliveryDate = sdf.format(cal.getTime());
-		cal.setTime(new Date());
-		cal.add(Calendar.DATE, 9);
-		String maxOrderCancellationDate = sdf.format(cal.getTime());
+
 		cal.setTime(new Date());
 		cal.add(Calendar.DATE, 5);
+		String maxOrderCancellationDate = sdf.format(cal.getTime());
+
+		cal.setTime(new Date());
+		cal.add(Calendar.DATE, 14);
 		String maxPickupDate = sdf.format(cal.getTime());
-		System.out.print(creditCardNo);
+
+
 		if(!creditCardNo.isEmpty() ) {
 			int orderId=utility.getOrderPaymentSize()+1;
 
-			//iterate through each order
-
-			for (OrderItem oi : utility.getCustomerOrders()) {
-
-				//set the parameter for each column and execute the prepared statement
-
-				Customer customer = new Customer(
-						customerName,
-						streetAddress,
-						cityAddress,
-						stateAddress,
-						zipcode
-				);
-
-				CustomerOrder order = new CustomerOrder(
-						orderId,
-						userName,
-						oi.getName(),
-						oi.getPrice(),
-						isWarrantyIncluded,
-						discountPrice,
-						orderTotal,
-						warrantyPrice
-				);
-
-				System.out.println("customer order: " + order.toString());
-
-				utility.storePayment(order);
-				utility.storeCustomer(customer);
-			}
-
-			//remove the order details from cart after processing
-
-			OrdersHashMap.orders.remove(utility.username());
 			utility.printHtml("Header.html");
 			utility.printHtml("LeftNavigationBar.html");
 			pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
 			pw.print("<a style='font-size: 24px;'>Order Confirmation</a>");
 			pw.print("</h2><div class='entry'>");
+			pw.print("<form method='post' action='OrderConfirmation'>");
 
 			if (deliveryMethod.equals("In Store Pickup")) {
 
-				request.setAttribute("customerName", customerName);
+				pw.print("<h3>Choose your pickup location</h3>");
+				pw.print("<br />");
 
-				pw.print("<form method='post' action='OrderConfirmation'>");
 				pw.print("<table  class='gridtable'><tr><td>Pickup Store Name:</td><td>");
 				pw.print("<select name='pickupStoreName'>");
 				for (Store store : storeList) {
@@ -116,52 +88,33 @@ public class Payment extends HttpServlet {
 
 				pw.print("</select>");
 				pw.print("</td></tr>");
-				pw.print("</table>" +
-						"<input type='hidden' name='orderId' value='" + orderId + "' class='btnbuy'>" +
-						"<input type='hidden' name='userName' value='" + userName + "' class='btnbuy'>" +
-						"<input type='hidden' name='customerName' value='" + customerName + "' class='btnbuy'>" +
-						"<input type='hidden' name='streetAddress' value='" + streetAddress + "' class='btnbuy'>" +
-						"<input type='hidden' name='cityAddress' value='" + cityAddress + "' class='btnbuy'>" +
-						"<input type='hidden' name='stateAddress' value='" + stateAddress + "' class='btnbuy'>" +
-						"<input type='hidden' name='zipcode' value='" + zipcode + "' class='btnbuy'>" +
-						"<input type='hidden' name='creditCardNo' value='" + creditCardNo + "' class='btnbuy'>" +
-						"<input type='hidden' name='deliveryMethod' value='" + deliveryMethod + "' class='btnbuy'>" +
-						"<input type='hidden' name='orderDate' value='" + orderDate + "' class='btnbuy'>" +
-						"<input type='hidden' name='deliveryDate' value='" + deliveryDate + "' class='btnbuy'>" +
-						"<input type='hidden' name='maxOrderCancellationDate' value='" + maxOrderCancellationDate + "' class='btnbuy'>" +
-						"<input type='hidden' name='maxPickupDate' value='" + maxPickupDate + "' class='btnbuy'>" +
-
-						"<br />" +
-						"<input type='submit' name='order' value='Order' class='btnbuy'>" +
-						"</form>");
+				pw.print("</table>");
 			} else {
-				Transaction transaction = new Transaction(
-						orderId,
-						userName,
-						customerName,
-						streetAddress,
-						cityAddress,
-						stateAddress,
-						zipcode,
-						creditCardNo,
-						deliveryMethod,
-						null,
-						orderDate,
-						deliveryDate,
-						maxOrderCancellationDate,
-						null
-				);
-				MySqlDataStoreUtilities.insertTransaction(transaction);
 
-				pw.print("<h2>Your Order");
+				pw.print("<h3>You have opted for " + deliveryMethod);
 				pw.print("&nbsp&nbsp");
-				pw.print("is stored ");
-				pw.print("<br>Your Order No is "+(orderId));
-				pw.print("<br>Your Order Date is "+(orderDate));
-				pw.print("<br>Your Delivery Date is "+(deliveryDate));
-				pw.print("<br>You can cancel your order before "+(maxOrderCancellationDate));
-				pw.print("</h2>");
+				pw.print("<br/> Additional shipping cost of $" + shippingCost + " will be added to the total");
+				pw.print("</h3>");
 			}
+
+			pw.print("<br />");
+			pw.print("<input type='hidden' name='orderId' value='" + orderId + "' class='btnbuy'>" +
+					"<input type='hidden' name='userName' value='" + userName + "' class='btnbuy'>" +
+					"<input type='hidden' name='customerName' value='" + customerName + "' class='btnbuy'>" +
+					"<input type='hidden' name='streetAddress' value='" + streetAddress + "' class='btnbuy'>" +
+					"<input type='hidden' name='cityAddress' value='" + cityAddress + "' class='btnbuy'>" +
+					"<input type='hidden' name='stateAddress' value='" + stateAddress + "' class='btnbuy'>" +
+					"<input type='hidden' name='zipcode' value='" + zipcode + "' class='btnbuy'>" +
+					"<input type='hidden' name='creditCardNo' value='" + creditCardNo + "' class='btnbuy'>" +
+					"<input type='hidden' name='orderDate' value='" + orderDate + "' class='btnbuy'>" +
+					"<input type='hidden' name='deliveryDate' value='" + deliveryDate + "' class='btnbuy'>" +
+					"<input type='hidden' name='shippingCost' value='" + shippingCost + "' class='btnbuy'>" +
+					"<input type='hidden' name='orderTotal' value='" + orderTotal + "' class='btnbuy'>" +
+					"<input type='hidden' name='deliveryMethod' value='" + deliveryMethod + "' class='btnbuy'>" +
+					"<input type='hidden' name='maxPickupDate' value='" + maxPickupDate + "' class='btnbuy'>" +
+					"<input type='hidden' name='maxOrderCancellationDate' value='" + maxOrderCancellationDate + "' class='btnbuy'>" +
+					"<input type='submit' name='order' value='Confirm Order' class='btnbuy'>" +
+					"</form>");
 			pw.print("</div></div></div>");
 			utility.printHtml("Footer.html");
 		}else

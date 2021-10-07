@@ -11,13 +11,25 @@ create table registration(
 Create table customerOrders (
 	orderId integer,
 	userName varchar(40),
-	orderName varchar(40),
-	orderPrice double,
+    customerName varchar(40),
+    customerAddress varchar(80),
+    creditCardNo integer,
+    purchaseDate varchar(20),
+    shipDate varchar(20),
+	productName varchar(40),
+    productType varchar(40),
+    productQuantity integer,
+	productPrice double,
+    shippingCost double,
     discountPrice double,
     orderTotal double,
     isWarrantyIncluded bool,
     warrantyPrice double,
-	Primary key(OrderId, userName, orderName)
+    deliveryMethod varchar(40),
+    maxPickupDate varchar(20),
+    pickupStoreName varchar(40),
+    maxCancellationDate varchar(20),
+	Primary key(orderId, userName, productName)
 );
 
 Create table productDetails (

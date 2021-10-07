@@ -91,8 +91,8 @@ public class Account extends HttpServlet {
 						{
 							pw.print("<form method='get' action='ViewOrder'>");
 							pw.print("<tr>");
-							pw.print("<td><input type='radio' name='orderName' value='"+oi.getOrderName()+"'></td>");
-							pw.print("<td>"+oi.getOrderId()+".</td><td>"+oi.getUserName()+"</td><td>"+oi.getOrderName()+"</td><td>Price: "+oi.getOrderPrice()+"</td>");
+							pw.print("<td><input type='radio' name='orderName' value='"+oi.getProductName()+"'></td>");
+							pw.print("<td>"+oi.getOrderId()+".</td><td>"+oi.getUserName()+"</td><td>"+oi.getProductName()+"</td><td>Price: "+oi.getProductPrice()+"</td>");
 							pw.print("<td><input type='hidden' name='orderId' value='"+oi.getOrderId()+"'></td>");
 							pw.print("<td><input type='submit' name='Order' value='CancelOrder' class='btnbuy'></td>");
 							pw.print("</tr>");

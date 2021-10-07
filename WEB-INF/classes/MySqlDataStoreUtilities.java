@@ -20,7 +20,7 @@ public class MySqlDataStoreUtilities
     public static void deleteOrder(int orderId,String orderName) {
         try {
             getConnection();
-            String deleteOrderQuery ="Delete from customerOrders where OrderId=? and orderName=?";
+            String deleteOrderQuery ="Delete from customerOrders where orderId=? and productName=?";
             PreparedStatement pst = conn.prepareStatement(deleteOrderQuery);
             pst.setInt(1,orderId);
             pst.setString(2,orderName);
@@ -37,25 +37,49 @@ public class MySqlDataStoreUtilities
             String insertCustomerOrderQuery = "Insert into customerOrders (" +
                     "orderId," +
                     "userName," +
-                    "orderName," +
-                    "orderPrice," +
-                    "isWarrantyIncluded," +
+                    "customerName," +
+                    "customerAddress," +
+                    "creditCardNo," +
+                    "purchaseDate," +
+                    "shipDate," +
+                    "productName," +
+                    "productType," +
+                    "productQuantity," +
+                    "productPrice," +
+                    "shippingCost," +
                     "discountPrice," +
                     "orderTotal," +
-                    "warrantyPrice" +
+                    "isWarrantyIncluded," +
+                    "warrantyPrice," +
+                    "deliveryMethod," +
+                    "maxPickupDate," +
+                    "pickupStoreName," +
+                    "maxCancellationDate" +
                     ") "
-                    + "VALUES (?,?,?,?,?,?,?,?);";
+                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
             PreparedStatement pst = conn.prepareStatement(insertCustomerOrderQuery);
             //set the parameter for each column and execute the prepared statement
             pst.setInt(1,order.getOrderId());
             pst.setString(2,order.getUserName());
-            pst.setString(3,order.getOrderName());
-            pst.setDouble(4,order.getOrderPrice());
-            pst.setBoolean(5,order.getIsWarrantyIncluded());
-            pst.setDouble(6,order.getDiscountPrice());
-            pst.setDouble(7,order.getOrderTotal());
-            pst.setDouble(8,order.getWarrantyPrice());
+            pst.setString(3,order.getCustomerName());
+            pst.setString(4,order.getCustomerAddress());
+            pst.setInt(5,order.getCreditCardNo());
+            pst.setString(6,order.getPurchaseDate());
+            pst.setString(7,order.getShipDate());
+            pst.setString(8,order.getProductName());
+            pst.setString(9,order.getProductType());
+            pst.setInt(10,order.getProductQuantity());
+            pst.setDouble(11,order.getProductPrice());
+            pst.setDouble(12,order.getShippingCost());
+            pst.setDouble(13,order.getDiscountPrice());
+            pst.setDouble(14,order.getOrderTotal());
+            pst.setBoolean(15,order.isWarrantyIncluded());
+            pst.setDouble(16,order.getWarrantyPrice());
+            pst.setString(17,order.getDeliveryMethod());
+            pst.setString(18,order.getMaxPickupDate());
+            pst.setString(19,order.getPickupStoreName());
+            pst.setString(20,order.getMaxCancellationDate());
             System.out.println("insert customer order Query: " + pst.toString());
 
             pst.executeUpdate();
@@ -88,12 +112,24 @@ public class MySqlDataStoreUtilities
                 CustomerOrder order = new CustomerOrder(
                         rs.getInt("orderId"),
                         rs.getString("userName"),
-                        rs.getString("orderName"),
-                        rs.getDouble("orderPrice"),
-                        rs.getBoolean("isWarrantyIncluded"),
+                        rs.getString("customerName"),
+                        rs.getString("customerAddress"),
+                        rs.getInt("creditCardNo"),
+                        rs.getString("purchaseDate"),
+                        rs.getString("shipDate"),
+                        rs.getString("productName"),
+                        rs.getString("productType"),
+                        rs.getInt("productQuantity"),
+                        rs.getDouble("productPrice"),
+                        rs.getDouble("shippingCost"),
                         rs.getDouble("discountPrice"),
                         rs.getDouble("orderTotal"),
-                        rs.getDouble("warrantyPrice")
+                        rs.getBoolean("isWarrantyIncluded"),
+                        rs.getDouble("warrantyPrice"),
+                        rs.getString("deliveryMethod"),
+                        rs.getString("maxPickupDate"),
+                        rs.getString("pickupStoreName"),
+                        rs.getString("maxCancellationDate")
                 );
                 listCustomerOrders.add(order);
             }
@@ -770,5 +806,45 @@ public class MySqlDataStoreUtilities
         }
 
         return transaction;
+    }
+
+    public static void updateOrder(
+            String customerName,
+            String customerAddress,
+            int creditCardNo,
+            String deliveryMethod,
+            String pickupStoreName,
+            int orderId,
+            String productName,
+            String userName
+    ) {
+        try {
+            getConnection();
+
+            // SET column_1 = value_1, column_2 = value_2 WHERE column_3 = value_3
+
+            String updateOrderQurey = "Update customerOrders SET " +
+                    "customerName=?," +
+                    "customerAddress=?," +
+                    "creditCardNo=?," +
+                    "deliveryMethod=?," +
+                    "pickupStoreName=? " +
+                    "where orderId=? and productName=? and userName=?;";
+            PreparedStatement pst = conn.prepareStatement(updateOrderQurey);
+            pst.setString(1, customerName);
+            pst.setString(2, customerAddress);
+            pst.setInt(3, creditCardNo);
+            pst.setString(4, deliveryMethod);
+            pst.setString(5, pickupStoreName);
+            pst.setInt(6, orderId);
+            pst.setString(7, productName);
+            pst.setString(8, userName);
+
+            pst.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Erro updating order: " + e.getMessage());
+        }
     }
 }

@@ -82,10 +82,10 @@ public class CustomerOrders extends HttpServlet {
 			if(size>0) {
 
 				pw.print("<tr><td></td>");
-				pw.print("<td>OrderId:</td>");
-				pw.print("<td>UserName:</td>");
-				pw.print("<td>productOrdered:</td>");
-				pw.print("<td>productPrice:</td></tr>");
+				pw.print("<td>Order Id:</td>");
+				pw.print("<td>User Name:</td>");
+				pw.print("<td>Product Ordered:</td>");
+				pw.print("<td>Product Price:</td></tr>");
 				for(Map.Entry<Integer, ArrayList<CustomerOrder>> entry : customerOrder.entrySet())
 				{
 					for(CustomerOrder oi:entry.getValue())
@@ -96,10 +96,16 @@ public class CustomerOrders extends HttpServlet {
 						*/
 						pw.print("<form method='get' action='ViewOrder'>");
 						pw.print("<tr>");
-						pw.print("<td><input type='radio' name='orderName' value='"+oi.getOrderName()+"'></td>");
-						pw.print("<td>"+oi.getOrderId()+".</td><td>"+oi.getUserName()+"</td><td>"+oi.getOrderName()+"</td><td>Price: "+oi.getOrderPrice()+"</td>");
-						pw.print("<td><input type='hidden' name='orderId' value='"+oi.getOrderId()+"'></td>");
+						pw.print("<td><input type='radio' name='' value='"+oi.getProductName()+"'></td>");
+						pw.print("<td>"+oi.getOrderId()+".</td><td>"+oi.getUserName()+"</td><td>"+oi.getProductName()+"</td><td>Price: "+oi.getProductPrice()+"</td>");
+						pw.print("<input type='hidden' name='orderId' value='"+oi.getOrderId()+"'>");
+						pw.print("<input type='hidden' name='orderName' value='"+oi.getProductName()+"'>");
 						pw.print("<td><input type='submit' name='Order' value='CancelOrder' class='btnbuy'></td>");
+						pw.print("</form>");
+						pw.print("<form method='get' action='UpdateOrder'>");
+						pw.print("<input type='hidden' name='orderId' value='"+oi.getOrderId()+"'>");
+						pw.print("<input type='hidden' name='orderName' value='"+oi.getProductName()+"'>");
+						pw.print("<td><input type='submit' name='Order' value='UpdateOrder' class='btnbuy'></td>");
 						pw.print("</tr>");
 						pw.print("</form>");
 						/*
@@ -107,18 +113,12 @@ public class CustomerOrders extends HttpServlet {
 						*/
 					}
 				}
-
 				pw.print("</table>");
 			}
 			else
 			{
 				pw.print("<h4 style='color:red'>You have not placed any order with this order id</h4>");
 			}
-
-
-
-
-
 			pw.print("</table>");
 			pw.print("</h2></div></div></div>");
 			utility.printHtml("Footer.html");

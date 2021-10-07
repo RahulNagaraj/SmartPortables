@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,9 +16,9 @@ import java.util.Date;
 @WebServlet("/ViewOrder")
 
 public class ViewOrder extends HttpServlet {
-	
-protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		response.setContentType("text/html");
 		PrintWriter pw = response.getWriter();
 
@@ -25,7 +26,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		//check if the user is logged in
 		if(!utility.isLoggedin())
 		{
-			HttpSession session = request.getSession(true);				
+			HttpSession session = request.getSession(true);
 			session.setAttribute("login_msg", "Please Login to View your Orders");
 			response.sendRedirect("Login");
 			return;
@@ -43,7 +44,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		then user will get textbox to give order number by which he can view order 
 		if order button is clicked user will be directed to this same servlet and user has given order number 
 		then this page shows all the order details*/
-	
+
 		if(request.getParameter("Order")==null)
 		{
 			pw.print("<table align='center'><tr><td>Enter OrderNo &nbsp&nbsp<input name='orderId' type='text'></td>");
@@ -75,7 +76,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		if(request.getParameter("Order")!=null && request.getParameter("Order").equals("ViewOrder"))
 		{
 			if (request.getParameter("orderId") != null && request.getParameter("orderId") != "" )
-			{	
+			{
 				int orderId = Integer.parseInt(request.getParameter("orderId"));
 				pw.print("<input type='hidden' name='orderId' value='"+orderId+"'>");
 				//get the order details from file
@@ -92,7 +93,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 					System.out.println("customer orders: " + customerOrder.get(orderId).toString());
 				}
 				catch(Exception e) {
-			
+
 				}
 				int size=0;
 			
@@ -116,12 +117,12 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 					pw.print("<td>Product Price:</td></tr>");
 					for (CustomerOrder oi : customerOrder.get(orderId))
 					{
-						pw.print("<tr>");			
-						pw.print("<td><input type='radio' name='orderName' value='"+oi.getOrderName()+"'></td>");			
+						pw.print("<tr>");
+						pw.print("<td><input type='radio' name='orderName' value='"+oi.getProductName()+"'></td>");
 						pw.print("<td>"+oi.getOrderId()+".</td>" +
 								"<td>"+oi.getUserName()+"</td>" +
-								"<td>"+oi.getOrderName()+"</td>" +
-								"<td>Price: "+oi.getOrderPrice()+"</td>");
+								"<td>"+oi.getProductName()+"</td>" +
+								"<td>Price: "+oi.getProductPrice()+"</td>");
 						pw.print("<td><input type='submit' name='Order' value='CancelOrder' class='btnbuy'></td>");
 						pw.print("</tr>");
 					}
@@ -131,15 +132,18 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 					pw.print("<h4 style='color:red'>You have not placed any order with this order id</h4>");
 				}
 			} else {
-				pw.print("<h4 style='color:red'>Please enter the valid order number</h4>");	
+				pw.print("<h4 style='color:red'>Please enter the valid order number</h4>");
 			}
 		}
 		//if the user presses cancel order from order details shown then process to cancel the order
 		if(request.getParameter("Order")!=null && request.getParameter("Order").equals("CancelOrder")) {
+			System.out.println("CancelOrder ");
 			if(request.getParameter("orderName") != null) {
 				String orderName=request.getParameter("orderName");
+				System.out.println("OrderName: " + orderName);
 				int orderId=0;
 				orderId=Integer.parseInt(request.getParameter("orderId"));
+				System.out.println("orderId: " + orderId);
 				ArrayList<CustomerOrder> ListOrderPayment =new ArrayList<>();
 				//get the order from file
 				try {
@@ -149,14 +153,16 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 					orderPayments = (HashMap)objectInputStream.readObject();
 					*/
 					customerOrder = MySqlDataStoreUtilities.selectOrder();
+					System.out.println("Customer ORder: " + customerOrder.toString());
 				}
 				catch(Exception e) {
-			
+						System.out.println("error: " + e.getMessage());
 				}
 				//get the exact order with same ordername and add it into cancel list to remove it later
 				for (CustomerOrder oi : customerOrder.get(orderId)) {
-					if(oi.getOrderName().equals(orderName)) {
-						String maxDate = transaction.getMaxOrderCancellationDate();
+					System.out.println("oi: " + oi.getProductName());
+					if(oi.getProductName().equals(orderName)) {
+						String maxDate = oi.getMaxCancellationDate();
 						SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 						//Date maxDate = sdf.parse(maxdate); //date1
 						try
@@ -168,7 +174,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 
 							if(formattedMaxDate.compareTo(formattedCurrentDate) > 0)
 							{
-								MySqlDataStoreUtilities.deleteOrder(orderId,orderName); // check it once
+								MySqlDataStoreUtilities.deleteOrder(orderId, orderName); // check it once
 								ListOrderPayment.add(oi);
 								pw.print("<h4 style='color:red'>Your Order is Cancelled</h4>");
 							}
@@ -216,6 +222,17 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		utility.printHtml("Footer.html");
 	}
 
+	private void displayUpdateOrder(PrintWriter pw, CustomerOrder order) {
+		List<Store> allStores = MySqlDataStoreUtilities.getAllStores();
+		String[] address = order.getCustomerAddress().split(", ");
+		String street = address[0];
+		String city = address[1];
+		String stateZip = address[2];
+		String[] stateZipCode = stateZip.split(" - ");
+		String state = stateZipCode[0];
+		String zipcode = stateZipCode[1];
+
+	}
 }
 
 

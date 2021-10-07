@@ -25,9 +25,10 @@ public class OrderItem extends HttpServlet {
 	private boolean warrantyIncluded;
 	private double discount;
 	private double warrantyPrice;
+	private String productType;
 	
 	public OrderItem(String name, double price, String image, String retailer, boolean warrantyIncluded,
-					 double discount, double warrantyPrice){
+					 double discount, double warrantyPrice, String productType){
 		this.name=name;
 		this.price=price;
 		this.image=image;
@@ -35,6 +36,7 @@ public class OrderItem extends HttpServlet {
 		this.warrantyIncluded = warrantyIncluded;
 		this.warrantyPrice = warrantyPrice;
 		this.discount = discount;
+		this.productType = productType;
 	}
 
 	public String getName() {
@@ -91,5 +93,13 @@ public class OrderItem extends HttpServlet {
 
 	public void setWarrantyPrice(double warrantyPrice) {
 		this.warrantyPrice = warrantyPrice;
+	}
+
+	public String getProductType() {
+		return productType;
+	}
+
+	public void setProductType(String productType) {
+		this.productType = productType;
 	}
 }
