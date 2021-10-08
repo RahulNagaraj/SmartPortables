@@ -330,7 +330,9 @@ public class MySqlDataStoreUtilities
                         rs.getString("productCondition"),
                         rs.getDouble("productDiscount"),
                         rs.getString("productRebate"),
-                        rs.getString("productDescription")
+                        rs.getString("productDescription"),
+                        rs.getBoolean("productHasWarranty"),
+                        rs.getDouble("productWarranty")
                 );
                 hm.put(rs.getString("productId"), headphone);
                 headphone.setId(rs.getString("productId"));
@@ -434,7 +436,9 @@ public class MySqlDataStoreUtilities
                         rs.getString("productCondition"),
                         rs.getDouble("productDiscount"),
                         rs.getString("productRebate"),
-                        rs.getString("productDescription")
+                        rs.getString("productDescription"),
+                        rs.getBoolean("productHasWarranty"),
+                        rs.getDouble("productWarranty")
                 );
                 hm.put(rs.getString("productId"), smartWatch);
                 smartWatch.setId(rs.getString("productId"));
