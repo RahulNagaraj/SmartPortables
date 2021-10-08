@@ -120,10 +120,11 @@ public class PhoneList extends HttpServlet
 			pw.print("<h3>"+phone.getName()+"</h3>");
 			pw.print("<h4>" + phone.getDescription() + "</h5>");
 			pw.print("<strong>$"+phone.getPrice()+"</strong>");
-			pw.print("<h4> Discount: $" + phone.getDiscount() + "</h4><ul>");
+			pw.print("<h4>Discount: $" + phone.getDiscount() + "</h4><ul>");
+			pw.print("<h4 style='text-align: center;'>"+ getRebate(phone) +"</h4>");
 			pw.print("<li id='item'><img src='images/phones/"+phone.getImage()+"' alt='' /></li>");
 			
-			pw.print("<li><form method='post' action='Cart'>" +
+			pw.print("<li><form method='post' action='Cart' style='text-align: center;'>" +
 					"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
 					"<input type='hidden' name='type' value='phones'>"+
 					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
@@ -174,5 +175,11 @@ public class PhoneList extends HttpServlet
 		return phone.isHasWarranty()
 				? "<input type='checkbox' name='productWarranty' value='yes'><label> Life Time Warranty: $" + phone.getWarrantyPrice() + "</label>"
 				: "<p>Warranty not available</p>";
+	}
+
+	private String getRebate(Phone phone) {
+		return phone.getRebate().equals("Yes")
+				? "<p style='text-align: center;'>This product has a rebate</p>"
+				: "";
 	}
 }

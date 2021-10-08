@@ -96,9 +96,10 @@ public class VoiceAssistantList extends HttpServlet
 			pw.print("<h3>"+voiceAssistant.getName()+"</h3>");
 			pw.print("<strong>$"+voiceAssistant.getPrice()+"</strong><ul>");
 			pw.print("<h4> Discount: $" + voiceAssistant.getDiscount() + "</h4><ul>");
+			pw.print("<h4 style='text-align: center;'>"+ getRebate(voiceAssistant) +"</h4>");
 			pw.print("<li id='item'><img src='images/assistant/"+voiceAssistant.getImage()+"' alt='' /></li>");
 
-			pw.print("<li><form method='post' action='Cart'>" +
+			pw.print("<li><form method='post' action='Cart' style='text-align: center;'>" +
 					"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
 					"<input type='hidden' name='type' value='voiceAssistants'>"+
 					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
@@ -149,5 +150,11 @@ public class VoiceAssistantList extends HttpServlet
 		return assistant.isHasWarranty()
 				? "<input type='checkbox' name='productWarranty' value='yes'><label> Life Time Warranty: $" + assistant.getWarrantyPrice() + "</label>"
 				: "<p>Warranty not available</p>";
+	}
+
+	private String getRebate(VoiceAssistant assistant) {
+		return assistant.getRebate().equals("Yes")
+				? "<p style='text-align: center;'>This product has a rebate</p>"
+				: "";
 	}
 }

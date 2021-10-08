@@ -44,7 +44,7 @@ public class LaptopList extends HttpServlet
 				//for(Map.Entry<String,Laptop> entry : SaxParserDataStore.laptops.entrySet())
 				for(Map.Entry<String,Laptop> entry : allLaptops.entrySet())
 				{
-					if(entry.getValue().getRetailer().equals("Dell"))
+					if(entry.getValue().getRetailer().equals("Apple"))
 					{
 						hm.put(entry.getValue().getId(),entry.getValue());
 					}
@@ -107,9 +107,10 @@ public class LaptopList extends HttpServlet
 			pw.print("<h3>"+laptop.getName()+"</h3>");
 			pw.print("<strong>$"+laptop.getPrice()+"</strong><ul>");
 			pw.print("<h4> Discount: $" + laptop.getDiscount() + "</h4><ul>");
+			pw.print("<h4 style='text-align: center;'>"+ getRebate(laptop) +"</h4>");
 			pw.print("<li id='item'><img src='images/laptops/"+laptop.getImage()+"' alt='' /></li>");
 
-			pw.print("<li><form method='post' action='Cart'>" +
+			pw.print("<li><form method='post' action='Cart' style='text-align: center;'>" +
 					"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
 					"<input type='hidden' name='type' value='laptops'>"+
 					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
@@ -160,5 +161,11 @@ public class LaptopList extends HttpServlet
 		return laptop.isHasWarranty()
 				? "<input type='checkbox' name='productWarranty' value='yes'><label> Life Time Warranty: $" + laptop.getWarrantyPrice() + "</label>"
 				: "<p>Warranty not available</p>";
+	}
+
+	private String getRebate(Laptop laptop) {
+		return laptop.getRebate().equals("Yes")
+				? "<p style='text-align: center;'>This product has a rebate</p>"
+				: "";
 	}
 }

@@ -61,15 +61,15 @@ public class UpdateOrder extends HttpServlet {
                             "<td><input type='text' name='street' value='" + street + "' /></td>" +
                             "</tr>" +
                             "<tr>" +
-                            "<td>Street</td>" +
+                            "<td>City</td>" +
                             "<td><input type='text' name='city' value='" + city + "' /></td>" +
                             "</tr>" +
                             "<tr>" +
-                            "<td>Street</td>" +
+                            "<td>State</td>" +
                             "<td><input type='text' name='state' value='" + state + "' /></td>" +
                             "</tr>" +
                             "<tr>" +
-                            "<td>Street</td>" +
+                            "<td>Zipcode</td>" +
                             "<td><input type='text' name='zipcode' value='" + zipcode + "' /></td>" +
                             "</tr>" +
                             "<tr>" +
