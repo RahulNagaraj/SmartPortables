@@ -107,7 +107,7 @@ public class SmartWatchList extends HttpServlet
 		utility.printHtml("Header.html");
 		utility.printHtml("LeftNavigationBar.html");
 		pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
-		pw.print("<a style='font-size: 24px;'>"+name+" SmartWatches</a>");
+		pw.print("<a style='font-size: 24px;'>"+name+" Smart Watches</a>");
 		pw.print("</h2><div class='entry'><table id='bestseller'>");
 		int i = 1; int size= hm.size();
 		System.out.println("Size: " + size);
@@ -124,19 +124,19 @@ public class SmartWatchList extends HttpServlet
 
 			pw.print("<li><form method='post' action='Cart'>" +
 					"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
-					"<input type='hidden' name='type' value='phones'>"+
+					"<input type='hidden' name='type' value='" + smartWatch.getProductType() + "'>"+
 					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
 					"<input type='hidden' name='access' value=''>" +
 					warrantyCheckbox(smartWatch) +
 					"<input type='submit' class='btnbuy' value='Buy Now'></form></li>");
 			pw.print("<div style='display:flex; justify-content:space-evenly'><li><form method='post' action='WriteReview'>"+
-					"<input type='hidden' name='type' value='Phone'>"+
+					"<input type='hidden' name='type' value='" + smartWatch.getProductType() + "'>"+
 					"<input type='hidden' name='name' value='" + smartWatch.getName() +"'>"+
 					"<input type='hidden' name='maker' value='"+smartWatch.getRetailer()+"'>"+
 					"<input type='hidden' name='price' value='"+smartWatch.getPrice()+"'>"+
 					"<input type='submit' value='WriteReview' class='btnreview'></form></li>");
 			pw.print("<li><form method='post' action='ViewReview'>"+"<input type='hidden' name='name' value='" + smartWatch.getName() + "'>"+
-					"<input type='hidden' name='type' value='Phone'>"+
+					"<input type='hidden' name='type' value='smartWatches'>"+
 					"<input type='hidden' name='maker' value='"+smartWatch.getRetailer()+"'>"+
 					"<input type='hidden' name='access' value=''>"+
 					"<input type='submit' value='ViewReview' class='btnreview'></form></li></div>");
@@ -146,7 +146,7 @@ public class SmartWatchList extends HttpServlet
 				pw.print("<div style='display:flex; justify-content:space-evenly'><li><form method='post' action='ProductModify'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
 						"<input type='hidden' name='productId' value='" + smartWatch.getId() + "'>"+
 						"<input type='hidden' name='productManufacturer' value='"+ name +"'>"+
-						"<input type='hidden' name='productType' value='Phone'>"+
+						"<input type='hidden' name='productType' value='" + smartWatch.getProductType() + "'>"+
 						"<input type='hidden' name='productName' value='" + smartWatch.getName() + "'>"+
 						"<input type='hidden' name='productPrice' value='" + smartWatch.getPrice() + "'>"+
 						"<input type='hidden' name='productWarranty' value='" + smartWatch.getWarrantyPrice() + "'>"+

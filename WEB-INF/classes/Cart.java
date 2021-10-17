@@ -114,12 +114,12 @@ public class Cart extends HttpServlet {
 				pw.print("<td><a href='DeleteFromCart?name="+oi.getName()+"&price="+oi.getPrice()+"'>Delete Item</a></td>");
 				/* <form action='Cart' method='POST'><input type='hidden' name='orderPrice' value='"+oi.getPrice()+"'><input type='hidden' name='orderName' value='"+oi.getName()+"'><input type='submit' name='deleteItemFromCart' value='DeleteItem' /></form> */
 				pw.print("</tr>");
-				totalOrderPrice = totalOrderPrice + oi.getPrice();
+				totalOrderPrice = Math.round(totalOrderPrice + oi.getPrice());
 				if (oi.isWarrantyIncluded()) totalOrderPrice += oi.getWarrantyPrice();
 				discount = discount + oi.getDiscount();
 				i++;
 			}
-			finalOrderTotal = totalOrderPrice - discount;
+			finalOrderTotal = Math.round(totalOrderPrice - discount);
 			pw.print("<input type='hidden' name='orderTotal' value='"+finalOrderTotal+"'>");
 			pw.print("<tr><th></th><th>Total Cost: $</th><th>"+totalOrderPrice+"</th>");
 			pw.print("<tr><th></th><th>Total Discount: $</th><th>"+discount+"</th>");

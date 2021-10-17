@@ -106,7 +106,7 @@ public class FitnessWatchesList extends HttpServlet
 		utility.printHtml("Header.html");
 		utility.printHtml("LeftNavigationBar.html");
 		pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
-		pw.print("<a style='font-size: 24px;'>"+name+" fitnessWatches</a>");
+		pw.print("<a style='font-size: 24px;'>"+name+" Fitness Watches</a>");
 		pw.print("</h2><div class='entry'><table id='bestseller'>");
 		int i = 1; int size= hm.size();
 		for(Map.Entry<String, FitnessWatch> entry : hm.entrySet())
@@ -116,22 +116,22 @@ public class FitnessWatchesList extends HttpServlet
 			pw.print("<td><div id='shop_item'>");
 			pw.print("<h3>"+fitnessWatch.getName()+"</h3>");
 			pw.print("<strong>$"+fitnessWatch.getPrice()+"</strong><ul>");
-			pw.print("<li id='item'><img src='images/fitnessWatches/"+fitnessWatch.getImage()+"' alt='' /></li>");
+			pw.print("<li id='item'><img src='images/wearables/"+fitnessWatch.getImage()+"' alt='' /></li>");
 			
 			pw.print("<li><form method='post' action='Cart'>" +
 					"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
-					"<input type='hidden' name='type' value='fitnessWatches'>"+
+					"<input type='hidden' name='type' value='" + fitnessWatch.getProductType() + "'>"+
 					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
 					"<input type='hidden' name='access' value=''>"+
 					"<input type='submit' class='btnbuy' value='Buy Now'></form></li>");
 			pw.print("<li><form method='post' action='WriteReview'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
-					"<input type='hidden' name='type' value='fitnessWatches'>"+
+					"<input type='hidden' name='type' value='" + fitnessWatch.getProductType() + "'>"+
 					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
 					"<input type='hidden' name='access' value=''>"+
 					"<input type='hidden' name='price' value='"+fitnessWatch.getPrice()+"'>"+
 				    "<input type='submit' value='WriteReview' class='btnreview'></form></li>");
 			pw.print("<li><form method='post' action='ViewReview'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
-					"<input type='hidden' name='type' value='fitnessWatches'>"+
+					"<input type='hidden' name='type' value='" + fitnessWatch.getProductType() + "'>"+
 					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
 					"<input type='hidden' name='access' value=''>"+
 				    "<input type='submit' value='ViewReview' class='btnreview'></form></li>");

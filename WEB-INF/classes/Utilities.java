@@ -294,7 +294,7 @@ public class Utilities extends HttpServlet{
 			);
 			orderItems.add(orderitem);
 		}
-		if(type.equals("phones"))
+		if(type.equals("Phone"))
 		{
 			Phone phone;
 			try
@@ -318,7 +318,7 @@ public class Utilities extends HttpServlet{
 			);
 			orderItems.add(orderitem);
 		}
-		if(type.equals("laptops"))
+		if(type.equals("Laptop"))
 		{
 			Laptop laptop;
 			try
@@ -335,7 +335,7 @@ public class Utilities extends HttpServlet{
 					laptop.getWarrantyPrice(), "Laptop");
 			orderItems.add(orderitem);
 		}
-		if(type.equals("voiceAssistants")) {
+		if(type.equals("Voice Assistant")) {
 			VoiceAssistant voiceAssistant;
 			try
 			{
@@ -351,7 +351,7 @@ public class Utilities extends HttpServlet{
 					voiceAssistant.getWarrantyPrice(), "Voice Assistant");
 			orderItems.add(orderitem);
 		}
-		if(type.equals("fitnessWatches"))
+		if(type.equals("Fitness Watch"))
 		{
 			FitnessWatch fitnessWatch;
 			try
@@ -368,7 +368,7 @@ public class Utilities extends HttpServlet{
 					0.0, "Fitness Watch");
 			orderItems.add(orderitem);
 		}
-		if(type.equals("smartWatches"))
+		if(type.equals("Smart Watch"))
 		{
 			SmartWatch smartWatch;
 			try
@@ -385,7 +385,7 @@ public class Utilities extends HttpServlet{
 					0.0, "Smart Watch");
 			orderItems.add(orderitem);
 		}
-		if(type.equals("headphones"))
+		if(type.equals("Headphone"))
 		{
 			Headphone headphone;
 			try
@@ -402,7 +402,7 @@ public class Utilities extends HttpServlet{
 					0.0, "Headphone");
 			orderItems.add(orderitem);
 		}
-		if(type.equals("petTracker"))
+		if(type.equals("Pet Tracker"))
 		{
 			PetTracker petTracker;
 			try

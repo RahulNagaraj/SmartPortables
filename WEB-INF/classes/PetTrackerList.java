@@ -1,4 +1,5 @@
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -7,6 +8,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+@WebServlet("/PetTrackerList")
 public class PetTrackerList extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -15,13 +17,12 @@ public class PetTrackerList extends HttpServlet {
         String name = null;
         String CategoryName = request.getParameter("maker");
 
-        HashMap<String, Phone> allPhones = new HashMap<>();
-        HashMap<String, Phone> hm = new HashMap<>();
+        HashMap<String, PetTracker> allPetTrackers = new HashMap<>();
+        HashMap<String, PetTracker> hm = new HashMap<>();
 
         try
         {
-            allPhones = MySqlDataStoreUtilities.getPhones();
-            System.out.println("All Phones: " + allPhones.size());
+            allPetTrackers = MySqlDataStoreUtilities.getPetTracker();
         }
         catch(Exception e)
         {
@@ -31,15 +32,15 @@ public class PetTrackerList extends HttpServlet {
         if(CategoryName==null)
         {
             //hm.putAll(SaxParserDataStore.phones);
-            hm.putAll(allPhones);
+            hm.putAll(allPetTrackers);
             name = "";
         }
         else
         {
             if(CategoryName.equals("apple"))
             {
-                //for(Map.Entry<String,Phone> entry : SaxParserDataStore.phones.entrySet())
-                for(Map.Entry<String,Phone> entry : allPhones.entrySet())
+                //for(Map.Entry<String, PetTracker> entry : SaxParserDataStore.phones.entrySet())
+                for(Map.Entry<String, PetTracker> entry : allPetTrackers.entrySet())
                 {
                     if(entry.getValue().getRetailer().equals("Apple"))
                     {
@@ -47,50 +48,6 @@ public class PetTrackerList extends HttpServlet {
                     }
                 }
                 name = "Apple";
-            }
-            else if(CategoryName.equals("samsung"))
-            {
-                for(Map.Entry<String,Phone> entry : allPhones.entrySet())
-                {
-                    if(entry.getValue().getRetailer().equals("Samsung"))
-                    {
-                        hm.put(entry.getValue().getId(),entry.getValue());
-                    }
-                }
-                name = "Samsung";
-            }
-            else if(CategoryName.equals("google"))
-            {
-                for(Map.Entry<String,Phone> entry : allPhones.entrySet())
-                {
-                    if(entry.getValue().getRetailer().equals("Google"))
-                    {
-                        hm.put(entry.getValue().getId(),entry.getValue());
-                    }
-                }
-                name = "Google";
-            }
-            else if(CategoryName.equals("huawei"))
-            {
-                for(Map.Entry<String,Phone> entry : allPhones.entrySet())
-                {
-                    if(entry.getValue().getRetailer().equals("Huawei"))
-                    {
-                        hm.put(entry.getValue().getId(),entry.getValue());
-                    }
-                }
-                name = "Huawei";
-            }
-            else if(CategoryName.equals("oneplus"))
-            {
-                for(Map.Entry<String,Phone> entry : allPhones.entrySet())
-                {
-                    if(entry.getValue().getRetailer().equals("OnePlus"))
-                    {
-                        hm.put(entry.getValue().getId(),entry.getValue());
-                    }
-                }
-                name = "OnePlus";
             }
         }
 
@@ -104,56 +61,56 @@ public class PetTrackerList extends HttpServlet {
         utility.printHtml("Header.html");
         utility.printHtml("LeftNavigationBar.html");
         pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
-        pw.print("<a style='font-size: 24px;'>"+name+" Phones</a>");
+        pw.print("<a style='font-size: 24px;'>"+name+" Pet Tracker</a>");
         pw.print("</h2><div class='entry'><table id='bestseller'>");
         int i = 1; int size= hm.size();
         System.out.println("Size: " + size);
-        for(Map.Entry<String, Phone> entry : hm.entrySet())
+        for(Map.Entry<String, PetTracker> entry : hm.entrySet())
         {
-            Phone phone = entry.getValue();
+            PetTracker petTracker = entry.getValue();
             if(i%3==1) pw.print("<tr>");
             pw.print("<td><div id='shop_item'>");
-            pw.print("<h3>"+phone.getName()+"</h3>");
-            pw.print("<h4>" + phone.getDescription() + "</h5>");
-            pw.print("<strong>$"+phone.getPrice()+"</strong>");
-            pw.print("<h4> Discount: $" + phone.getDiscount() + "</h4><ul>");
-            pw.print("<li id='item'><img src='images/phones/"+phone.getImage()+"' alt='' /></li>");
+            pw.print("<h3>"+petTracker.getName()+"</h3>");
+            pw.print("<h4>" + petTracker.getDescription() + "</h5>");
+            pw.print("<strong>$"+petTracker.getPrice()+"</strong>");
+            pw.print("<h4> Discount: $" + petTracker.getDiscount() + "</h4><ul>");
+            pw.print("<li id='item'><img src='images/wearables/"+petTracker.getImage()+"' alt='' /></li>");
 
             pw.print("<li><form method='post' action='Cart'>" +
                     "<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
-                    "<input type='hidden' name='type' value='phones'>"+
+                    "<input type='hidden' name='type' value='" + petTracker.getProductType() + "'>"+
                     "<input type='hidden' name='maker' value='"+CategoryName+"'>"+
                     "<input type='hidden' name='access' value=''>" +
-                    warrantyCheckbox(phone) +
+                    warrantyCheckbox(petTracker) +
                     "<input type='submit' class='btnbuy' value='Buy Now'></form></li>");
             pw.print("<div style='display:flex; justify-content:space-evenly'><li><form method='post' action='WriteReview'>"+
-                    "<input type='hidden' name='type' value='Phone'>"+
-                    "<input type='hidden' name='name' value='" + phone.getName() +"'>"+
-                    "<input type='hidden' name='maker' value='"+phone.getRetailer()+"'>"+
-                    "<input type='hidden' name='price' value='"+phone.getPrice()+"'>"+
+                    "<input type='hidden' name='type' value='" + petTracker.getProductType() + "'>"+
+                    "<input type='hidden' name='name' value='" + petTracker.getName() +"'>"+
+                    "<input type='hidden' name='maker' value='"+petTracker.getRetailer()+"'>"+
+                    "<input type='hidden' name='price' value='"+petTracker.getPrice()+"'>"+
                     "<input type='submit' value='WriteReview' class='btnreview'></form></li>");
-            pw.print("<li><form method='post' action='ViewReview'>"+"<input type='hidden' name='name' value='" + phone.getName() + "'>"+
-                    "<input type='hidden' name='type' value='Phone'>"+
-                    "<input type='hidden' name='maker' value='"+phone.getRetailer()+"'>"+
+            pw.print("<li><form method='post' action='ViewReview'>"+"<input type='hidden' name='name' value='" + petTracker.getName() + "'>"+
+                    "<input type='hidden' name='type' value='petTracker'>"+
+                    "<input type='hidden' name='maker' value='"+petTracker.getRetailer()+"'>"+
                     "<input type='hidden' name='access' value=''>"+
                     "<input type='submit' value='ViewReview' class='btnreview'></form></li></div>");
 
             if (utility.usertype() != null && utility.usertype().equals("storeManager")) {
 
                 pw.print("<div style='display:flex; justify-content:space-evenly'><li><form method='post' action='ProductModify'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
-                        "<input type='hidden' name='productId' value='" + phone.getId() + "'>"+
+                        "<input type='hidden' name='productId' value='" + petTracker.getId() + "'>"+
                         "<input type='hidden' name='productManufacturer' value='"+ name +"'>"+
-                        "<input type='hidden' name='productType' value='Phone'>"+
-                        "<input type='hidden' name='productName' value='" + phone.getName() + "'>"+
-                        "<input type='hidden' name='productPrice' value='" + phone.getPrice() + "'>"+
-                        "<input type='hidden' name='productWarranty' value='" + phone.getWarrantyPrice() + "'>"+
-                        "<input type='hidden' name='productDiscount' value='" + phone.getDiscount() + "'>"+
-                        "<input type='hidden' name='productRebate' value='" + phone.getRebate() + "'>"+
-                        "<input type='hidden' name='productCondition' value='" + phone.getCondition() + "'>"+
-                        "<input type='hidden' name='productDescription' value='" + phone.getDescription() + "'>"+
+                        "<input type='hidden' name='productType' value='" + petTracker.getProductType() + "'>"+
+                        "<input type='hidden' name='productName' value='" + petTracker.getName() + "'>"+
+                        "<input type='hidden' name='productPrice' value='" + petTracker.getPrice() + "'>"+
+                        "<input type='hidden' name='productWarranty' value='" + petTracker.getWarrantyPrice() + "'>"+
+                        "<input type='hidden' name='productDiscount' value='" + petTracker.getDiscount() + "'>"+
+                        "<input type='hidden' name='productRebate' value='" + petTracker.getRebate() + "'>"+
+                        "<input type='hidden' name='productCondition' value='" + petTracker.getCondition() + "'>"+
+                        "<input type='hidden' name='productDescription' value='" + petTracker.getDescription() + "'>"+
                         "<input type='submit' name='button' value='Update' class='btnreview'></form></li>");
                 pw.print("<li><form method='post' action='ProductCrud'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
-                        "<input type='hidden' name='productId' value='" + phone.getId() + "'>"+
+                        "<input type='hidden' name='productId' value='" + petTracker.getId() + "'>"+
                         "<input type='submit' name='button' value='Delete' class='btnreview'></form></li></div>");
             }
 
@@ -166,9 +123,9 @@ public class PetTrackerList extends HttpServlet {
         utility.printHtml("Footer.html");
     }
 
-    private String warrantyCheckbox(Phone phone) {
-        return phone.isHasWarranty()
-                ? "<input type='checkbox' name='productWarranty' value='yes'><label> Life Time Warranty: $" + phone.getWarrantyPrice() + "</label>"
+    private String warrantyCheckbox(PetTracker petTracker) {
+        return petTracker.isHasWarranty()
+                ? "<input type='checkbox' name='productWarranty' value='yes'><label> Life Time Warranty: $" + petTracker.getWarrantyPrice() + "</label>"
                 : "<p>Warranty not available</p>";
     }
 }

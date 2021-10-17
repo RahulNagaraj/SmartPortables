@@ -330,7 +330,7 @@ https://docs.oracle.com/javase/7/docs/api/org/xml/sax/helpers/DefaultHandler.htm
 		if (element.equals("fitnessWatch"))
 		{
 			fitnessWatches.put(fitnessWatch.getId(),fitnessWatch);
-			MySqlDataStoreUtilities.addProduct(
+			/*MySqlDataStoreUtilities.addProduct(
 					fitnessWatch.getProductType(),
 					fitnessWatch.getId(),
 					fitnessWatch.getName(),
@@ -344,13 +344,13 @@ https://docs.oracle.com/javase/7/docs/api/org/xml/sax/helpers/DefaultHandler.htm
 					fitnessWatch.isHasWarranty(),
 					fitnessWatch.getWarrantyPrice(),
 					""
-			);
+			);*/
 			return;
         }
 		if (element.equals("smartWatch"))
 		{
 			smartWatches.put(smartWatch.getId(),smartWatch);
-			MySqlDataStoreUtilities.addProduct(
+			/*MySqlDataStoreUtilities.addProduct(
 					smartWatch.getProductType(),
 					smartWatch.getId(),
 					smartWatch.getName(),
@@ -364,13 +364,13 @@ https://docs.oracle.com/javase/7/docs/api/org/xml/sax/helpers/DefaultHandler.htm
 					smartWatch.isHasWarranty(),
 					smartWatch.getWarrantyPrice(),
 					""
-			);
+			);*/
 			return;
         }
 		if (element.equals("headphone"))
 		{
 			headphones.put(headphone.getId(),headphone);
-			MySqlDataStoreUtilities.addProduct(
+			/*MySqlDataStoreUtilities.addProduct(
 					headphone.getProductType(),
 					headphone.getId(),
 					headphone.getName(),
@@ -384,7 +384,7 @@ https://docs.oracle.com/javase/7/docs/api/org/xml/sax/helpers/DefaultHandler.htm
 					headphone.isHasWarranty(),
 					headphone.getWarrantyPrice(),
 					""
-			);
+			);*/
 			return;
         }
 		if (element.equals("wirelessPlan"))
@@ -395,7 +395,7 @@ https://docs.oracle.com/javase/7/docs/api/org/xml/sax/helpers/DefaultHandler.htm
 		if (element.equals("virtualReality"))
 		{
 			virtualRealities.put(virtualReality.getId(),virtualReality);
-			MySqlDataStoreUtilities.addProduct(
+			/*MySqlDataStoreUtilities.addProduct(
 					virtualReality.getProductType(),
 					virtualReality.getId(),
 					virtualReality.getName(),
@@ -409,13 +409,13 @@ https://docs.oracle.com/javase/7/docs/api/org/xml/sax/helpers/DefaultHandler.htm
 					virtualReality.isHasWarranty(),
 					virtualReality.getWarrantyPrice(),
 					""
-			);
+			);*/
 			return;
 		}
 		if (element.equals("petTracker"))
 		{
 			petTrackers.put(petTracker.getId(),petTracker);
-			MySqlDataStoreUtilities.addProduct(
+			/*MySqlDataStoreUtilities.addProduct(
 					petTracker.getProductType(),
 					petTracker.getId(),
 					petTracker.getName(),
@@ -429,7 +429,7 @@ https://docs.oracle.com/javase/7/docs/api/org/xml/sax/helpers/DefaultHandler.htm
 					petTracker.isHasWarranty(),
 					petTracker.getWarrantyPrice(),
 					""
-			);
+			);*/
 			return;
 		}
         if (element.equals("accessory") && currentElement.equals("accessory"))

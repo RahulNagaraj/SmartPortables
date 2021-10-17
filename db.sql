@@ -104,3 +104,16 @@ create table customer (
     
     primary key(customerId, customerName)
 );
+
+create table product (
+	productId varchar(80),
+    productName varchar(80),
+    image varchar(80),
+    retailer varchar(80),
+    productCondition varchar(80),
+    productPrice varchar(80),
+    productType varchar(80),
+    discount varchar(80),
+    
+    primary key(productId)
+);

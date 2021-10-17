@@ -11,7 +11,7 @@ function init() {
 }
 
 function doCompletion() {
-
+    init();
     var url = "autocomplete?action=complete&searchId=" + escape(searchId.value);
     req = initRequest();
     req.open("GET", url, true);

@@ -85,7 +85,7 @@ public class VoiceAssistantList extends HttpServlet
 		utility.printHtml("Header.html");
 		utility.printHtml("LeftNavigationBar.html");
 		pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
-		pw.print("<a style='font-size: 24px;'>"+name+" Voice Assistants</a>");
+		pw.print("<a style='font-size: 24px;'>"+name+" Voice Assistant</a>");
 		pw.print("</h2><div class='entry'><table id='bestseller'>");
 		int i = 1; int size= hm.size();
 		for(Map.Entry<String, VoiceAssistant> entry : hm.entrySet())
@@ -101,13 +101,13 @@ public class VoiceAssistantList extends HttpServlet
 
 			pw.print("<li><form method='post' action='Cart' style='text-align: center;'>" +
 					"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
-					"<input type='hidden' name='type' value='voiceAssistants'>"+
+					"<input type='hidden' name='type' value='" + voiceAssistant.getProductType() + "'>"+
 					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
 					"<input type='hidden' name='access' value=''>" +
 					warrantyCheckbox(voiceAssistant) +
 					"<input type='submit' class='btnbuy' value='Buy Now'></form></li>");
 			pw.print("<div style='display:flex; justify-content:space-evenly'><li><form method='post' action='WriteReview'>"+
-					"<input type='hidden' name='type' value='Voice Assistant'>"+
+					"<input type='hidden' name='type' value='" + voiceAssistant.getProductType() + "'>"+
 					"<input type='hidden' name='name' value='" + voiceAssistant.getName() +"'>"+
 					"<input type='hidden' name='maker' value='"+voiceAssistant.getRetailer()+"'>"+
 					"<input type='hidden' name='price' value='"+voiceAssistant.getPrice()+"'>"+
@@ -123,7 +123,7 @@ public class VoiceAssistantList extends HttpServlet
 				pw.print("<div style='display:flex; justify-content:space-evenly'><li><form method='post' action='ProductModify'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
 						"<input type='hidden' name='productId' value='" + voiceAssistant.getId() + "'>"+
 						"<input type='hidden' name='productManufacturer' value='"+ name +"'>"+
-						"<input type='hidden' name='productType' value='Voice Assistant'>"+
+						"<input type='hidden' name='productType' value='" + voiceAssistant.getProductType() + "'>"+
 						"<input type='hidden' name='productName' value='" + voiceAssistant.getName() + "'>"+
 						"<input type='hidden' name='productPrice' value='" + voiceAssistant.getPrice() + "'>"+
 						"<input type='hidden' name='productWarranty' value='" + voiceAssistant.getWarrantyPrice() + "'>"+

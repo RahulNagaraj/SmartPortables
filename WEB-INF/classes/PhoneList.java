@@ -126,13 +126,13 @@ public class PhoneList extends HttpServlet
 			
 			pw.print("<li><form method='post' action='Cart' style='text-align: center;'>" +
 					"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
-					"<input type='hidden' name='type' value='phones'>"+
+					"<input type='hidden' name='type' value='" + phone.getProductType() + "'>"+
 					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
 					"<input type='hidden' name='access' value=''>" +
 					warrantyCheckbox(phone) +
 					"<input type='submit' class='btnbuy' value='Buy Now'></form></li>");
 			pw.print("<div style='display:flex; justify-content:space-evenly'><li><form method='post' action='WriteReview'>"+
-					"<input type='hidden' name='type' value='Phone'>"+
+					"<input type='hidden' name='type' value='" + phone.getProductType() + "'>"+
 					"<input type='hidden' name='name' value='" + phone.getName() +"'>"+
 					"<input type='hidden' name='maker' value='"+phone.getRetailer()+"'>"+
 					"<input type='hidden' name='price' value='"+phone.getPrice()+"'>"+
@@ -148,7 +148,7 @@ public class PhoneList extends HttpServlet
 				pw.print("<div style='display:flex; justify-content:space-evenly'><li><form method='post' action='ProductModify'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
 						"<input type='hidden' name='productId' value='" + phone.getId() + "'>"+
 						"<input type='hidden' name='productManufacturer' value='"+ name +"'>"+
-						"<input type='hidden' name='productType' value='Phone'>"+
+						"<input type='hidden' name='productType' value='" + phone.getProductType() + "'>"+
 						"<input type='hidden' name='productName' value='" + phone.getName() + "'>"+
 						"<input type='hidden' name='productPrice' value='" + phone.getPrice() + "'>"+
 						"<input type='hidden' name='productWarranty' value='" + phone.getWarrantyPrice() + "'>"+

@@ -112,13 +112,13 @@ public class LaptopList extends HttpServlet
 
 			pw.print("<li><form method='post' action='Cart' style='text-align: center;'>" +
 					"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
-					"<input type='hidden' name='type' value='laptops'>"+
+					"<input type='hidden' name='type' value='" + laptop.getProductType() + "'>"+
 					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
 					"<input type='hidden' name='access' value=''>" +
 					warrantyCheckbox(laptop) +
 					"<input type='submit' class='btnbuy' value='Buy Now'></form></li>");
 			pw.print("<div style='display:flex; justify-content:space-evenly'><li><form method='post' action='WriteReview'>"+
-					"<input type='hidden' name='type' value='Laptop'>"+
+					"<input type='hidden' name='type' value='" + laptop.getProductType() + "'>"+
 					"<input type='hidden' name='name' value='" + laptop.getName() +"'>"+
 					"<input type='hidden' name='maker' value='"+laptop.getRetailer()+"'>"+
 					"<input type='hidden' name='price' value='"+laptop.getPrice()+"'>"+
@@ -134,7 +134,7 @@ public class LaptopList extends HttpServlet
 				pw.print("<div style='display:flex; justify-content:space-evenly'><li><form method='post' action='ProductModify'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
 						"<input type='hidden' name='productId' value='" + laptop.getId() + "'>"+
 						"<input type='hidden' name='productManufacturer' value='"+ name +"'>"+
-						"<input type='hidden' name='productType' value='Phone'>"+
+						"<input type='hidden' name='productType' value='" + laptop.getProductType() + "'>"+
 						"<input type='hidden' name='productName' value='" + laptop.getName() + "'>"+
 						"<input type='hidden' name='productPrice' value='" + laptop.getPrice() + "'>"+
 						"<input type='hidden' name='productWarranty' value='" + laptop.getWarrantyPrice() + "'>"+

@@ -123,19 +123,19 @@ public class HeadphonesList extends HttpServlet
 
 			pw.print("<li><form method='post' action='Cart'>" +
 					"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
-					"<input type='hidden' name='type' value='headphones'>"+
+					"<input type='hidden' name='type' value='" + headphone.getProductType() + "'>"+
 					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
 					"<input type='hidden' name='access' value=''>" +
 					warrantyCheckbox(headphone) +
 					"<input type='submit' class='btnbuy' value='Buy Now'></form></li>");
 			pw.print("<div style='display:flex; justify-content:space-evenly'><li><form method='post' action='WriteReview'>"+
-					"<input type='hidden' name='type' value='Headphone'>"+
+					"<input type='hidden' name='type' value='" + headphone.getProductType() + "'>"+
 					"<input type='hidden' name='name' value='" + headphone.getName() +"'>"+
 					"<input type='hidden' name='maker' value='"+headphone.getRetailer()+"'>"+
 					"<input type='hidden' name='price' value='"+headphone.getPrice()+"'>"+
 					"<input type='submit' value='WriteReview' class='btnreview'></form></li>");
 			pw.print("<li><form method='post' action='ViewReview'>"+"<input type='hidden' name='name' value='" + headphone.getName() + "'>"+
-					"<input type='hidden' name='type' value='Headphone'>"+
+					"<input type='hidden' name='type' value='" + headphone.getProductType() + "'>"+
 					"<input type='hidden' name='maker' value='"+headphone.getRetailer()+"'>"+
 					"<input type='hidden' name='access' value=''>"+
 					"<input type='submit' value='ViewReview' class='btnreview'></form></li></div>");
@@ -145,7 +145,7 @@ public class HeadphonesList extends HttpServlet
 				pw.print("<div style='display:flex; justify-content:space-evenly'><li><form method='post' action='ProductModify'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
 						"<input type='hidden' name='productId' value='" + headphone.getId() + "'>"+
 						"<input type='hidden' name='productManufacturer' value='"+ name +"'>"+
-						"<input type='hidden' name='productType' value='Headphone'>"+
+						"<input type='hidden' name='productType' value='" + headphone.getProductType() + "'>"+
 						"<input type='hidden' name='productName' value='" + headphone.getName() + "'>"+
 						"<input type='hidden' name='productPrice' value='" + headphone.getPrice() + "'>"+
 						"<input type='hidden' name='productWarranty' value='" + headphone.getWarrantyPrice() + "'>"+

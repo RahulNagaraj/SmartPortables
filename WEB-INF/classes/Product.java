@@ -12,8 +12,26 @@ public class Product {
 	private String condition;
 	private String type;
 	private double discount;
+	private boolean rebate;
+	private String description;
+	private boolean hasWarranty;
+	private double warrantyPrice;
 	HashMap<String,String> accessories;
-	public Product(String id,String name, double price, String image, String retailer,String condition,String type,double discount){
+
+	public Product(
+			String id,
+			String name,
+			double price,
+			String image,
+			String retailer,
+			String condition,
+			String type,
+			double discount,
+			boolean rebate,
+			String description,
+			boolean hasWarranty,
+			double warrantyPrice
+	){
 		this.id=id;
 		this.name=name;
 		this.price=price;
@@ -22,7 +40,11 @@ public class Product {
 		this.condition=condition;
 		this.type=type;
 		this.discount = discount;
-     		this.accessories=new HashMap<String,String>();
+		this.rebate = rebate;
+		this.description = description;
+		this.hasWarranty = hasWarranty;
+		this.warrantyPrice = warrantyPrice;
+		this.accessories=new HashMap<String,String>();
 	}
 	
     HashMap<String,String> getAccessories() {
@@ -90,5 +112,36 @@ public class Product {
 	public void setDiscount(double discount) {
 		this.discount = discount;
 	}
-	
+
+	public boolean getRebate() {
+		return rebate;
+	}
+
+	public void setRebate(boolean rebate) {
+		this.rebate = rebate;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public boolean isHasWarranty() {
+		return hasWarranty;
+	}
+
+	public void setHasWarranty(boolean hasWarranty) {
+		this.hasWarranty = hasWarranty;
+	}
+
+	public double getWarrantyPrice() {
+		return warrantyPrice;
+	}
+
+	public void setWarrantyPrice(double warrantyPrice) {
+		this.warrantyPrice = warrantyPrice;
+	}
 }
