@@ -205,8 +205,11 @@ public class MySqlDataStoreUtilities
                         rs.getString("productManufacturer"),
                         rs.getString("productCondition"),
                         rs.getDouble("productDiscount"),
-                        rs.getString("productRebate"),
-                        rs.getString("productDescription")
+                        rs.getBoolean("productRebate"),
+                        rs.getString("productDescription"),
+                        rs.getBoolean("productHasWarranty"),
+                        rs.getDouble("productWarranty"),
+                        rs.getString("productType")
                 );
                 hm.put(rs.getString("productId"), petTracker);
                 petTracker.setId(rs.getString("productId"));
@@ -263,8 +266,11 @@ public class MySqlDataStoreUtilities
                         rs.getString("productManufacturer"),
                         rs.getString("productCondition"),
                         rs.getDouble("productDiscount"),
-                        rs.getString("productRebate"),
-                        rs.getString("productDescription")
+                        rs.getBoolean("productRebate"),
+                        rs.getString("productDescription"),
+                        rs.getBoolean("productHasWarranty"),
+                        rs.getDouble("productWarranty"),
+                        rs.getString("productType")
                 );
                 hm.put(rs.getString("productId"), virtualReality);
                 virtualReality.setId(rs.getString("productId"));
@@ -297,8 +303,11 @@ public class MySqlDataStoreUtilities
                         rs.getString("productManufacturer"),
                         rs.getString("productCondition"),
                         rs.getDouble("productDiscount"),
-                        rs.getString("productRebate"),
-                        rs.getString("productDescription")
+                        rs.getBoolean("productRebate"),
+                        rs.getString("productDescription"),
+                        rs.getBoolean("productHasWarranty"),
+                        rs.getDouble("productWarranty"),
+                        rs.getString("productType")
                 );
                 hm.put(rs.getString("productId"), fitnessWatch);
                 fitnessWatch.setId(rs.getString("productId"));
@@ -329,10 +338,11 @@ public class MySqlDataStoreUtilities
                         rs.getString("productManufacturer"),
                         rs.getString("productCondition"),
                         rs.getDouble("productDiscount"),
-                        rs.getString("productRebate"),
+                        rs.getBoolean("productRebate"),
                         rs.getString("productDescription"),
                         rs.getBoolean("productHasWarranty"),
-                        rs.getDouble("productWarranty")
+                        rs.getDouble("productWarranty"),
+                        rs.getString("productType")
                 );
                 hm.put(rs.getString("productId"), headphone);
                 headphone.setId(rs.getString("productId"));
@@ -364,10 +374,11 @@ public class MySqlDataStoreUtilities
                         rs.getString("productManufacturer"),
                         rs.getString("productCondition"),
                         rs.getDouble("productDiscount"),
-                        rs.getString("productRebate"),
+                        rs.getBoolean("productRebate"),
                         rs.getString("productDescription"),
                         rs.getBoolean("productHasWarranty"),
-                        rs.getDouble("productWarranty")
+                        rs.getDouble("productWarranty"),
+                        rs.getString("productType")
                 );
                 hm.put(rs.getString("productId"), laptop);
                 laptop.setId(rs.getString("productId"));
@@ -399,10 +410,11 @@ public class MySqlDataStoreUtilities
                         rs.getString("productManufacturer"),
                         rs.getString("productCondition"),
                         rs.getDouble("productDiscount"),
-                        rs.getString("productRebate"),
+                        rs.getBoolean("productRebate"),
                         rs.getString("productDescription"),
                         rs.getBoolean("productHasWarranty"),
-                        rs.getDouble("productWarranty")
+                        rs.getDouble("productWarranty"),
+                        "Phone"
                 );
                 hm.put(rs.getString("productId"), phone);
                 phone.setId(rs.getString("productId"));
@@ -435,10 +447,11 @@ public class MySqlDataStoreUtilities
                         rs.getString("productManufacturer"),
                         rs.getString("productCondition"),
                         rs.getDouble("productDiscount"),
-                        rs.getString("productRebate"),
+                        rs.getBoolean("productRebate"),
                         rs.getString("productDescription"),
                         rs.getBoolean("productHasWarranty"),
-                        rs.getDouble("productWarranty")
+                        rs.getDouble("productWarranty"),
+                        rs.getString("productType")
                 );
                 hm.put(rs.getString("productId"), smartWatch);
                 smartWatch.setId(rs.getString("productId"));
@@ -469,10 +482,11 @@ public class MySqlDataStoreUtilities
                         rs.getString("productManufacturer"),
                         rs.getString("productCondition"),
                         rs.getDouble("productDiscount"),
-                        rs.getString("productRebate"),
+                        rs.getBoolean("productRebate"),
                         rs.getString("productDescription"),
                         rs.getBoolean("productHasWarranty"),
-                        rs.getDouble("productWarranty")
+                        rs.getDouble("productWarranty"),
+                        rs.getString("productType")
                 );
                 hm.put(rs.getString("productId"), voiceAssistant);
                 voiceAssistant.setId(rs.getString("productId"));
@@ -493,7 +507,7 @@ public class MySqlDataStoreUtilities
             String productManufacturer,
             String productCondition,
             double productDiscount,
-            String productRebate,
+            boolean productRebate,
             String productDescription,
             boolean productHasWarranty,
             double productWarranty,
@@ -530,7 +544,7 @@ public class MySqlDataStoreUtilities
             pst.setString(6,productManufacturer);
             pst.setString(7,productCondition);
             pst.setDouble(8,productDiscount);
-            pst.setString(9,productRebate);
+            pst.setBoolean(9,productRebate);
             pst.setString(10,productDescription);
             pst.setBoolean(11,productHasWarranty);
             pst.setDouble(12,productWarranty);
@@ -573,7 +587,7 @@ public class MySqlDataStoreUtilities
             String productManufacturer,
             String productCondition,
             double productDiscount,
-            String productRebate,
+            boolean productRebate,
             String productDescription,
             boolean productHasWarranty,
             double productWarranty
@@ -604,7 +618,7 @@ public class MySqlDataStoreUtilities
             pst.setString(5,productManufacturer);
             pst.setString(6,productCondition);
             pst.setDouble(7,productDiscount);
-            pst.setString(8,productRebate);
+            pst.setBoolean(8,productRebate);
             pst.setString(9,productDescription);
             pst.setBoolean(10,productHasWarranty);
             pst.setDouble(11,productWarranty);

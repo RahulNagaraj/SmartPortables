@@ -61,7 +61,7 @@ public class CustomerOrders extends HttpServlet {
 			try
 			{
 					/*
-					FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\Assignment_2\\PaymentDetails.txt"));
+					FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\SmartPortables\\PaymentDetails.txt"));
 					ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
 					orderPayments = (HashMap)objectInputStream.readObject();
 					*/

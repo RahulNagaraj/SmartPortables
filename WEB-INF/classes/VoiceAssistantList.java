@@ -153,7 +153,7 @@ public class VoiceAssistantList extends HttpServlet
 	}
 
 	private String getRebate(VoiceAssistant assistant) {
-		return assistant.getRebate().equals("Yes")
+		return assistant.getRebate()
 				? "<p style='text-align: center;'>This product has a rebate</p>"
 				: "";
 	}

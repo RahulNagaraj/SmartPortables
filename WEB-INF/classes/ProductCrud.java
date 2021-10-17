@@ -29,9 +29,9 @@ public class ProductCrud extends HttpServlet {
                 productImage="",
                 productManufacturer="",
                 productCondition="",
-                productRebate="",
                 productDescription="",
                 prod = "";
+        boolean productRebate = false;
         double productPrice = 0.0, productDiscount = 0.0, productWarranty = 0.0;
         boolean productHasWarranty = false;
         /*
@@ -55,7 +55,7 @@ public class ProductCrud extends HttpServlet {
             productManufacturer = request.getParameter("productManufacturer");
             productCondition = request.getParameter("productCondition");
             productDiscount = Double.parseDouble(request.getParameter("productDiscount"));
-            productRebate = request.getParameter("productRebate");
+            productRebate = request.getParameter("productRebate").equalsIgnoreCase("Yes");
             productDescription = request.getParameter("productDescription");
             productWarranty = Double.parseDouble(request.getParameter("productWarranty"));
             productHasWarranty = productWarranty > 0.0;
@@ -297,12 +297,11 @@ public class ProductCrud extends HttpServlet {
                 productImage="",
                 productManufacturer="",
                 productCondition="",
-                productRebate="",
                 productDescription="",
                 fileName="",
                 prod = "";
         double productPrice = 0.0, productDiscount = 0.0, productWarranty = 0.0;
-        boolean productHasWarranty = false;
+        boolean productHasWarranty = false, productRebate = false;
         Part part = null;
 
         HashMap<String, FitnessWatch> allFitnessWatches = new HashMap<>();
@@ -324,7 +323,7 @@ public class ProductCrud extends HttpServlet {
             productManufacturer = request.getParameter("productManufacturer");
             productCondition = request.getParameter("productCondition");
             productDiscount = Double.parseDouble(request.getParameter("productDiscount"));
-            productRebate = request.getParameter("productRebate");
+            productRebate = request.getParameter("productRebate").equalsIgnoreCase("Yes");
             productDescription = request.getParameter("productDescription");
             productWarranty = Double.parseDouble(request.getParameter("productWarranty"));
             productHasWarranty = productWarranty > 0.0;

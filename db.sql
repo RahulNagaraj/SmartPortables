@@ -41,7 +41,7 @@ Create table productDetails (
 	productManufacturer varchar(40),
 	productCondition varchar(40),
 	productDiscount double,
-    productRebate varchar(10),
+    productRebate bool,
     productHasWarranty bool,
     productWarranty double,
     productDescription varchar(255),

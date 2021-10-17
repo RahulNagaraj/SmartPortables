@@ -26,13 +26,14 @@ public class Laptop extends HttpServlet
 	private String retailer;
 	private String condition;
 	private double discount;
-	private String rebate;
+	private boolean rebate;
 	private String description;
 	private boolean hasWarranty;
 	private double warrantyPrice;
+	private String productType;
 	
-	public Laptop(String name, double price, String image, String retailer,String condition,double discount,String rebate,
-				  String description, boolean hasWarranty, double warrantyPrice)
+	public Laptop(String name, double price, String image, String retailer,String condition,double discount,boolean rebate,
+				  String description, boolean hasWarranty, double warrantyPrice, String productType)
 	{
 		this.name=name;
 		this.price=price;
@@ -44,6 +45,7 @@ public class Laptop extends HttpServlet
 		this.description = description;
 		this.hasWarranty = hasWarranty;
 		this.warrantyPrice = warrantyPrice;
+		this.productType = productType;
 	}
 	
 	public Laptop()
@@ -116,11 +118,11 @@ public class Laptop extends HttpServlet
 		this.discount = discount;
 	}
 
-	public String getRebate() {
+	public boolean getRebate() {
 		return rebate;
 	}
 
-	public void setRebate(String rebate) {
+	public void setRebate(boolean rebate) {
 		this.rebate = rebate;
 	}
 
@@ -146,5 +148,13 @@ public class Laptop extends HttpServlet
 
 	public void setWarrantyPrice(double warrantyPrice) {
 		this.warrantyPrice = warrantyPrice;
+	}
+
+	public String getProductType() {
+		return productType;
+	}
+
+	public void setProductType(String productType) {
+		this.productType = productType;
 	}
 }

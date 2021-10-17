@@ -60,7 +60,7 @@ public class ViewOrder extends HttpServlet {
 
 		try
 		{
-			FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\Assignment_2\\PaymentDetails.txt"));
+			FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\SmartPortables\\PaymentDetails.txt"));
 			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
 			orderPayments = (HashMap)objectInputStream.readObject();
 		}
@@ -83,7 +83,7 @@ public class ViewOrder extends HttpServlet {
 				try
 				{
 					/*
-					FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\Assignment_2\\PaymentDetails.txt"));
+					FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\SmartPortables\\PaymentDetails.txt"));
 					ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
 					orderPayments = (HashMap)objectInputStream.readObject();
 					*/
@@ -148,7 +148,7 @@ public class ViewOrder extends HttpServlet {
 				//get the order from file
 				try {
 					/*
-					FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\Assignment_2\\PaymentDetails.txt"));
+					FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\SmartPortables\\PaymentDetails.txt"));
 					ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
 					orderPayments = (HashMap)objectInputStream.readObject();
 					*/
@@ -200,7 +200,7 @@ public class ViewOrder extends HttpServlet {
 				//save the updated hashmap with removed order to the file	
 				try
 				{	
-					FileOutputStream fileOutputStream = new FileOutputStream(new File(TOMCAT_HOME+"\\webapps\\Assignment_2\\PaymentDetails.txt"));
+					FileOutputStream fileOutputStream = new FileOutputStream(new File(TOMCAT_HOME+"\\webapps\\SmartPortables\\PaymentDetails.txt"));
 					ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 					objectOutputStream.writeObject(orderPayments);
 					objectOutputStream.flush();

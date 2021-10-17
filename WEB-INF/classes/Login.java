@@ -32,7 +32,7 @@ public class Login extends HttpServlet {
 		try
 		{		
 			/*
-			FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\Assignment_2\\UserDetails.txt"));
+			FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\SmartPortables\\UserDetails.txt"));
 			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
 			hm = (HashMap)objectInputStream.readObject();
 			*/

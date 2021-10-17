@@ -171,7 +171,7 @@ public class Utilities extends HttpServlet{
 		try
 		{
 				/*		
-				FileInputStream fileInputStream=new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\Assignment_2\\UserDetails.txt"));
+				FileInputStream fileInputStream=new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\SmartPortables\\UserDetails.txt"));
 				ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
 				hm= (HashMap)objectInputStream.readObject();
 				*/
@@ -200,7 +200,7 @@ public class Utilities extends HttpServlet{
 		try
 		{
 			/*
-			FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\Assignment_2\\PaymentDetails.txt"));
+			FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\SmartPortables\\PaymentDetails.txt"));
 			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
 			orderPayments = (HashMap)objectInputStream.readObject();
 			*/
@@ -291,7 +291,7 @@ public class Utilities extends HttpServlet{
 					0.0,
 					0.0,
 					"Accessory"
-					);
+			);
 			orderItems.add(orderitem);
 		}
 		if(type.equals("phones"))
@@ -437,7 +437,7 @@ public class Utilities extends HttpServlet{
 		// get the payment details file
 		try {
 			/*
-			FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\Assignment_2\\PaymentDetails.txt"));
+			FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\SmartPortables\\PaymentDetails.txt"));
 			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
 			orderPayments = (HashMap)objectInputStream.readObject();
 			*/
@@ -474,7 +474,7 @@ public class Utilities extends HttpServlet{
 		try
 		{
 			/*
-			FileOutputStream fileOutputStream = new FileOutputStream(new File(TOMCAT_HOME+"\\webapps\\Assignment_2\\PaymentDetails.txt"));
+			FileOutputStream fileOutputStream = new FileOutputStream(new File(TOMCAT_HOME+"\\webapps\\SmartPortables\\PaymentDetails.txt"));
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 			objectOutputStream.writeObject(orderPayments);
 			objectOutputStream.flush();
@@ -788,6 +788,38 @@ public class Utilities extends HttpServlet{
 
 	public List<Store> getAllStores() {
 		return MySqlDataStoreUtilities.getAllStores();
+	}
+
+	public String addProduct(
+			String productType,
+			String productId,
+			String productName,
+			double productPrice,
+			String productImage,
+			String productManufacturer,
+			String productCondition,
+			double productDiscount,
+			boolean productRebate,
+			String productDescription,
+			boolean productHasWarranty,
+			double productWarranty,
+			String prod
+	) {
+		return MySqlDataStoreUtilities.addProduct(
+				productType,
+				productId,
+				productName,
+				productPrice,
+				productImage,
+				productManufacturer,
+				productCondition,
+				productDiscount,
+				productRebate,
+				productDescription,
+				productHasWarranty,
+				productWarranty,
+				prod
+		);
 	}
 
 }

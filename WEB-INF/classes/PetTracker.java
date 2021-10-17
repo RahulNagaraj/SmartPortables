@@ -25,8 +25,11 @@ public class PetTracker extends HttpServlet {
     private String retailer;
     private String condition;
     private double discount;
-    private String rebate;
+    private boolean rebate;
     private String description;
+    private boolean hasWarranty;
+    private double warrantyPrice;
+    private String productType;
 
     public PetTracker(
             String name,
@@ -35,8 +38,9 @@ public class PetTracker extends HttpServlet {
             String retailer,
             String condition,
             double discount,
-            String rebate,
-            String description
+            boolean rebate,
+            String description,
+            boolean hasWarranty, double warrantyPrice, String productType
     ) {
         this.name=name;
         this.price=price;
@@ -46,6 +50,9 @@ public class PetTracker extends HttpServlet {
         this.discount = discount;
         this.rebate = rebate;
         this.description = description;
+        this.hasWarranty = hasWarranty;
+        this.warrantyPrice = warrantyPrice;
+        this.productType = productType;
     }
 
     public PetTracker() {
@@ -117,11 +124,11 @@ public class PetTracker extends HttpServlet {
         this.discount = discount;
     }
 
-    public String getRebate() {
+    public boolean getRebate() {
         return rebate;
     }
 
-    public void setRebate(String rebate) {
+    public void setRebate(boolean rebate) {
         this.rebate = rebate;
     }
 
@@ -131,5 +138,29 @@ public class PetTracker extends HttpServlet {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public boolean isHasWarranty() {
+        return hasWarranty;
+    }
+
+    public void setHasWarranty(boolean hasWarranty) {
+        this.hasWarranty = hasWarranty;
+    }
+
+    public double getWarrantyPrice() {
+        return warrantyPrice;
+    }
+
+    public void setWarrantyPrice(double warrantyPrice) {
+        this.warrantyPrice = warrantyPrice;
+    }
+
+    public String getProductType() {
+        return productType;
+    }
+
+    public void setProductType(String productType) {
+        this.productType = productType;
     }
 }

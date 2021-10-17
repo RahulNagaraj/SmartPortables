@@ -178,7 +178,7 @@ public class PhoneList extends HttpServlet
 	}
 
 	private String getRebate(Phone phone) {
-		return phone.getRebate().equals("Yes")
+		return phone.getRebate()
 				? "<p style='text-align: center;'>This product has a rebate</p>"
 				: "";
 	}

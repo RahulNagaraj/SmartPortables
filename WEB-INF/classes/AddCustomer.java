@@ -49,7 +49,7 @@ public class AddCustomer extends HttpServlet {
 			try
 			{
 			/*
- 			 FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\Assignment_2\\UserDetails.txt"));
+ 			 FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\SmartPortables\\UserDetails.txt"));
 			 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
 			 hm= (HashMap)objectInputStream.readObject();
 			*/
@@ -76,7 +76,7 @@ public class AddCustomer extends HttpServlet {
 				hm.put(username, user);
 				MySqlDataStoreUtilities.registerUser(username,password,repassword,usertype);
 				/*
-			    FileOutputStream fileOutputStream = new FileOutputStream(TOMCAT_HOME+"\\webapps\\Assignment_2\\UserDetails.txt");
+			    FileOutputStream fileOutputStream = new FileOutputStream(TOMCAT_HOME+"\\webapps\\SmartPortables\\UserDetails.txt");
         		ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
            	 	objectOutputStream.writeObject(hm);
 				objectOutputStream.flush();

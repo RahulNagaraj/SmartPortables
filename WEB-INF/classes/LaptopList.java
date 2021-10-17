@@ -164,7 +164,7 @@ public class LaptopList extends HttpServlet
 	}
 
 	private String getRebate(Laptop laptop) {
-		return laptop.getRebate().equals("Yes")
+		return laptop.getRebate()
 				? "<p style='text-align: center;'>This product has a rebate</p>"
 				: "";
 	}

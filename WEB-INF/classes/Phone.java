@@ -25,13 +25,14 @@ public class Phone extends HttpServlet {
 	private String retailer;
 	private String condition;
 	private double discount;
-	private String rebate;
+	private boolean rebate;
 	private String description;
 	private boolean hasWarranty;
 	private double warrantyPrice;
+	private String productType;
 	
-	public Phone(String name, double price, String image, String retailer,String condition,double discount,String rebate,
-				 String description, boolean hasWarranty, double warrantyPrice)
+	public Phone(String name, double price, String image, String retailer,String condition,double discount,boolean rebate,
+				 String description, boolean hasWarranty, double warrantyPrice, String productType)
 	{
 		this.name=name;
 		this.price=price;
@@ -43,6 +44,7 @@ public class Phone extends HttpServlet {
 		this.description = description;
 		this.hasWarranty = hasWarranty;
 		this.warrantyPrice = warrantyPrice;
+		this.productType = productType;
 	}
 	
 	public Phone()
@@ -115,11 +117,11 @@ public class Phone extends HttpServlet {
 		this.discount = discount;
 	}
 
-	public String getRebate() {
+	public boolean getRebate() {
 		return rebate;
 	}
 
-	public void setRebate(String rebate) {
+	public void setRebate(boolean rebate) {
 		this.rebate = rebate;
 	}
 
@@ -145,5 +147,31 @@ public class Phone extends HttpServlet {
 
 	public void setWarrantyPrice(double warrantyPrice) {
 		this.warrantyPrice = warrantyPrice;
+	}
+
+	public String getProductType() {
+		return productType;
+	}
+
+	public void setProductType(String productType) {
+		this.productType = productType;
+	}
+
+	@Override
+	public String toString() {
+		return "Phone{" +
+				"id='" + id + '\'' +
+				", name='" + name + '\'' +
+				", price=" + price +
+				", image='" + image + '\'' +
+				", retailer='" + retailer + '\'' +
+				", condition='" + condition + '\'' +
+				", discount=" + discount +
+				", rebate=" + rebate +
+				", description='" + description + '\'' +
+				", hasWarranty=" + hasWarranty +
+				", warrantyPrice=" + warrantyPrice +
+				", productType='" + productType + '\'' +
+				'}';
 	}
 }
