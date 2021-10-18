@@ -74,6 +74,7 @@ public class PetTrackerList extends HttpServlet {
             pw.print("<h4>" + petTracker.getDescription() + "</h5>");
             pw.print("<strong>$"+petTracker.getPrice()+"</strong>");
             pw.print("<h4> Discount: $" + petTracker.getDiscount() + "</h4><ul>");
+            pw.print("<h4 style='text-align: center;'>Rebate: "+ petTracker.getRebate() +"%</h4>");
             pw.print("<li id='item'><img src='images/wearables/"+petTracker.getImage()+"' alt='' /></li>");
 
             pw.print("<li><form method='post' action='Cart'>" +
@@ -99,7 +100,7 @@ public class PetTrackerList extends HttpServlet {
 
                 pw.print("<div style='display:flex; justify-content:space-evenly'><li><form method='post' action='ProductModify'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
                         "<input type='hidden' name='productId' value='" + petTracker.getId() + "'>"+
-                        "<input type='hidden' name='productManufacturer' value='"+ name +"'>"+
+                        "<input type='hidden' name='productManufacturer' value='"+ petTracker.getRetailer() +"'>"+
                         "<input type='hidden' name='productType' value='" + petTracker.getProductType() + "'>"+
                         "<input type='hidden' name='productName' value='" + petTracker.getName() + "'>"+
                         "<input type='hidden' name='productPrice' value='" + petTracker.getPrice() + "'>"+
@@ -108,6 +109,8 @@ public class PetTrackerList extends HttpServlet {
                         "<input type='hidden' name='productRebate' value='" + petTracker.getRebate() + "'>"+
                         "<input type='hidden' name='productCondition' value='" + petTracker.getCondition() + "'>"+
                         "<input type='hidden' name='productDescription' value='" + petTracker.getDescription() + "'>"+
+                        "<input type='hidden' name='numberOfAvailableProducts' value='" + petTracker.getNumberOfAvailableProducts() + "'>"+
+                        "<input type='hidden' name='numberOfItemsSold' value='" + petTracker.getNumberOfItemsSold() + "'>"+
                         "<input type='submit' name='button' value='Update' class='btnreview'></form></li>");
                 pw.print("<li><form method='post' action='ProductCrud'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
                         "<input type='hidden' name='productId' value='" + petTracker.getId() + "'>"+

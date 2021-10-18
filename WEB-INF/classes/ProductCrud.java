@@ -31,7 +31,7 @@ public class ProductCrud extends HttpServlet {
                 productCondition="",
                 productDescription="",
                 prod = "";
-        boolean productRebate = false;
+        int productRebate = 0, numberOfAvailableProducts = 0, numberOfItemsSold = 0;
         double productPrice = 0.0, productDiscount = 0.0, productWarranty = 0.0;
         boolean productHasWarranty = false;
         /*
@@ -57,10 +57,12 @@ public class ProductCrud extends HttpServlet {
             productManufacturer = request.getParameter("productManufacturer");
             productCondition = request.getParameter("productCondition");
             productDiscount = Double.parseDouble(request.getParameter("productDiscount"));
-            productRebate = request.getParameter("productRebate").equalsIgnoreCase("Yes");
+            productRebate = Integer.parseInt(request.getParameter("productRebate"));
             productDescription = request.getParameter("productDescription");
             productWarranty = Double.parseDouble(request.getParameter("productWarranty"));
             productHasWarranty = productWarranty > 0.0;
+            numberOfAvailableProducts = Integer.parseInt(request.getParameter("numberOfAvailableProducts"));
+            numberOfItemsSold = Integer.parseInt(request.getParameter("numberOfItemsSold"));
         } else {
             productId   = request.getParameter("productId");
         }
@@ -84,7 +86,9 @@ public class ProductCrud extends HttpServlet {
                             productDescription,
                             productHasWarranty,
                             productWarranty,
-                            productType
+                            productType,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
                     ));
                 }
             }
@@ -104,7 +108,9 @@ public class ProductCrud extends HttpServlet {
                             productDescription,
                             productHasWarranty,
                             productWarranty,
-                            productType
+                            productType,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
                     ));
                 }
             }
@@ -124,7 +130,9 @@ public class ProductCrud extends HttpServlet {
                             productDescription,
                             productHasWarranty,
                             productWarranty,
-                            productType
+                            productType,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
                     ));
                 }
             }
@@ -144,7 +152,9 @@ public class ProductCrud extends HttpServlet {
                             productDescription,
                             productHasWarranty,
                             productWarranty,
-                            productType
+                            productType,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
                     ));
                 }
             }
@@ -164,7 +174,9 @@ public class ProductCrud extends HttpServlet {
                             productDescription,
                             productHasWarranty,
                             productWarranty,
-                            productType
+                            productType,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
                     ));
                 }
             }
@@ -185,7 +197,9 @@ public class ProductCrud extends HttpServlet {
                             productDescription,
                             productHasWarranty,
                             productWarranty,
-                            productType
+                            productType,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
                     ));
                 }
             }
@@ -206,7 +220,9 @@ public class ProductCrud extends HttpServlet {
                             productDescription,
                             productHasWarranty,
                             productWarranty,
-                            productType
+                            productType,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
                     ));
                 }
             }
@@ -227,7 +243,9 @@ public class ProductCrud extends HttpServlet {
                             productDescription,
                             productHasWarranty,
                             productWarranty,
-                            productType
+                            productType,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
                     ));
                 }
             }
@@ -275,7 +293,10 @@ public class ProductCrud extends HttpServlet {
                             productDescription,
                             productHasWarranty,
                             productWarranty,
-                            prod);
+                            numberOfAvailableProducts,
+                            numberOfItemsSold,
+                            prod
+                    );
                 }
                 catch(Exception e) {
                     msg = "Product cannot be inserted";
@@ -300,7 +321,9 @@ public class ProductCrud extends HttpServlet {
                             productDescription,
                             productHasWarranty,
                             productWarranty,
-                            productType
+                            productType,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
                     ));
                 }
             }
@@ -320,7 +343,9 @@ public class ProductCrud extends HttpServlet {
                             productDescription,
                             productHasWarranty,
                             productWarranty,
-                            productType
+                            productType,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
                     ));
                 }
             }
@@ -340,7 +365,9 @@ public class ProductCrud extends HttpServlet {
                             productDescription,
                             productHasWarranty,
                             productWarranty,
-                            productType
+                            productType,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
                     ));
                 }
             }
@@ -360,7 +387,9 @@ public class ProductCrud extends HttpServlet {
                             productDescription,
                             productHasWarranty,
                             productWarranty,
-                            productType
+                            productType,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
                     ));
                 }
             }
@@ -380,7 +409,9 @@ public class ProductCrud extends HttpServlet {
                             productDescription,
                             productHasWarranty,
                             productWarranty,
-                            productType
+                            productType,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
                     ));
                 }
             }
@@ -401,7 +432,9 @@ public class ProductCrud extends HttpServlet {
                             productDescription,
                             productHasWarranty,
                             productWarranty,
-                            productType
+                            productType,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
                     ));
                 }
             }
@@ -422,7 +455,9 @@ public class ProductCrud extends HttpServlet {
                             productDescription,
                             productHasWarranty,
                             productWarranty,
-                            productType
+                            productType,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
                     ));
                 }
             }
@@ -443,7 +478,9 @@ public class ProductCrud extends HttpServlet {
                             productDescription,
                             productHasWarranty,
                             productWarranty,
-                            productType
+                            productType,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
                     ));
                 }
             }
@@ -488,7 +525,9 @@ public class ProductCrud extends HttpServlet {
                             productRebate,
                             productDescription,
                             productHasWarranty,
-                            productWarranty
+                            productWarranty,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
                     );
                 }
                 catch(Exception e) {
@@ -554,7 +593,8 @@ public class ProductCrud extends HttpServlet {
                 fileName="",
                 prod = "";
         double productPrice = 0.0, productDiscount = 0.0, productWarranty = 0.0;
-        boolean productHasWarranty = false, productRebate = false;
+        boolean productHasWarranty = false;
+        int productRebate = 0, numberOfAvailableProducts = 0, numberOfItemsSold = 0;
         Part part = null;
 
         HashMap<String, FitnessWatch> allFitnessWatches = new HashMap<>();
@@ -565,6 +605,8 @@ public class ProductCrud extends HttpServlet {
         HashMap<String, Phone> allPhones = new HashMap<>();
         HashMap<String, SmartWatch> allSmartWatches = new HashMap<>();
         HashMap<String, VoiceAssistant> allVoiceAssistants = new HashMap<>();
+        HashMap<String, PetTracker> allPetTracker = new HashMap<>();
+        HashMap<String, VirtualReality> allVirtualReality = new HashMap<>();
 
         if (action.equals("Add Product") || action.equals("Update Product")) {
             productType = request.getParameter("productType");
@@ -576,10 +618,12 @@ public class ProductCrud extends HttpServlet {
             productManufacturer = request.getParameter("productManufacturer");
             productCondition = request.getParameter("productCondition");
             productDiscount = Double.parseDouble(request.getParameter("productDiscount"));
-            productRebate = request.getParameter("productRebate").equalsIgnoreCase("Yes");
+            productRebate = Integer.parseInt(request.getParameter("productRebate"));
             productDescription = request.getParameter("productDescription");
             productWarranty = Double.parseDouble(request.getParameter("productWarranty"));
             productHasWarranty = productWarranty > 0.0;
+            numberOfAvailableProducts = Integer.parseInt(request.getParameter("numberOfAvailableProducts"));
+            numberOfItemsSold = Integer.parseInt(request.getParameter("numberOfItemsSold"));
         } else {
             productId   = request.getParameter("productId");
         }
@@ -587,41 +631,183 @@ public class ProductCrud extends HttpServlet {
         utility.printHtml("LeftNavigationBar.html");
 
         if(action.equals("Add Product")) {
-            if(productType.equals("Fitness Watch")) {
+            if(productType.equals("fitnessWatch")) {
                 allFitnessWatches = MySqlDataStoreUtilities.getFitnessWatches();
                 if(allFitnessWatches.containsKey(productId)) {
                     msg = "Product already available";
+                } else {
+                    allFitnessWatches.put(productId, new FitnessWatch(
+                            productName,
+                            productPrice,
+                            productImage,
+                            productManufacturer,
+                            productCondition,
+                            productDiscount,
+                            productRebate,
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty,
+                            productType,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
+                    ));
                 }
             }
-            else if(productType.equals("Headphone")) {
+            else if(productType.equals("headphone")) {
                 allHeadphones = MySqlDataStoreUtilities.getHeadphones();
                 if(allHeadphones.containsKey(productId)) {
                     msg = "Product already available";
+                } else {
+                    allHeadphones.put(productId, new Headphone(
+                            productName,
+                            productPrice,
+                            productImage,
+                            productManufacturer,
+                            productCondition,
+                            productDiscount,
+                            productRebate,
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty,
+                            productType,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
+                    ));
                 }
             }
-            else if(productType.equals("Laptop")) {
+            else if(productType.equals("laptop")) {
                 allLaptops = MySqlDataStoreUtilities.getLaptops();
                 if(allLaptops.containsKey(productId)) {
                     msg = "Product already available";
+                } else {
+                    allLaptops.put(productId, new Laptop(
+                            productName,
+                            productPrice,
+                            productImage,
+                            productManufacturer,
+                            productCondition,
+                            productDiscount,
+                            productRebate,
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty,
+                            productType,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
+                    ));
                 }
             }
-            else if(productType.equals("Phone")) {
+            else if(productType.equals("phone")) {
                 allPhones = MySqlDataStoreUtilities.getPhones();
                 if(allPhones.containsKey(productId)) {
                     msg = "Product already available";
+                } else {
+                    allPhones.put(productId, new Phone(
+                            productName,
+                            productPrice,
+                            productImage,
+                            productManufacturer,
+                            productCondition,
+                            productDiscount,
+                            productRebate,
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty,
+                            productType,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
+                    ));
                 }
             }
-            else if(productType.equals("Smart Watch")) {
+            else if(productType.equals("smartWatch")) {
                 allSmartWatches = MySqlDataStoreUtilities.getSmartWatches();
                 if(allSmartWatches.containsKey(productId)) {
                     msg = "Product already available";
+                } else {
+                    allSmartWatches.put(productId, new SmartWatch(
+                            productName,
+                            productPrice,
+                            productImage,
+                            productManufacturer,
+                            productCondition,
+                            productDiscount,
+                            productRebate,
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty,
+                            productType,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
+                    ));
                 }
             }
-            else if(productType.equals("Voice Assistant")) {
+            else if(productType.equals("voiceAssistant")) {
                 allVoiceAssistants = MySqlDataStoreUtilities.getVoiceAssistants();
                 if(allVoiceAssistants.containsKey(productId))
                 {
                     msg = "Product already available";
+                } else {
+                    allVoiceAssistants.put(productId, new VoiceAssistant(
+                            productName,
+                            productPrice,
+                            productImage,
+                            productManufacturer,
+                            productCondition,
+                            productDiscount,
+                            productRebate,
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty,
+                            productType,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
+                    ));
+                }
+            }
+            else if(productType.equals("petTracker")) {
+                allPetTracker = MySqlDataStoreUtilities.getPetTracker();
+                if(allPetTracker.containsKey(productId))
+                {
+                    msg = "Product already available";
+                } else {
+                    allPetTracker.put(productId, new PetTracker(
+                            productName,
+                            productPrice,
+                            productImage,
+                            productManufacturer,
+                            productCondition,
+                            productDiscount,
+                            productRebate,
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty,
+                            productType,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
+                    ));
+                }
+            }
+            else if(productType.equals("virtualReality")) {
+                allVirtualReality = MySqlDataStoreUtilities.getVirtualReality();
+                if(allVirtualReality.containsKey(productId))
+                {
+                    msg = "Product already available";
+                } else {
+                    allVirtualReality.put(productId, new VirtualReality(
+                            productName,
+                            productPrice,
+                            productImage,
+                            productManufacturer,
+                            productCondition,
+                            productDiscount,
+                            productRebate,
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty,
+                            productType,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
+                    ));
                 }
             }
 
@@ -669,7 +855,10 @@ public class ProductCrud extends HttpServlet {
                             productDescription,
                             productHasWarranty,
                             productWarranty,
-                            prod);
+                            numberOfAvailableProducts,
+                            numberOfItemsSold,
+                            prod
+                    );
 
                     uploadFile(part, productType);
                 }
@@ -735,7 +924,9 @@ public class ProductCrud extends HttpServlet {
                             productRebate,
                             productDescription,
                             productHasWarranty,
-                            productWarranty
+                            productWarranty,
+                            numberOfAvailableProducts,
+                            numberOfItemsSold
                     );
 
                     uploadFile(part, productType);

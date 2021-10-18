@@ -3,7 +3,7 @@
 <ProductCatalog>
 	<FitnessWatchCatalog>
 		<fitnessWatch id="fitness_watch_01">
-			<name>Xiaomi Mi Band</name>
+			<name>Mi Band</name>
 			<price>49.99</price>
 			<image>fitness-watch-01.jpg</image>
 			<manufacturer>Xiaomi</manufacturer>
@@ -13,7 +13,9 @@
 			<type>Fitness Watch</type>
 			<has-warranty>No</has-warranty>
 			<warranty>0</warranty>
-			<rebate>No</rebate>
+			<rebate>0</rebate>
+			<numberOfAvailableProducts>500</numberOfAvailableProducts>
+			<numberOfItemsSold>40</numberOfItemsSold>
 		</fitnessWatch>
 
 		<fitnessWatch id="fitness_watch_02">
@@ -27,7 +29,9 @@
 			<description>Fitness tracker, sporty watch</description>
 			<has-warranty>No</has-warranty>
 			<warranty>0</warranty>
-			<rebate>No</rebate>
+			<rebate>0</rebate>
+			<numberOfAvailableProducts>200</numberOfAvailableProducts>
+			<numberOfItemsSold>25</numberOfItemsSold>
 		</fitnessWatch>
 	</FitnessWatchCatalog>
 
@@ -43,7 +47,9 @@
 			<description>Has builtin Heart rate monitor</description>
 			<has-warranty>No</has-warranty>
 			<warranty>0</warranty>
-			<rebate>No</rebate>
+			<rebate>4</rebate>
+			<numberOfAvailableProducts>1000</numberOfAvailableProducts>
+			<numberOfItemsSold>800</numberOfItemsSold>
 		</smartWatch>
 
 		<smartWatch id="samsung_smartwatch">
@@ -57,7 +63,9 @@
 			<description>Has builtin GPS tracker</description>
 			<has-warranty>No</has-warranty>
 			<warranty>0</warranty>
-			<rebate>No</rebate>
+			<rebate>4</rebate>
+			<numberOfAvailableProducts>800</numberOfAvailableProducts>
+			<numberOfItemsSold>400</numberOfItemsSold>
 		</smartWatch>
 	</SmartWatchCatalog>
 
@@ -73,7 +81,9 @@
 			<type>Headphone</type>
 			<has-warranty>No</has-warranty>
 			<warranty>0</warranty>
-			<rebate>No</rebate>
+			<rebate>4</rebate>
+			<numberOfAvailableProducts>1000</numberOfAvailableProducts>
+			<numberOfItemsSold>500</numberOfItemsSold>
 		</headphone>
 
 		<headphone id="sony_xm4">
@@ -87,7 +97,9 @@
 			<type>Headphone</type>
 			<has-warranty>No</has-warranty>
 			<warranty>0</warranty>
-			<rebate>No</rebate>
+			<rebate>4</rebate>
+			<numberOfAvailableProducts>800</numberOfAvailableProducts>
+			<numberOfItemsSold>600</numberOfItemsSold>
 		</headphone>
 	</HeadphoneCatalog>
 
@@ -103,7 +115,9 @@
 			<type>Virtual Reality</type>
 			<has-warranty>No</has-warranty>
 			<warranty>0</warranty>
-			<rebate>No</rebate>
+			<rebate>15</rebate>
+			<numberOfAvailableProducts>200</numberOfAvailableProducts>
+			<numberOfItemsSold>40</numberOfItemsSold>
 		</virtualReality>
 	</VirtualRealityCatalog>
 
@@ -119,7 +133,9 @@
 			<type>Pet Tracker</type>
 			<has-warranty>No</has-warranty>
 			<warranty>0</warranty>
-			<rebate>No</rebate>
+			<rebate>0</rebate>
+			<numberOfAvailableProducts>500</numberOfAvailableProducts>
+			<numberOfItemsSold>220</numberOfItemsSold>
 		</petTracker>
 
 	</PetTrackerCatalog>
@@ -136,7 +152,9 @@
 			<type>Phone</type>
 			<has-warranty>Yes</has-warranty>
 			<warranty>150</warranty>
-			<rebate>Yes</rebate>
+			<rebate>12</rebate>
+			<numberOfAvailableProducts>900</numberOfAvailableProducts>
+			<numberOfItemsSold>600</numberOfItemsSold>
 		</phone>
 
 		<phone id="iPhone_12">
@@ -150,7 +168,9 @@
 			<type>Phone</type>
 			<has-warranty>Yes</has-warranty>
 			<warranty>100</warranty>
-			<rebate>Yes</rebate>
+			<rebate>6</rebate>
+			<numberOfAvailableProducts>400</numberOfAvailableProducts>
+			<numberOfItemsSold>100</numberOfItemsSold>
 		</phone>
 
 		<phone id="pixel_5a">
@@ -164,7 +184,9 @@
 			<type>Phone</type>
 			<has-warranty>Yes</has-warranty>
 			<warranty>50</warranty>
-			<rebate>Yes</rebate>
+			<rebate>10</rebate>
+			<numberOfAvailableProducts>100</numberOfAvailableProducts>
+			<numberOfItemsSold>45</numberOfItemsSold>
 		</phone>
 
 		<phone id="pixel_4">
@@ -178,7 +200,9 @@
 			<type>Phone</type>
 			<has-warranty>No</has-warranty>
 			<warranty>50</warranty>
-			<rebate>Yes</rebate>
+			<rebate>4</rebate>
+			<numberOfAvailableProducts>50</numberOfAvailableProducts>
+			<numberOfItemsSold>2</numberOfItemsSold>
 		</phone>
 
 		<phone id="samsung_fold3">
@@ -192,7 +216,9 @@
 			<type>Phone</type>
 			<has-warranty>Yes</has-warranty>
 			<warranty>150</warranty>
-			<rebate>Yes</rebate>
+			<rebate>0</rebate>
+			<numberOfAvailableProducts>20</numberOfAvailableProducts>
+			<numberOfItemsSold>0</numberOfItemsSold>
 		</phone>
 
 		<phone id="samsung_s21">
@@ -206,7 +232,9 @@
 			<type>Phone</type>
 			<has-warranty>Yes</has-warranty>
 			<warranty>75</warranty>
-			<rebate>Yes</rebate>
+			<rebate>10</rebate>
+			<numberOfAvailableProducts>50</numberOfAvailableProducts>
+			<numberOfItemsSold>0</numberOfItemsSold>
 		</phone>
 
 		<phone id="oneplus_9pro">
@@ -220,7 +248,9 @@
 			<type>Phone</type>
 			<has-warranty>No</has-warranty>
 			<warranty>0</warranty>
-			<rebate>No</rebate>
+			<rebate>8</rebate>
+			<numberOfAvailableProducts>30</numberOfAvailableProducts>
+			<numberOfItemsSold>0</numberOfItemsSold>
 		</phone>
 
 		<phone id="huawei_mate_40pro">
@@ -234,7 +264,9 @@
 			<type>Phone</type>
 			<has-warranty>No</has-warranty>
 			<warranty>0</warranty>
-			<rebate>No</rebate>
+			<rebate>10</rebate>
+			<numberOfAvailableProducts>0</numberOfAvailableProducts>
+			<numberOfItemsSold>40</numberOfItemsSold>
 		</phone>
 	</PhoneCatalog>
 
@@ -250,7 +282,9 @@
 			<type>Laptop</type>
 			<has-warranty>No</has-warranty>
 			<warranty>0</warranty>
-			<rebate>No</rebate>
+			<rebate>0</rebate>
+			<numberOfAvailableProducts>0</numberOfAvailableProducts>
+			<numberOfItemsSold>10</numberOfItemsSold>
 			<accessories>
 				<accessory>xboxone_wc</accessory>
 				<accessory>xboxone_sh</accessory>
@@ -273,7 +307,9 @@
 			<type>Laptop</type>
 			<has-warranty>No</has-warranty>
 			<warranty>0</warranty>
-			<rebate>No</rebate>
+			<rebate>0</rebate>
+			<numberOfAvailableProducts>0</numberOfAvailableProducts>
+			<numberOfItemsSold>45</numberOfItemsSold>
 			<accessories>
 				<accessory>xboxone_wc</accessory>
 				<accessory>xboxone_sh</accessory>
@@ -296,7 +332,9 @@
 			<type>Laptop</type>
 			<has-warranty>No</has-warranty>
 			<warranty>0</warranty>
-			<rebate>No</rebate>
+			<rebate>2</rebate>
+			<numberOfAvailableProducts>10</numberOfAvailableProducts>
+			<numberOfItemsSold>50</numberOfItemsSold>
 			<accessories>
 				<accessory>xboxone_wc</accessory>
 				<accessory>xboxone_sh</accessory>
@@ -319,7 +357,9 @@
 			<type>Laptop</type>
 			<has-warranty>Yes</has-warranty>
 			<warranty>350</warranty>
-			<rebate>Yes</rebate>
+			<rebate>5</rebate>
+			<numberOfAvailableProducts>200</numberOfAvailableProducts>
+			<numberOfItemsSold>155</numberOfItemsSold>
 			<accessories>
 				<accessory>xboxone_wc</accessory>
 				<accessory>xboxone_sh</accessory>
@@ -342,7 +382,9 @@
 			<type>Laptop</type>
 			<has-warranty>Yes</has-warranty>
 			<warranty>250</warranty>
-			<rebate>Yes</rebate>
+			<rebate>7</rebate>
+			<numberOfAvailableProducts>0</numberOfAvailableProducts>
+			<numberOfItemsSold>0</numberOfItemsSold>
 			<accessories>
 				<accessory>xboxone_wc</accessory>
 				<accessory>xboxone_sh</accessory>
@@ -365,7 +407,9 @@
 			<type>Laptop</type>
 			<has-warranty>Yes</has-warranty>
 			<warranty>300</warranty>
-			<rebate>Yes</rebate>
+			<rebate>0</rebate>
+			<numberOfAvailableProducts>30</numberOfAvailableProducts>
+			<numberOfItemsSold>30</numberOfItemsSold>
 			<accessories>
 				<accessory>xboxone_wc</accessory>
 				<accessory>xboxone_sh</accessory>
@@ -388,7 +432,9 @@
 			<type>Laptop</type>
 			<has-warranty>Yes</has-warranty>
 			<warranty>150</warranty>
-			<rebate>Yes</rebate>
+			<rebate>8</rebate>
+			<numberOfAvailableProducts>0</numberOfAvailableProducts>
+			<numberOfItemsSold>0</numberOfItemsSold>
 			<accessories>
 				<accessory>xboxone_wc</accessory>
 				<accessory>xboxone_sh</accessory>
@@ -411,7 +457,9 @@
 			<type>Laptop</type>
 			<has-warranty>Yes</has-warranty>
 			<warranty>250</warranty>
-			<rebate>Yes</rebate>
+			<rebate>10</rebate>
+			<numberOfAvailableProducts>0</numberOfAvailableProducts>
+			<numberOfItemsSold>0</numberOfItemsSold>
 			<accessories>
 				<accessory>xboxone_wc</accessory>
 				<accessory>xboxone_sh</accessory>
@@ -436,7 +484,9 @@
 			<type>Voice Assistant</type>
 			<has-warranty>No</has-warranty>
 			<warranty>0</warranty>
-			<rebate>No</rebate>
+			<rebate>0</rebate>
+			<numberOfAvailableProducts>0</numberOfAvailableProducts>
+			<numberOfItemsSold>0</numberOfItemsSold>
 		</voiceAssistant>
 
 		<voiceAssistant id="apple_homepod">
@@ -450,7 +500,9 @@
 			<type>Voice Assistant</type>
 			<has-warranty>No</has-warranty>
 			<warranty>0</warranty>
-			<rebate>No</rebate>
+			<rebate>2</rebate>
+			<numberOfAvailableProducts>40</numberOfAvailableProducts>
+			<numberOfItemsSold>40</numberOfItemsSold>
 		</voiceAssistant>
 
 		<voiceAssistant id="apple_homepod_mini">
@@ -464,7 +516,9 @@
 			<type>Voice Assistant</type>
 			<has-warranty>No</has-warranty>
 			<warranty>0</warranty>
-			<rebate>No</rebate>
+			<rebate>0</rebate>
+			<numberOfAvailableProducts>10</numberOfAvailableProducts>
+			<numberOfItemsSold>4</numberOfItemsSold>
 		</voiceAssistant>
 
 		<voiceAssistant id="google_home_max">
@@ -478,7 +532,9 @@
 			<type>Voice Assistant</type>
 			<has-warranty>No</has-warranty>
 			<warranty>0</warranty>
-			<rebate>No</rebate>
+			<rebate>1</rebate>
+			<numberOfAvailableProducts>50</numberOfAvailableProducts>
+			<numberOfItemsSold>0</numberOfItemsSold>
 		</voiceAssistant>
 	</VoiceAssistantCatalog>
 
@@ -637,19 +693,4 @@
 			<discount>40.0</discount>
 		</accessory>
 	</AccessoryCatalog>
-
-	<WarrantyCatalog>
-		<warranty id="basic">
-			<name>Basic</name>
-			<price>5</price>
-		</warranty>
-		<warranty id="premium">
-			<name>Premium</name>
-			<price>15</price>
-		</warranty>
-		<warranty id="ultimate">
-			<name>Ultimate</name>
-			<price>20</price>
-		</warranty>
-	</WarrantyCatalog>
 </ProductCatalog>

@@ -62,7 +62,11 @@ public class ProductModify extends HttpServlet {
 			pw.print("<tr><td>Description</td>");
 			pw.print("<td><input class='input' type='text' name='productDescription' id ='productDescription' /></td></tr>");
 			pw.print("<tr><td>Rebate</td>");
-			pw.print("<td><input class='input' type='text' name='productRebate' id ='productRebate' /></td></tr>");
+			pw.print("<td><input class='input' type='number' name='productRebate' id ='productRebate' /></td></tr>");
+			pw.print("<tr><td>Number of Available Products</td>");
+			pw.print("<td><input class='input' type='number' name='numberOfAvailableProducts' id ='numberOfAvailableProducts' /></td></tr>");
+			pw.print("<tr><td>Number of Items Sold</td>");
+			pw.print("<td><input class='input' type='number' name='numberOfItemsSold' id ='numberOfItemsSold' /></td></tr>");
 			pw.print("<tr><td colspan='2'><input type='submit' name='button' value='Add Product' class='btnbuy'></td></tr>");
 			pw.print("</table></form></div></div></div>");
 
@@ -118,9 +122,11 @@ public class ProductModify extends HttpServlet {
 			String productManufacturer = request.getParameter("productManufacturer");
 			String productCondition = request.getParameter("productCondition");
 			double productDiscount = Double.parseDouble(request.getParameter("productDiscount"));
-			String productRebate = request.getParameter("productRebate");
+			int productRebate = Integer.parseInt(request.getParameter("productRebate"));
 			String productDescription = request.getParameter("productDescription");
 			double productWarranty = Double.parseDouble(request.getParameter("productWarranty"));
+			int numberOfAvailableProducts = Integer.parseInt(request.getParameter("numberOfAvailableProducts"));
+			int numberOfItemsSold = Integer.parseInt(request.getParameter("numberOfItemsSold"));
 
 			pw.print("<div id='content'><div class='post'>");
 			pw.print("<h2 class='title meta'><a style='font-size: 24px;'>Update Product</a></h2>"
@@ -163,7 +169,11 @@ public class ProductModify extends HttpServlet {
 			pw.print("<tr><td>Description</td>");
 			pw.print("<td><input class='input' type='text' name='productDescription' id ='productDescription' value='" + productDescription + "' /></td></tr>");
 			pw.print("<tr><td>Rebate</td>");
-			pw.print("<td><input class='input' type='text' name='productRebate' id ='productRebate' value='" + getRebate(productRebate) + "' /></td></tr>");
+			pw.print("<td><input class='input' type='number' name='productRebate' id ='productRebate' value='" + productRebate + "' /></td></tr>");
+			pw.print("<tr><td>Number of Available Products</td>");
+			pw.print("<td><input class='input' type='number' name='numberOfAvailableProducts' id ='numberOfAvailableProducts' value='"+ numberOfAvailableProducts +"' /></td></tr>");
+			pw.print("<tr><td>Number of Items Sold</td>");
+			pw.print("<td><input class='input' type='number' name='numberOfItemsSold' id ='numberOfItemsSold' value='"+ numberOfItemsSold +"' /></td></tr>");
 			pw.print("<input class='hidden' type='text' name='productId' id ='productId' value='" + productId + "' />");
 			pw.print("<tr><td colspan='2'><input type='submit' name='button' value='Update Product' class='btnbuy'></td></tr>");
 			pw.print("</table></form></div></div></div>");
@@ -173,10 +183,6 @@ public class ProductModify extends HttpServlet {
 
 	private String isSelected(String productType, String type) {
 		return productType.equals(type) ? "selected" : "";
-	}
-
-	private String getRebate(String rebate) {
-		return rebate.equalsIgnoreCase("true") ? "Yes" : "No";
 	}
 
 }

@@ -805,19 +805,21 @@ public class Utilities extends HttpServlet{
 	}
 
 	public String addProduct(
-			String productType,
-			String productId,
-			String productName,
-			double productPrice,
-			String productImage,
-			String productManufacturer,
-			String productCondition,
-			double productDiscount,
-			boolean productRebate,
-			String productDescription,
-			boolean productHasWarranty,
-			double productWarranty,
-			String prod
+            String productType,
+            String productId,
+            String productName,
+            double productPrice,
+            String productImage,
+            String productManufacturer,
+            String productCondition,
+            double productDiscount,
+            int productRebate,
+            String productDescription,
+            boolean productHasWarranty,
+            double productWarranty,
+			int numberOfAvailableProducts,
+			int numberOfItemsSold,
+            String prod
 	) {
 		return MySqlDataStoreUtilities.addProduct(
 				productType,
@@ -832,6 +834,8 @@ public class Utilities extends HttpServlet{
 				productDescription,
 				productHasWarranty,
 				productWarranty,
+				numberOfAvailableProducts,
+				numberOfItemsSold,
 				prod
 		);
 	}

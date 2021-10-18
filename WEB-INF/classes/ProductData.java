@@ -33,7 +33,7 @@ public class ProductData extends HttpServlet {
             pw.print("<h4>" + data.getDescription() + "</h5>");
             pw.print("<strong>$"+data.getPrice()+"</strong>");
             pw.print("<h4>Discount: $" + data.getDiscount() + "</h4><ul>");
-            pw.print("<h4 style='text-align: center;'>"+ getRebate(data) +"</h4>");
+            pw.print("<h4 style='text-align: center;'>"+ data.getRebate() +"%</h4>");
 
             pw.print("<li id='item'><img src='images/"+getImagePath(data.getType())+"/"+data.getImage()+"' alt='' /></li>");
             pw.print("<li><form method='post' action='Cart' style='text-align: center;'>" +
@@ -95,11 +95,5 @@ public class ProductData extends HttpServlet {
         return product.isHasWarranty()
                 ? "<input type='checkbox' name='productWarranty' value='yes'><label> Life Time Warranty: $" + product.getWarrantyPrice() + "</label>"
                 : "<p>Warranty not available</p>";
-    }
-
-    private String getRebate(Product product) {
-        return product.getRebate()
-                ? "<p style='text-align: center;'>This product has a rebate</p>"
-                : "";
     }
 }

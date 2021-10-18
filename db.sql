@@ -33,18 +33,20 @@ Create table customerOrders (
 );
 
 Create table productDetails (
-	productType varchar(20),
-	productId varchar(20),
+	productType varchar(40),
+	productId varchar(80),
 	productName varchar(40),
 	productPrice double,
 	productImage varchar(40),
 	productManufacturer varchar(40),
 	productCondition varchar(40),
 	productDiscount double,
-    productRebate bool,
+    manufacturerRebate integer,
     productHasWarranty bool,
     productWarranty double,
     productDescription varchar(255),
+    numberOfAvailableProducts integer,
+    numberOfItemsSold integer,
 	Primary key(productId)
 );
 

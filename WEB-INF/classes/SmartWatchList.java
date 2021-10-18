@@ -120,6 +120,7 @@ public class SmartWatchList extends HttpServlet
 			pw.print("<h4>" + smartWatch.getDescription() + "</h5>");
 			pw.print("<strong>$"+smartWatch.getPrice()+"</strong>");
 			pw.print("<h4> Discount: $" + smartWatch.getDiscount() + "</h4><ul>");
+			pw.print("<h4 style='text-align: center;'>Rebate: "+ smartWatch.getRebate() +"%</h4>");
 			pw.print("<li id='item'><img src='images/wearables/"+smartWatch.getImage()+"' alt='' /></li>");
 
 			pw.print("<li><form method='post' action='Cart'>" +
@@ -145,7 +146,7 @@ public class SmartWatchList extends HttpServlet
 
 				pw.print("<div style='display:flex; justify-content:space-evenly'><li><form method='post' action='ProductModify'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
 						"<input type='hidden' name='productId' value='" + smartWatch.getId() + "'>"+
-						"<input type='hidden' name='productManufacturer' value='"+ name +"'>"+
+						"<input type='hidden' name='productManufacturer' value='"+ smartWatch.getRetailer() +"'>"+
 						"<input type='hidden' name='productType' value='" + smartWatch.getProductType() + "'>"+
 						"<input type='hidden' name='productName' value='" + smartWatch.getName() + "'>"+
 						"<input type='hidden' name='productPrice' value='" + smartWatch.getPrice() + "'>"+
@@ -154,6 +155,8 @@ public class SmartWatchList extends HttpServlet
 						"<input type='hidden' name='productRebate' value='" + smartWatch.getRebate() + "'>"+
 						"<input type='hidden' name='productCondition' value='" + smartWatch.getCondition() + "'>"+
 						"<input type='hidden' name='productDescription' value='" + smartWatch.getDescription() + "'>"+
+						"<input type='hidden' name='numberOfAvailableProducts' value='" + smartWatch.getNumberOfAvailableProducts() + "'>"+
+						"<input type='hidden' name='numberOfItemsSold' value='" + smartWatch.getNumberOfItemsSold() + "'>"+
 						"<input type='submit' name='button' value='Update' class='btnreview'></form></li>");
 				pw.print("<li><form method='post' action='ProductCrud'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
 						"<input type='hidden' name='productId' value='" + smartWatch.getId() + "'>"+

@@ -1,10 +1,5 @@
-import java.util.*;
-import java.util.Map;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/FitnessWatch")
 
@@ -26,14 +21,18 @@ public class FitnessWatch extends HttpServlet
 	private String retailer;
 	private String condition;
 	private double discount;
-	private boolean rebate;
+	private int rebate;
 	private String description;
 	private boolean hasWarranty;
 	private double warrantyPrice;
 	private String productType;
+	private int numberOfAvailableProducts;
+	private int numberOfItemsSold;
 	
-	public FitnessWatch(String name, double price, String image, String retailer,String condition,double discount, boolean rebate,
-						String description, boolean hasWarranty, double warrantyPrice, String productType)
+	public FitnessWatch(String name, double price, String image, String retailer, String condition, double discount, int rebate,
+						String description, boolean hasWarranty, double warrantyPrice, String productType,
+						int numberOfAvailableProducts,
+						int numberOfItemsSold)
 	{
 		this.name=name;
 		this.price=price;
@@ -46,6 +45,8 @@ public class FitnessWatch extends HttpServlet
 		this.hasWarranty = hasWarranty;
 		this.warrantyPrice = warrantyPrice;
 		this.productType = productType;
+		this.numberOfAvailableProducts = numberOfAvailableProducts;
+		this.numberOfItemsSold = numberOfItemsSold;
 	}
 	
 	public FitnessWatch()
@@ -118,11 +119,11 @@ public class FitnessWatch extends HttpServlet
 		this.discount = discount;
 	}
 
-	public boolean getRebate() {
+	public int getRebate() {
 		return rebate;
 	}
 
-	public void setRebate(boolean rebate) {
+	public void setRebate(int rebate) {
 		this.rebate = rebate;
 	}
 
@@ -156,5 +157,41 @@ public class FitnessWatch extends HttpServlet
 
 	public void setProductType(String productType) {
 		this.productType = productType;
+	}
+
+	public int getNumberOfAvailableProducts() {
+		return numberOfAvailableProducts;
+	}
+
+	public void setNumberOfAvailableProducts(int numberOfAvailableProducts) {
+		this.numberOfAvailableProducts = numberOfAvailableProducts;
+	}
+
+	public int getNumberOfItemsSold() {
+		return numberOfItemsSold;
+	}
+
+	public void setNumberOfItemsSold(int numberOfItemsSold) {
+		this.numberOfItemsSold = numberOfItemsSold;
+	}
+
+	@Override
+	public String toString() {
+		return "FitnessWatch{" +
+				"id='" + id + '\'' +
+				", name='" + name + '\'' +
+				", price=" + price +
+				", image='" + image + '\'' +
+				", retailer='" + retailer + '\'' +
+				", condition='" + condition + '\'' +
+				", discount=" + discount +
+				", rebate=" + rebate +
+				", description='" + description + '\'' +
+				", hasWarranty=" + hasWarranty +
+				", warrantyPrice=" + warrantyPrice +
+				", productType='" + productType + '\'' +
+				", numberOfAvailableProducts=" + numberOfAvailableProducts +
+				", numberOfItemsSold=" + numberOfItemsSold +
+				'}';
 	}
 }

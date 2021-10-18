@@ -25,14 +25,18 @@ public class Phone extends HttpServlet {
 	private String retailer;
 	private String condition;
 	private double discount;
-	private boolean rebate;
+	private int rebate;
 	private String description;
 	private boolean hasWarranty;
 	private double warrantyPrice;
 	private String productType;
+	private int numberOfAvailableProducts;
+	private int numberOfItemsSold;
 	
-	public Phone(String name, double price, String image, String retailer,String condition,double discount,boolean rebate,
-				 String description, boolean hasWarranty, double warrantyPrice, String productType)
+	public Phone(String name, double price, String image, String retailer, String condition, double discount, int rebate,
+				 String description, boolean hasWarranty, double warrantyPrice, String productType,
+				 int numberOfAvailableProducts,
+				 int numberOfItemsSold)
 	{
 		this.name=name;
 		this.price=price;
@@ -45,6 +49,8 @@ public class Phone extends HttpServlet {
 		this.hasWarranty = hasWarranty;
 		this.warrantyPrice = warrantyPrice;
 		this.productType = productType;
+		this.numberOfAvailableProducts = numberOfAvailableProducts;
+		this.numberOfItemsSold = numberOfItemsSold;
 	}
 	
 	public Phone()
@@ -117,11 +123,11 @@ public class Phone extends HttpServlet {
 		this.discount = discount;
 	}
 
-	public boolean getRebate() {
+	public int getRebate() {
 		return rebate;
 	}
 
-	public void setRebate(boolean rebate) {
+	public void setRebate(int rebate) {
 		this.rebate = rebate;
 	}
 
@@ -155,6 +161,22 @@ public class Phone extends HttpServlet {
 
 	public void setProductType(String productType) {
 		this.productType = productType;
+	}
+
+	public int getNumberOfAvailableProducts() {
+		return numberOfAvailableProducts;
+	}
+
+	public void setNumberOfAvailableProducts(int numberOfAvailableProducts) {
+		this.numberOfAvailableProducts = numberOfAvailableProducts;
+	}
+
+	public int getNumberOfItemsSold() {
+		return numberOfItemsSold;
+	}
+
+	public void setNumberOfItemsSold(int numberOfItemsSold) {
+		this.numberOfItemsSold = numberOfItemsSold;
 	}
 
 	@Override

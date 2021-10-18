@@ -119,6 +119,7 @@ public class VirtualRealityList extends HttpServlet {
             pw.print("<h4>" + virtualReality.getDescription() + "</h5>");
             pw.print("<strong>$"+virtualReality.getPrice()+"</strong>");
             pw.print("<h4> Discount: $" + virtualReality.getDiscount() + "</h4><ul>");
+            pw.print("<h4 style='text-align: center;'>Rebate: "+ virtualReality.getRebate() +"</h4>");
             pw.print("<li id='item'><img src='images/wearables/"+virtualReality.getImage()+"' alt='' /></li>");
 
             pw.print("<li><form method='post' action='Cart'>" +

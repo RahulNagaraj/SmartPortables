@@ -107,7 +107,7 @@ public class LaptopList extends HttpServlet
 			pw.print("<h3>"+laptop.getName()+"</h3>");
 			pw.print("<strong>$"+laptop.getPrice()+"</strong><ul>");
 			pw.print("<h4> Discount: $" + laptop.getDiscount() + "</h4><ul>");
-			pw.print("<h4 style='text-align: center;'>"+ getRebate(laptop) +"</h4>");
+			pw.print("<h4 style='text-align: center;'>Rebate: "+ laptop.getRebate() +"%</h4>");
 			pw.print("<li id='item'><img src='images/laptops/"+laptop.getImage()+"' alt='' /></li>");
 
 			pw.print("<li><form method='post' action='Cart' style='text-align: center;'>" +
@@ -133,7 +133,7 @@ public class LaptopList extends HttpServlet
 
 				pw.print("<div style='display:flex; justify-content:space-evenly'><li><form method='post' action='ProductModify'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
 						"<input type='hidden' name='productId' value='" + laptop.getId() + "'>"+
-						"<input type='hidden' name='productManufacturer' value='"+ name +"'>"+
+						"<input type='hidden' name='productManufacturer' value='"+ laptop.getRetailer() +"'>"+
 						"<input type='hidden' name='productType' value='" + laptop.getProductType() + "'>"+
 						"<input type='hidden' name='productName' value='" + laptop.getName() + "'>"+
 						"<input type='hidden' name='productPrice' value='" + laptop.getPrice() + "'>"+
@@ -142,6 +142,8 @@ public class LaptopList extends HttpServlet
 						"<input type='hidden' name='productRebate' value='" + laptop.getRebate() + "'>"+
 						"<input type='hidden' name='productCondition' value='" + laptop.getCondition() + "'>"+
 						"<input type='hidden' name='productDescription' value='" + laptop.getDescription() + "'>"+
+						"<input type='hidden' name='numberOfAvailableProducts' value='" + laptop.getNumberOfAvailableProducts() + "'>"+
+						"<input type='hidden' name='numberOfItemsSold' value='" + laptop.getNumberOfItemsSold() + "'>"+
 						"<input type='submit' name='button' value='Update' class='btnreview'></form></li>");
 				pw.print("<li><form method='post' action='ProductCrud'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
 						"<input type='hidden' name='productId' value='" + laptop.getId() + "'>"+
@@ -161,11 +163,5 @@ public class LaptopList extends HttpServlet
 		return laptop.isHasWarranty()
 				? "<input type='checkbox' name='productWarranty' value='yes'><label> Life Time Warranty: $" + laptop.getWarrantyPrice() + "</label>"
 				: "<p>Warranty not available</p>";
-	}
-
-	private String getRebate(Laptop laptop) {
-		return laptop.getRebate()
-				? "<p style='text-align: center;'>This product has a rebate</p>"
-				: "";
 	}
 }

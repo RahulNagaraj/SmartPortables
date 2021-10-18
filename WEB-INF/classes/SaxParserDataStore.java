@@ -240,529 +240,570 @@ https://docs.oracle.com/javase/7/docs/api/org/xml/sax/helpers/DefaultHandler.htm
     @Override
     public void endElement(String str1, String str2, String element) throws SAXException
 	{
- 
-        if (element.equals("console"))
-		{
-			consoles.put(console.getId(),console);
-			return;
-        }
- 
-        if (element.equals("tablet"))
-		{	
-			tablets.put(tablet.getId(),tablet);
-			return;
-        }
-        if (element.equals("game"))
-		{
-			games.put(game.getId(),game);
-			return;
-        }
-		if (element.equals("television"))
-		{
-			televisions.put(television.getId(),television);
-			return;
-        }
-		if (element.equals("soundSystem"))
-		{
-			soundSystems.put(soundSystem.getId(),soundSystem);
-			return;
-        }
-		if (element.equals("phone"))
-		{
-			phones.put(phone.getId(),phone);
-			/*MySqlDataStoreUtilities.addProduct(
-					phone.getProductType(),
-					phone.getId(),
-					phone.getName(),
-					phone.getPrice(),
-					phone.getImage(),
-					phone.getRetailer(),
-					phone.getCondition(),
-					phone.getDiscount(),
-					phone.getRebate(),
-					phone.getDescription(),
-					phone.isHasWarranty(),
-					phone.getWarrantyPrice(),
-					""
-			);*/
-			return;
-        }
-		if (element.equals("laptop"))
-		{
-			laptops.put(laptop.getId(),laptop);
-			/*MySqlDataStoreUtilities.addProduct(
-					laptop.getProductType(),
-					laptop.getId(),
-					laptop.getName(),
-					laptop.getPrice(),
-					laptop.getImage(),
-					laptop.getRetailer(),
-					laptop.getCondition(),
-					laptop.getDiscount(),
-					laptop.getRebate(),
-					laptop.getDescription(),
-					laptop.isHasWarranty(),
-					laptop.getWarrantyPrice(),
-					""
-			);*/
-			return;
-        }
-		if (element.equals("voiceAssistant"))
-		{
-			voiceAssistants.put(voiceAssistant.getId(),voiceAssistant);
-			/*MySqlDataStoreUtilities.addProduct(
-					voiceAssistant.getProductType(),
-					voiceAssistant.getId(),
-					voiceAssistant.getName(),
-					voiceAssistant.getPrice(),
-					voiceAssistant.getImage(),
-					voiceAssistant.getRetailer(),
-					voiceAssistant.getCondition(),
-					voiceAssistant.getDiscount(),
-					voiceAssistant.getRebate(),
-					voiceAssistant.getDescription(),
-					voiceAssistant.isHasWarranty(),
-					voiceAssistant.getWarrantyPrice(),
-					""
-			);*/
-			return;
-        }
-		if (element.equals("fitnessWatch"))
-		{
-			fitnessWatches.put(fitnessWatch.getId(),fitnessWatch);
-			/*MySqlDataStoreUtilities.addProduct(
-					fitnessWatch.getProductType(),
-					fitnessWatch.getId(),
-					fitnessWatch.getName(),
-					fitnessWatch.getPrice(),
-					fitnessWatch.getImage(),
-					fitnessWatch.getRetailer(),
-					fitnessWatch.getCondition(),
-					fitnessWatch.getDiscount(),
-					fitnessWatch.getRebate(),
-					fitnessWatch.getDescription(),
-					fitnessWatch.isHasWarranty(),
-					fitnessWatch.getWarrantyPrice(),
-					""
-			);*/
-			return;
-        }
-		if (element.equals("smartWatch"))
-		{
-			smartWatches.put(smartWatch.getId(),smartWatch);
-			/*MySqlDataStoreUtilities.addProduct(
-					smartWatch.getProductType(),
-					smartWatch.getId(),
-					smartWatch.getName(),
-					smartWatch.getPrice(),
-					smartWatch.getImage(),
-					smartWatch.getRetailer(),
-					smartWatch.getCondition(),
-					smartWatch.getDiscount(),
-					smartWatch.getRebate(),
-					smartWatch.getDescription(),
-					smartWatch.isHasWarranty(),
-					smartWatch.getWarrantyPrice(),
-					""
-			);*/
-			return;
-        }
-		if (element.equals("headphone"))
-		{
-			headphones.put(headphone.getId(),headphone);
-			/*MySqlDataStoreUtilities.addProduct(
-					headphone.getProductType(),
-					headphone.getId(),
-					headphone.getName(),
-					headphone.getPrice(),
-					headphone.getImage(),
-					headphone.getRetailer(),
-					headphone.getCondition(),
-					headphone.getDiscount(),
-					headphone.getRebate(),
-					headphone.getDescription(),
-					headphone.isHasWarranty(),
-					headphone.getWarrantyPrice(),
-					""
-			);*/
-			return;
-        }
-		if (element.equals("wirelessPlan"))
-		{
-			wirelessPlans.put(wirelessPlan.getId(),wirelessPlan);
-			return;
-        }
-		if (element.equals("virtualReality"))
-		{
-			virtualRealities.put(virtualReality.getId(),virtualReality);
-			/*MySqlDataStoreUtilities.addProduct(
-					virtualReality.getProductType(),
-					virtualReality.getId(),
-					virtualReality.getName(),
-					virtualReality.getPrice(),
-					virtualReality.getImage(),
-					virtualReality.getRetailer(),
-					virtualReality.getCondition(),
-					virtualReality.getDiscount(),
-					virtualReality.getRebate(),
-					virtualReality.getDescription(),
-					virtualReality.isHasWarranty(),
-					virtualReality.getWarrantyPrice(),
-					""
-			);*/
-			return;
-		}
-		if (element.equals("petTracker"))
-		{
-			petTrackers.put(petTracker.getId(),petTracker);
-			/*MySqlDataStoreUtilities.addProduct(
-					petTracker.getProductType(),
-					petTracker.getId(),
-					petTracker.getName(),
-					petTracker.getPrice(),
-					petTracker.getImage(),
-					petTracker.getRetailer(),
-					petTracker.getCondition(),
-					petTracker.getDiscount(),
-					petTracker.getRebate(),
-					petTracker.getDescription(),
-					petTracker.isHasWarranty(),
-					petTracker.getWarrantyPrice(),
-					""
-			);*/
-			return;
-		}
-        if (element.equals("accessory") && currentElement.equals("accessory"))
-		{
-			accessories.put(accessory.getId(),accessory);       
-			return; 
-        }
-		if (element.equals("accessory") && currentElement.equals("console")) 
-		{
-			accessoryHashMap.put(elementValueRead,elementValueRead);
-		}
-      	if (element.equalsIgnoreCase("accessories") && currentElement.equals("console"))
-		{
-			console.setAccessories(accessoryHashMap);
-			accessoryHashMap=new HashMap<String,String>();
-			return;
-		}
-        if (element.equalsIgnoreCase("image"))
-		{
-			if(currentElement.equals("console"))
-				console.setImage(elementValueRead);
-			if(currentElement.equals("game"))
-				game.setImage(elementValueRead);
-			if(currentElement.equals("tablet"))
-				tablet.setImage(elementValueRead);
-			if(currentElement.equals("accessory"))
-				accessory.setImage(elementValueRead);
-			if(currentElement.equals("television"))
-				television.setImage(elementValueRead);
-			if(currentElement.equals("soundSystem"))
-				soundSystem.setImage(elementValueRead);
-			if(currentElement.equals("phone"))
-				phone.setImage(elementValueRead);
-			if(currentElement.equals("laptop"))
-				laptop.setImage(elementValueRead);
-			if(currentElement.equals("voiceAssistant"))
-				voiceAssistant.setImage(elementValueRead);
-			if(currentElement.equals("fitnessWatch"))
-				fitnessWatch.setImage(elementValueRead);
-			if(currentElement.equals("smartWatch"))
-				smartWatch.setImage(elementValueRead);
-			if(currentElement.equals("headphone"))
-				headphone.setImage(elementValueRead);
-			if(currentElement.equals("wirelessPlan"))
-				wirelessPlan.setImage(elementValueRead);
-			if(currentElement.equals("virtualReality"))
-				virtualReality.setImage(elementValueRead);
-			if(currentElement.equals("petTracker"))
-				petTracker.setImage(elementValueRead);
+		try {
 
-			return;
-        }
-        
+			if (element.equals("console")) {
+				consoles.put(console.getId(), console);
+				return;
+			}
 
-		if (element.equalsIgnoreCase("discount"))
-		{
-			if(currentElement.equals("console"))
-				console.setDiscount(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("game"))
-				game.setDiscount(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("tablet"))
-				tablet.setDiscount(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("accessory"))
-				accessory.setDiscount(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("television"))
-				television.setDiscount(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("soundSystem"))
-				soundSystem.setDiscount(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("phone"))
-				phone.setDiscount(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("laptop"))
-				laptop.setDiscount(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("voiceAssistant"))
-				voiceAssistant.setDiscount(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("fitnessWatch"))
-				fitnessWatch.setDiscount(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("smartWatch"))
-				smartWatch.setDiscount(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("headphone"))
-				headphone.setDiscount(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("wirelessPlan"))
-				wirelessPlan.setDiscount(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("virtualReality"))
-				virtualReality.setDiscount(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("petTracker"))
-				petTracker.setDiscount(Double.parseDouble(elementValueRead));
-			
-			return;
-	    }
+			if (element.equals("tablet")) {
+				tablets.put(tablet.getId(), tablet);
+				return;
+			}
+			if (element.equals("game")) {
+				games.put(game.getId(), game);
+				return;
+			}
+			if (element.equals("television")) {
+				televisions.put(television.getId(), television);
+				return;
+			}
+			if (element.equals("soundSystem")) {
+				soundSystems.put(soundSystem.getId(), soundSystem);
+				return;
+			}
+			if (element.equals("phone")) {
+				phones.put(phone.getId(), phone);
+				/*MySqlDataStoreUtilities.addProduct(
+						phone.getProductType(),
+						phone.getId(),
+						phone.getName(),
+						phone.getPrice(),
+						phone.getImage(),
+						phone.getRetailer(),
+						phone.getCondition(),
+						phone.getDiscount(),
+						phone.getRebate(),
+						phone.getDescription(),
+						phone.isHasWarranty(),
+						phone.getWarrantyPrice(),
+						phone.getNumberOfAvailableProducts(),
+						phone.getNumberOfItemsSold(),
+						""
+				);*/
+				return;
+			}
+			if (element.equals("laptop")) {
+				laptops.put(laptop.getId(), laptop);
+				/*MySqlDataStoreUtilities.addProduct(
+						laptop.getProductType(),
+						laptop.getId(),
+						laptop.getName(),
+						laptop.getPrice(),
+						laptop.getImage(),
+						laptop.getRetailer(),
+						laptop.getCondition(),
+						laptop.getDiscount(),
+						laptop.getRebate(),
+						laptop.getDescription(),
+						laptop.isHasWarranty(),
+						laptop.getWarrantyPrice(),
+						laptop.getNumberOfAvailableProducts(),
+						laptop.getNumberOfItemsSold(),
+						""
+				);*/
+				return;
+			}
+			if (element.equals("voiceAssistant")) {
+				voiceAssistants.put(voiceAssistant.getId(), voiceAssistant);
+				/*MySqlDataStoreUtilities.addProduct(
+						voiceAssistant.getProductType(),
+						voiceAssistant.getId(),
+						voiceAssistant.getName(),
+						voiceAssistant.getPrice(),
+						voiceAssistant.getImage(),
+						voiceAssistant.getRetailer(),
+						voiceAssistant.getCondition(),
+						voiceAssistant.getDiscount(),
+						voiceAssistant.getRebate(),
+						voiceAssistant.getDescription(),
+						voiceAssistant.isHasWarranty(),
+						voiceAssistant.getWarrantyPrice(),
+						voiceAssistant.getNumberOfAvailableProducts(),
+						voiceAssistant.getNumberOfItemsSold(),
+						""
+				);*/
+				return;
+			}
+			if (element.equals("fitnessWatch")) {
+				fitnessWatches.put(fitnessWatch.getId(), fitnessWatch);
+				System.out.println("fitnessWatch " + fitnessWatch.toString());
+				/*MySqlDataStoreUtilities.addProduct(
+						fitnessWatch.getProductType(),
+						fitnessWatch.getId(),
+						fitnessWatch.getName(),
+						fitnessWatch.getPrice(),
+						fitnessWatch.getImage(),
+						fitnessWatch.getRetailer(),
+						fitnessWatch.getCondition(),
+						fitnessWatch.getDiscount(),
+						fitnessWatch.getRebate(),
+						fitnessWatch.getDescription(),
+						fitnessWatch.isHasWarranty(),
+						fitnessWatch.getWarrantyPrice(),
+						fitnessWatch.getNumberOfAvailableProducts(),
+						fitnessWatch.getNumberOfItemsSold(),
+						""
+				);*/
+				return;
+			}
+			if (element.equals("smartWatch")) {
+				smartWatches.put(smartWatch.getId(), smartWatch);
+				System.out.println("smartWatch " + smartWatch.toString());
+				/*MySqlDataStoreUtilities.addProduct(
+						smartWatch.getProductType(),
+						smartWatch.getId(),
+						smartWatch.getName(),
+						smartWatch.getPrice(),
+						smartWatch.getImage(),
+						smartWatch.getRetailer(),
+						smartWatch.getCondition(),
+						smartWatch.getDiscount(),
+						smartWatch.getRebate(),
+						smartWatch.getDescription(),
+						smartWatch.isHasWarranty(),
+						smartWatch.getWarrantyPrice(),
+						smartWatch.getNumberOfAvailableProducts(),
+						smartWatch.getNumberOfItemsSold(),
+						""
+				);*/
+				return;
+			}
+			if (element.equals("headphone")) {
+				headphones.put(headphone.getId(), headphone);
+				/*MySqlDataStoreUtilities.addProduct(
+						headphone.getProductType(),
+						headphone.getId(),
+						headphone.getName(),
+						headphone.getPrice(),
+						headphone.getImage(),
+						headphone.getRetailer(),
+						headphone.getCondition(),
+						headphone.getDiscount(),
+						headphone.getRebate(),
+						headphone.getDescription(),
+						headphone.isHasWarranty(),
+						headphone.getWarrantyPrice(),
+						headphone.getNumberOfAvailableProducts(),
+						headphone.getNumberOfItemsSold(),
+						""
+				);*/
+				return;
+			}
+			if (element.equals("wirelessPlan")) {
+				wirelessPlans.put(wirelessPlan.getId(), wirelessPlan);
+				return;
+			}
+			if (element.equals("virtualReality")) {
+				virtualRealities.put(virtualReality.getId(), virtualReality);
+				/*MySqlDataStoreUtilities.addProduct(
+						virtualReality.getProductType(),
+						virtualReality.getId(),
+						virtualReality.getName(),
+						virtualReality.getPrice(),
+						virtualReality.getImage(),
+						virtualReality.getRetailer(),
+						virtualReality.getCondition(),
+						virtualReality.getDiscount(),
+						virtualReality.getRebate(),
+						virtualReality.getDescription(),
+						virtualReality.isHasWarranty(),
+						virtualReality.getWarrantyPrice(),
+						virtualReality.getNumberOfAvailableProducts(),
+						virtualReality.getNumberOfItemsSold(),
+						""
+				);*/
+				return;
+			}
+			if (element.equals("petTracker")) {
+				petTrackers.put(petTracker.getId(), petTracker);
+				/*MySqlDataStoreUtilities.addProduct(
+						petTracker.getProductType(),
+						petTracker.getId(),
+						petTracker.getName(),
+						petTracker.getPrice(),
+						petTracker.getImage(),
+						petTracker.getRetailer(),
+						petTracker.getCondition(),
+						petTracker.getDiscount(),
+						petTracker.getRebate(),
+						petTracker.getDescription(),
+						petTracker.isHasWarranty(),
+						petTracker.getWarrantyPrice(),
+						petTracker.getNumberOfAvailableProducts(),
+						petTracker.getNumberOfItemsSold(),
+						""
+				);*/
+				return;
+			}
+			if (element.equals("accessory") && currentElement.equals("accessory")) {
+				accessories.put(accessory.getId(), accessory);
+				return;
+			}
+			if (element.equals("accessory") && currentElement.equals("console")) {
+				accessoryHashMap.put(elementValueRead, elementValueRead);
+			}
+			if (element.equalsIgnoreCase("accessories") && currentElement.equals("console")) {
+				console.setAccessories(accessoryHashMap);
+				accessoryHashMap = new HashMap<String, String>();
+				return;
+			}
+			if (element.equalsIgnoreCase("image")) {
+				if (currentElement.equals("console"))
+					console.setImage(elementValueRead);
+				if (currentElement.equals("game"))
+					game.setImage(elementValueRead);
+				if (currentElement.equals("tablet"))
+					tablet.setImage(elementValueRead);
+				if (currentElement.equals("accessory"))
+					accessory.setImage(elementValueRead);
+				if (currentElement.equals("television"))
+					television.setImage(elementValueRead);
+				if (currentElement.equals("soundSystem"))
+					soundSystem.setImage(elementValueRead);
+				if (currentElement.equals("phone"))
+					phone.setImage(elementValueRead);
+				if (currentElement.equals("laptop"))
+					laptop.setImage(elementValueRead);
+				if (currentElement.equals("voiceAssistant"))
+					voiceAssistant.setImage(elementValueRead);
+				if (currentElement.equals("fitnessWatch"))
+					fitnessWatch.setImage(elementValueRead);
+				if (currentElement.equals("smartWatch"))
+					smartWatch.setImage(elementValueRead);
+				if (currentElement.equals("headphone"))
+					headphone.setImage(elementValueRead);
+				if (currentElement.equals("wirelessPlan"))
+					wirelessPlan.setImage(elementValueRead);
+				if (currentElement.equals("virtualReality"))
+					virtualReality.setImage(elementValueRead);
+				if (currentElement.equals("petTracker"))
+					petTracker.setImage(elementValueRead);
+
+				return;
+			}
 
 
-		if (element.equalsIgnoreCase("condition"))
-		{
-			if(currentElement.equals("console"))
-				console.setCondition(elementValueRead);
-			if(currentElement.equals("game"))
-				game.setCondition(elementValueRead);
-			if(currentElement.equals("tablet"))
-				tablet.setCondition(elementValueRead);
-			if(currentElement.equals("accessory"))
-				accessory.setCondition(elementValueRead);
-			if(currentElement.equals("television"))
-				television.setCondition(elementValueRead);
-			if(currentElement.equals("soundSystem"))
-				soundSystem.setCondition(elementValueRead);
-			if(currentElement.equals("phone"))
-				phone.setCondition(elementValueRead);
-			if(currentElement.equals("laptop"))
-				laptop.setCondition(elementValueRead);
-			if(currentElement.equals("voiceAssistant"))
-				voiceAssistant.setCondition(elementValueRead);
-			if(currentElement.equals("fitnessWatch"))
-				fitnessWatch.setCondition(elementValueRead);
-			if(currentElement.equals("smartWatch"))
-				smartWatch.setCondition(elementValueRead);
-			if(currentElement.equals("headphone"))
-				headphone.setCondition(elementValueRead);
-			if(currentElement.equals("wirelessPlan"))
-				wirelessPlan.setCondition(elementValueRead);
-			if(currentElement.equals("virtualReality"))
-				virtualReality.setDiscount(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("petTracker"))
-				petTracker.setDiscount(Double.parseDouble(elementValueRead));
-			return;  
-		}
+			if (element.equalsIgnoreCase("discount")) {
+				if (currentElement.equals("console"))
+					console.setDiscount(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("game"))
+					game.setDiscount(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("tablet"))
+					tablet.setDiscount(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("accessory"))
+					accessory.setDiscount(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("television"))
+					television.setDiscount(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("soundSystem"))
+					soundSystem.setDiscount(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("phone"))
+					phone.setDiscount(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("laptop"))
+					laptop.setDiscount(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("voiceAssistant"))
+					voiceAssistant.setDiscount(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("fitnessWatch"))
+					fitnessWatch.setDiscount(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("smartWatch"))
+					smartWatch.setDiscount(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("headphone"))
+					headphone.setDiscount(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("wirelessPlan"))
+					wirelessPlan.setDiscount(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("virtualReality"))
+					virtualReality.setDiscount(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("petTracker"))
+					petTracker.setDiscount(Double.parseDouble(elementValueRead));
 
-		if (element.equalsIgnoreCase("manufacturer"))
-		{
-			if(currentElement.equals("console"))
-				console.setRetailer(elementValueRead);
-			if(currentElement.equals("game"))
-				game.setRetailer(elementValueRead);
-			if(currentElement.equals("tablet"))
-				tablet.setRetailer(elementValueRead);
-			if(currentElement.equals("accessory"))
-				accessory.setRetailer(elementValueRead);
-			if(currentElement.equals("television"))
-				television.setRetailer(elementValueRead);
-			if(currentElement.equals("soundSystem"))
-				soundSystem.setRetailer(elementValueRead);
-			if(currentElement.equals("phone"))
-				phone.setRetailer(elementValueRead);
-			if(currentElement.equals("laptop"))
-				laptop.setRetailer(elementValueRead);
-			if(currentElement.equals("voiceAssistant"))
-				voiceAssistant.setRetailer(elementValueRead);
-			if(currentElement.equals("fitnessWatch"))
-				fitnessWatch.setRetailer(elementValueRead);
-			if(currentElement.equals("smartWatch"))
-				smartWatch.setRetailer(elementValueRead);
-			if(currentElement.equals("headphone"))
-				headphone.setRetailer(elementValueRead);
-			if(currentElement.equals("wirelessPlan"))
-				wirelessPlan.setRetailer(elementValueRead);
-			if(currentElement.equals("virtualReality"))
-				virtualReality.setDiscount(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("petTracker"))
-				petTracker.setDiscount(Double.parseDouble(elementValueRead));
-			return;
-		}
+				return;
+			}
 
-        if (element.equalsIgnoreCase("name"))
-		{
-			if(currentElement.equals("console"))
-				console.setName(elementValueRead);
-			if(currentElement.equals("game"))
-				game.setName(elementValueRead);
-			if(currentElement.equals("tablet"))
-				tablet.setName(elementValueRead);
-			if(currentElement.equals("accessory"))
-				accessory.setName(elementValueRead);
-			if(currentElement.equals("television"))
-				television.setName(elementValueRead);
-			if(currentElement.equals("soundSystem"))
-				soundSystem.setName(elementValueRead);
-			if(currentElement.equals("phone"))
-				phone.setName(elementValueRead);
-			if(currentElement.equals("laptop"))
-				laptop.setName(elementValueRead);
-			if(currentElement.equals("voiceAssistant"))
-				voiceAssistant.setName(elementValueRead);
-			if(currentElement.equals("fitnessWatch"))
-				fitnessWatch.setName(elementValueRead);
-			if(currentElement.equals("smartWatch"))
-				smartWatch.setName(elementValueRead);
-			if(currentElement.equals("headphone"))
-				headphone.setName(elementValueRead);
-			if(currentElement.equals("wirelessPlan"))
-				wirelessPlan.setName(elementValueRead);
-			if(currentElement.equals("virtualReality"))
-				virtualReality.setDiscount(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("petTracker"))
-				petTracker.setDiscount(Double.parseDouble(elementValueRead));
-			return;
-	    }
-	
-        if(element.equalsIgnoreCase("price"))
-		{
-			if(currentElement.equals("console"))
-				console.setPrice(Double.parseDouble(elementValueRead));
-        	if(currentElement.equals("game"))
-				game.setPrice(Double.parseDouble(elementValueRead));
-            if(currentElement.equals("tablet"))
-				tablet.setPrice(Double.parseDouble(elementValueRead));
-            if(currentElement.equals("accessory"))
-				accessory.setPrice(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("television"))
-				television.setPrice(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("soundSystem"))
-				soundSystem.setPrice(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("phone"))
-				phone.setPrice(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("laptop"))
-				laptop.setPrice(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("voiceAssistant"))
-				voiceAssistant.setPrice(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("fitnessWatch"))
-				fitnessWatch.setPrice(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("smartWatch"))
-				smartWatch.setPrice(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("headphone"))
-				headphone.setPrice(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("wirelessPlan"))
-				wirelessPlan.setPrice(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("virtualReality"))
-				virtualReality.setDiscount(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("petTracker"))
-				petTracker.setDiscount(Double.parseDouble(elementValueRead));
-			return;
-        }
 
-		if(element.equalsIgnoreCase("description")) {
-			if(currentElement.equals("phone"))
-				phone.setDescription(elementValueRead);
-			if(currentElement.equals("laptop"))
-				laptop.setDescription(elementValueRead);
-			if(currentElement.equals("voiceAssistant"))
-				voiceAssistant.setDescription(elementValueRead);
-			if(currentElement.equals("fitnessWatch"))
-				fitnessWatch.setDescription(elementValueRead);
-			if(currentElement.equals("smartWatch"))
-				smartWatch.setDescription(elementValueRead);
-			if(currentElement.equals("headphone"))
-				headphone.setDescription(elementValueRead);
-			if(currentElement.equals("virtualReality"))
-				virtualReality.setDescription(elementValueRead);
-			if(currentElement.equals("petTracker"))
-				petTracker.setDescription(elementValueRead);
+			if (element.equalsIgnoreCase("condition")) {
+				if (currentElement.equals("console"))
+					console.setCondition(elementValueRead);
+				if (currentElement.equals("game"))
+					game.setCondition(elementValueRead);
+				if (currentElement.equals("tablet"))
+					tablet.setCondition(elementValueRead);
+				if (currentElement.equals("accessory"))
+					accessory.setCondition(elementValueRead);
+				if (currentElement.equals("television"))
+					television.setCondition(elementValueRead);
+				if (currentElement.equals("soundSystem"))
+					soundSystem.setCondition(elementValueRead);
+				if (currentElement.equals("phone"))
+					phone.setCondition(elementValueRead);
+				if (currentElement.equals("laptop"))
+					laptop.setCondition(elementValueRead);
+				if (currentElement.equals("voiceAssistant"))
+					voiceAssistant.setCondition(elementValueRead);
+				if (currentElement.equals("fitnessWatch"))
+					fitnessWatch.setCondition(elementValueRead);
+				if (currentElement.equals("smartWatch"))
+					smartWatch.setCondition(elementValueRead);
+				if (currentElement.equals("headphone"))
+					headphone.setCondition(elementValueRead);
+				if (currentElement.equals("wirelessPlan"))
+					wirelessPlan.setCondition(elementValueRead);
+				if (currentElement.equals("virtualReality"))
+					virtualReality.setDiscount(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("petTracker"))
+					petTracker.setDiscount(Double.parseDouble(elementValueRead));
+				return;
+			}
 
-			return;
-		}
+			if (element.equalsIgnoreCase("manufacturer")) {
+				if (currentElement.equals("console"))
+					console.setRetailer(elementValueRead);
+				if (currentElement.equals("game"))
+					game.setRetailer(elementValueRead);
+				if (currentElement.equals("tablet"))
+					tablet.setRetailer(elementValueRead);
+				if (currentElement.equals("accessory"))
+					accessory.setRetailer(elementValueRead);
+				if (currentElement.equals("television"))
+					television.setRetailer(elementValueRead);
+				if (currentElement.equals("soundSystem"))
+					soundSystem.setRetailer(elementValueRead);
+				if (currentElement.equals("phone"))
+					phone.setRetailer(elementValueRead);
+				if (currentElement.equals("laptop"))
+					laptop.setRetailer(elementValueRead);
+				if (currentElement.equals("voiceAssistant"))
+					voiceAssistant.setRetailer(elementValueRead);
+				if (currentElement.equals("fitnessWatch"))
+					fitnessWatch.setRetailer(elementValueRead);
+				if (currentElement.equals("smartWatch"))
+					smartWatch.setRetailer(elementValueRead);
+				if (currentElement.equals("headphone"))
+					headphone.setRetailer(elementValueRead);
+				if (currentElement.equals("wirelessPlan"))
+					wirelessPlan.setRetailer(elementValueRead);
+				if (currentElement.equals("virtualReality"))
+					virtualReality.setDiscount(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("petTracker"))
+					petTracker.setDiscount(Double.parseDouble(elementValueRead));
+				return;
+			}
 
-		if(element.equalsIgnoreCase("type")) {
-			if(currentElement.equals("phone"))
-				phone.setProductType(elementValueRead);
-			if(currentElement.equals("laptop"))
-				laptop.setProductType(elementValueRead);
-			if(currentElement.equals("voiceAssistant"))
-				voiceAssistant.setProductType(elementValueRead);
-			if(currentElement.equals("fitnessWatch"))
-				fitnessWatch.setProductType(elementValueRead);
-			if(currentElement.equals("smartWatch"))
-				smartWatch.setProductType(elementValueRead);
-			if(currentElement.equals("headphone"))
-				headphone.setProductType(elementValueRead);
-			if(currentElement.equals("virtualReality"))
-				virtualReality.setProductType(elementValueRead);
-			if(currentElement.equals("petTracker"))
-				petTracker.setProductType(elementValueRead);
-			return;
-		}
+			if (element.equalsIgnoreCase("name")) {
+				if (currentElement.equals("console"))
+					console.setName(elementValueRead);
+				if (currentElement.equals("game"))
+					game.setName(elementValueRead);
+				if (currentElement.equals("tablet"))
+					tablet.setName(elementValueRead);
+				if (currentElement.equals("accessory"))
+					accessory.setName(elementValueRead);
+				if (currentElement.equals("television"))
+					television.setName(elementValueRead);
+				if (currentElement.equals("soundSystem"))
+					soundSystem.setName(elementValueRead);
+				if (currentElement.equals("phone"))
+					phone.setName(elementValueRead);
+				if (currentElement.equals("laptop"))
+					laptop.setName(elementValueRead);
+				if (currentElement.equals("voiceAssistant"))
+					voiceAssistant.setName(elementValueRead);
+				if (currentElement.equals("fitnessWatch"))
+					fitnessWatch.setName(elementValueRead);
+				if (currentElement.equals("smartWatch"))
+					smartWatch.setName(elementValueRead);
+				if (currentElement.equals("headphone"))
+					headphone.setName(elementValueRead);
+				if (currentElement.equals("wirelessPlan"))
+					wirelessPlan.setName(elementValueRead);
+				if (currentElement.equals("virtualReality"))
+					virtualReality.setDiscount(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("petTracker"))
+					petTracker.setDiscount(Double.parseDouble(elementValueRead));
+				return;
+			}
 
-		if(element.equalsIgnoreCase("has-warranty")) {
-			if(currentElement.equals("phone"))
-				phone.setHasWarranty(elementValueRead.equalsIgnoreCase("Yes"));
-			if(currentElement.equals("laptop"))
-				laptop.setHasWarranty(elementValueRead.equalsIgnoreCase("Yes"));
-			if(currentElement.equals("voiceAssistant"))
-				voiceAssistant.setHasWarranty(elementValueRead.equalsIgnoreCase("Yes"));
-			if(currentElement.equals("fitnessWatch"))
-				fitnessWatch.setHasWarranty(elementValueRead.equalsIgnoreCase("Yes"));
-			if(currentElement.equals("smartWatch"))
-				smartWatch.setHasWarranty(elementValueRead.equalsIgnoreCase("Yes"));
-			if(currentElement.equals("headphone"))
-				headphone.setHasWarranty(elementValueRead.equalsIgnoreCase("Yes"));
-			if(currentElement.equals("virtualReality"))
-				virtualReality.setHasWarranty(elementValueRead.equalsIgnoreCase("Yes"));
-			if(currentElement.equals("petTracker"))
-				petTracker.setHasWarranty(elementValueRead.equalsIgnoreCase("Yes"));
+			if (element.equalsIgnoreCase("price")) {
+				if (currentElement.equals("console"))
+					console.setPrice(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("game"))
+					game.setPrice(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("tablet"))
+					tablet.setPrice(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("accessory"))
+					accessory.setPrice(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("television"))
+					television.setPrice(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("soundSystem"))
+					soundSystem.setPrice(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("phone"))
+					phone.setPrice(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("laptop"))
+					laptop.setPrice(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("voiceAssistant"))
+					voiceAssistant.setPrice(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("fitnessWatch"))
+					fitnessWatch.setPrice(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("smartWatch"))
+					smartWatch.setPrice(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("headphone"))
+					headphone.setPrice(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("wirelessPlan"))
+					wirelessPlan.setPrice(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("virtualReality"))
+					virtualReality.setDiscount(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("petTracker"))
+					petTracker.setDiscount(Double.parseDouble(elementValueRead));
+				return;
+			}
 
-			return;
-		}
+			if (element.equalsIgnoreCase("description")) {
+				if (currentElement.equals("phone"))
+					phone.setDescription(elementValueRead);
+				if (currentElement.equals("laptop"))
+					laptop.setDescription(elementValueRead);
+				if (currentElement.equals("voiceAssistant"))
+					voiceAssistant.setDescription(elementValueRead);
+				if (currentElement.equals("fitnessWatch"))
+					fitnessWatch.setDescription(elementValueRead);
+				if (currentElement.equals("smartWatch"))
+					smartWatch.setDescription(elementValueRead);
+				if (currentElement.equals("headphone"))
+					headphone.setDescription(elementValueRead);
+				if (currentElement.equals("virtualReality"))
+					virtualReality.setDescription(elementValueRead);
+				if (currentElement.equals("petTracker"))
+					petTracker.setDescription(elementValueRead);
 
-		if(element.equalsIgnoreCase("warranty")) {
-			if(currentElement.equals("phone"))
-				phone.setWarrantyPrice(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("laptop"))
-				laptop.setWarrantyPrice(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("voiceAssistant"))
-				voiceAssistant.setWarrantyPrice(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("fitnessWatch"))
-				fitnessWatch.setWarrantyPrice(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("smartWatch"))
-				smartWatch.setWarrantyPrice(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("headphone"))
-				headphone.setWarrantyPrice(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("virtualReality"))
-				virtualReality.setWarrantyPrice(Double.parseDouble(elementValueRead));
-			if(currentElement.equals("petTracker"))
-				petTracker.setWarrantyPrice(Double.parseDouble(elementValueRead));
+				return;
+			}
 
-			return;
-		}
+			if (element.equalsIgnoreCase("type")) {
+				if (currentElement.equals("phone"))
+					phone.setProductType(elementValueRead);
+				if (currentElement.equals("laptop"))
+					laptop.setProductType(elementValueRead);
+				if (currentElement.equals("voiceAssistant"))
+					voiceAssistant.setProductType(elementValueRead);
+				if (currentElement.equals("fitnessWatch"))
+					fitnessWatch.setProductType(elementValueRead);
+				if (currentElement.equals("smartWatch"))
+					smartWatch.setProductType(elementValueRead);
+				if (currentElement.equals("headphone"))
+					headphone.setProductType(elementValueRead);
+				if (currentElement.equals("virtualReality"))
+					virtualReality.setProductType(elementValueRead);
+				if (currentElement.equals("petTracker"))
+					petTracker.setProductType(elementValueRead);
+				return;
+			}
 
-		if(element.equalsIgnoreCase("rebate")) {
-			if(currentElement.equals("phone"))
-				phone.setRebate(elementValueRead.equalsIgnoreCase("Yes"));
-			if(currentElement.equals("laptop"))
-				laptop.setRebate(elementValueRead.equalsIgnoreCase("Yes"));
-			if(currentElement.equals("voiceAssistant"))
-				voiceAssistant.setRebate(elementValueRead.equalsIgnoreCase("Yes"));
-			if(currentElement.equals("fitnessWatch"))
-				fitnessWatch.setRebate(elementValueRead.equalsIgnoreCase("Yes"));
-			if(currentElement.equals("smartWatch"))
-				smartWatch.setRebate(elementValueRead.equalsIgnoreCase("Yes"));
-			if(currentElement.equals("headphone"))
-				headphone.setRebate(elementValueRead.equalsIgnoreCase("Yes"));
-			if(currentElement.equals("virtualReality"))
-				virtualReality.setRebate(elementValueRead.equalsIgnoreCase("Yes"));
-			if(currentElement.equals("petTracker"))
-				petTracker.setRebate(elementValueRead.equalsIgnoreCase("Yes"));
+			if (element.equalsIgnoreCase("has-warranty")) {
+				if (currentElement.equals("phone"))
+					phone.setHasWarranty(elementValueRead.equalsIgnoreCase("Yes"));
+				if (currentElement.equals("laptop"))
+					laptop.setHasWarranty(elementValueRead.equalsIgnoreCase("Yes"));
+				if (currentElement.equals("voiceAssistant"))
+					voiceAssistant.setHasWarranty(elementValueRead.equalsIgnoreCase("Yes"));
+				if (currentElement.equals("fitnessWatch"))
+					fitnessWatch.setHasWarranty(elementValueRead.equalsIgnoreCase("Yes"));
+				if (currentElement.equals("smartWatch"))
+					smartWatch.setHasWarranty(elementValueRead.equalsIgnoreCase("Yes"));
+				if (currentElement.equals("headphone"))
+					headphone.setHasWarranty(elementValueRead.equalsIgnoreCase("Yes"));
+				if (currentElement.equals("virtualReality"))
+					virtualReality.setHasWarranty(elementValueRead.equalsIgnoreCase("Yes"));
+				if (currentElement.equals("petTracker"))
+					petTracker.setHasWarranty(elementValueRead.equalsIgnoreCase("Yes"));
 
-			return;
+				return;
+			}
+
+			if (element.equalsIgnoreCase("warranty")) {
+				if (currentElement.equals("phone"))
+					phone.setWarrantyPrice(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("laptop"))
+					laptop.setWarrantyPrice(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("voiceAssistant"))
+					voiceAssistant.setWarrantyPrice(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("fitnessWatch"))
+					fitnessWatch.setWarrantyPrice(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("smartWatch"))
+					smartWatch.setWarrantyPrice(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("headphone"))
+					headphone.setWarrantyPrice(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("virtualReality"))
+					virtualReality.setWarrantyPrice(Double.parseDouble(elementValueRead));
+				if (currentElement.equals("petTracker"))
+					petTracker.setWarrantyPrice(Double.parseDouble(elementValueRead));
+
+				return;
+			}
+
+			if (element.equalsIgnoreCase("rebate")) {
+				if (currentElement.equals("phone"))
+					phone.setRebate(Integer.parseInt(elementValueRead));
+				if (currentElement.equals("laptop"))
+					laptop.setRebate(Integer.parseInt(elementValueRead));
+				if (currentElement.equals("voiceAssistant"))
+					voiceAssistant.setRebate(Integer.parseInt(elementValueRead));
+				if (currentElement.equals("fitnessWatch"))
+					fitnessWatch.setRebate(Integer.parseInt(elementValueRead));
+				if (currentElement.equals("smartWatch"))
+					smartWatch.setRebate(Integer.parseInt(elementValueRead));
+				if (currentElement.equals("headphone"))
+					headphone.setRebate(Integer.parseInt(elementValueRead));
+				if (currentElement.equals("virtualReality"))
+					virtualReality.setRebate(Integer.parseInt(elementValueRead));
+				if (currentElement.equals("petTracker"))
+					petTracker.setRebate(Integer.parseInt(elementValueRead));
+
+				return;
+			}
+
+			if (element.equalsIgnoreCase("numberOfAvailableProducts")) {
+				if (currentElement.equals("phone"))
+					phone.setNumberOfAvailableProducts(Integer.parseInt(elementValueRead));
+				if (currentElement.equals("laptop"))
+					laptop.setNumberOfAvailableProducts(Integer.parseInt(elementValueRead));
+				if (currentElement.equals("voiceAssistant"))
+					voiceAssistant.setNumberOfAvailableProducts(Integer.parseInt(elementValueRead));
+				if (currentElement.equals("fitnessWatch"))
+					fitnessWatch.setNumberOfAvailableProducts(Integer.parseInt(elementValueRead));
+				if (currentElement.equals("smartWatch"))
+					smartWatch.setNumberOfAvailableProducts(Integer.parseInt(elementValueRead));
+				if (currentElement.equals("headphone"))
+					headphone.setNumberOfAvailableProducts(Integer.parseInt(elementValueRead));
+				if (currentElement.equals("virtualReality"))
+					virtualReality.setNumberOfAvailableProducts(Integer.parseInt(elementValueRead));
+				if (currentElement.equals("petTracker"))
+					petTracker.setNumberOfAvailableProducts(Integer.parseInt(elementValueRead));
+
+				return;
+			}
+
+			if (element.equalsIgnoreCase("numberOfItemsSold")) {
+				if (currentElement.equals("phone"))
+					phone.setNumberOfItemsSold(Integer.parseInt(elementValueRead));
+				if (currentElement.equals("laptop"))
+					laptop.setNumberOfItemsSold(Integer.parseInt(elementValueRead));
+				if (currentElement.equals("voiceAssistant"))
+					voiceAssistant.setNumberOfItemsSold(Integer.parseInt(elementValueRead));
+				if (currentElement.equals("fitnessWatch"))
+					fitnessWatch.setNumberOfItemsSold(Integer.parseInt(elementValueRead));
+				if (currentElement.equals("smartWatch"))
+					smartWatch.setNumberOfItemsSold(Integer.parseInt(elementValueRead));
+				if (currentElement.equals("headphone"))
+					headphone.setNumberOfItemsSold(Integer.parseInt(elementValueRead));
+				if (currentElement.equals("virtualReality"))
+					virtualReality.setNumberOfItemsSold(Integer.parseInt(elementValueRead));
+				if (currentElement.equals("petTracker"))
+					petTracker.setNumberOfItemsSold(Integer.parseInt(elementValueRead));
+
+				return;
+			}
+		} catch (Exception e) {
+			System.out.println("element: " + currentElement + "  " + elementValueRead + "  " + e.getMessage());
 		}
 
 	}

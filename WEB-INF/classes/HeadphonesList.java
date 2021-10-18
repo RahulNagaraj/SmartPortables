@@ -119,6 +119,7 @@ public class HeadphonesList extends HttpServlet
 			pw.print("<h4>" + headphone.getDescription() + "</h5>");
 			pw.print("<strong>$"+headphone.getPrice()+"</strong>");
 			pw.print("<h4> Discount: $" + headphone.getDiscount() + "</h4><ul>");
+			pw.print("<h4 style='text-align: center;'> Rebate: "+ headphone.getRebate() +"%</h4>");
 			pw.print("<li id='item'><img src='images/wearables/"+headphone.getImage()+"' alt='' /></li>");
 
 			pw.print("<li><form method='post' action='Cart'>" +
@@ -144,7 +145,7 @@ public class HeadphonesList extends HttpServlet
 
 				pw.print("<div style='display:flex; justify-content:space-evenly'><li><form method='post' action='ProductModify'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
 						"<input type='hidden' name='productId' value='" + headphone.getId() + "'>"+
-						"<input type='hidden' name='productManufacturer' value='"+ name +"'>"+
+						"<input type='hidden' name='productManufacturer' value='"+ headphone.getRetailer() +"'>"+
 						"<input type='hidden' name='productType' value='" + headphone.getProductType() + "'>"+
 						"<input type='hidden' name='productName' value='" + headphone.getName() + "'>"+
 						"<input type='hidden' name='productPrice' value='" + headphone.getPrice() + "'>"+
@@ -153,6 +154,8 @@ public class HeadphonesList extends HttpServlet
 						"<input type='hidden' name='productRebate' value='" + headphone.getRebate() + "'>"+
 						"<input type='hidden' name='productCondition' value='" + headphone.getCondition() + "'>"+
 						"<input type='hidden' name='productDescription' value='" + headphone.getDescription() + "'>"+
+						"<input type='hidden' name='numberOfAvailableProducts' value='" + headphone.getNumberOfAvailableProducts() + "'>"+
+						"<input type='hidden' name='numberOfItemsSold' value='" + headphone.getNumberOfItemsSold() + "'>"+
 						"<input type='submit' name='button' value='Update' class='btnreview'></form></li>");
 				pw.print("<li><form method='post' action='ProductCrud'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
 						"<input type='hidden' name='productId' value='" + headphone.getId() + "'>"+

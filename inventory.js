@@ -46,7 +46,7 @@ function formatJsonAccordingToGoogleChart(msg)
         }
     }
 
-    var headingArray = new Array(availableProductsArr.length);
+    var headingArray = new Array(availableProductsArr.length + 1);
     headingArray[0] = "Product Name";
     var j=0;
 
@@ -149,6 +149,8 @@ function drawChart(data, productNameArr)
     /*
     
     */
+
+    console.log(data);
 
     var chartData = google.visualization.arrayToDataTable(data);
 

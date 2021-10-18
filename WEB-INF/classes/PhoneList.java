@@ -121,7 +121,7 @@ public class PhoneList extends HttpServlet
 			pw.print("<h4>" + phone.getDescription() + "</h5>");
 			pw.print("<strong>$"+phone.getPrice()+"</strong>");
 			pw.print("<h4>Discount: $" + phone.getDiscount() + "</h4><ul>");
-			pw.print("<h4 style='text-align: center;'>"+ getRebate(phone) +"</h4>");
+			pw.print("<h4 style='text-align: center;'>Rebate: "+ phone.getRebate() +"%</h4>");
 			pw.print("<li id='item'><img src='images/phones/"+phone.getImage()+"' alt='' /></li>");
 			
 			pw.print("<li><form method='post' action='Cart' style='text-align: center;'>" +
@@ -147,7 +147,7 @@ public class PhoneList extends HttpServlet
 
 				pw.print("<div style='display:flex; justify-content:space-evenly'><li><form method='post' action='ProductModify'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
 						"<input type='hidden' name='productId' value='" + phone.getId() + "'>"+
-						"<input type='hidden' name='productManufacturer' value='"+ name +"'>"+
+						"<input type='hidden' name='productManufacturer' value='"+ phone.getRetailer() +"'>"+
 						"<input type='hidden' name='productType' value='" + phone.getProductType() + "'>"+
 						"<input type='hidden' name='productName' value='" + phone.getName() + "'>"+
 						"<input type='hidden' name='productPrice' value='" + phone.getPrice() + "'>"+
@@ -156,6 +156,8 @@ public class PhoneList extends HttpServlet
 						"<input type='hidden' name='productRebate' value='" + phone.getRebate() + "'>"+
 						"<input type='hidden' name='productCondition' value='" + phone.getCondition() + "'>"+
 						"<input type='hidden' name='productDescription' value='" + phone.getDescription() + "'>"+
+						"<input type='hidden' name='numberOfAvailableProducts' value='" + phone.getNumberOfAvailableProducts() + "'>"+
+						"<input type='hidden' name='numberOfItemsSold' value='" + phone.getNumberOfItemsSold() + "'>"+
 						"<input type='submit' name='button' value='Update' class='btnreview'></form></li>");
 				pw.print("<li><form method='post' action='ProductCrud'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
 						"<input type='hidden' name='productId' value='" + phone.getId() + "'>"+
@@ -175,11 +177,5 @@ public class PhoneList extends HttpServlet
 		return phone.isHasWarranty()
 				? "<input type='checkbox' name='productWarranty' value='yes'><label> Life Time Warranty: $" + phone.getWarrantyPrice() + "</label>"
 				: "<p>Warranty not available</p>";
-	}
-
-	private String getRebate(Phone phone) {
-		return phone.getRebate()
-				? "<p style='text-align: center;'>This product has a rebate</p>"
-				: "";
 	}
 }

@@ -1,6 +1,4 @@
 import java.util.*;
-import java.util.Map;
-
 
 
 public class Product {
@@ -12,10 +10,13 @@ public class Product {
 	private String condition;
 	private String type;
 	private double discount;
-	private boolean rebate;
+	private int rebate;
 	private String description;
 	private boolean hasWarranty;
 	private double warrantyPrice;
+	private int numberOfAvailableProducts;
+	private int numberOfItemsSold;
+
 	HashMap<String,String> accessories;
 
 	public Product(
@@ -27,10 +28,12 @@ public class Product {
 			String condition,
 			String type,
 			double discount,
-			boolean rebate,
+			int rebate,
 			String description,
 			boolean hasWarranty,
-			double warrantyPrice
+			double warrantyPrice,
+			int numberOfAvailableProducts,
+			int numberOfItemsSold
 	){
 		this.id=id;
 		this.name=name;
@@ -44,6 +47,9 @@ public class Product {
 		this.description = description;
 		this.hasWarranty = hasWarranty;
 		this.warrantyPrice = warrantyPrice;
+		this.numberOfAvailableProducts = numberOfAvailableProducts;
+		this.numberOfItemsSold = numberOfItemsSold;
+
 		this.accessories=new HashMap<String,String>();
 	}
 	
@@ -113,11 +119,11 @@ public class Product {
 		this.discount = discount;
 	}
 
-	public boolean getRebate() {
+	public int getRebate() {
 		return rebate;
 	}
 
-	public void setRebate(boolean rebate) {
+	public void setRebate(int rebate) {
 		this.rebate = rebate;
 	}
 
@@ -143,5 +149,21 @@ public class Product {
 
 	public void setWarrantyPrice(double warrantyPrice) {
 		this.warrantyPrice = warrantyPrice;
+	}
+
+	public int getNumberOfAvailableProducts() {
+		return numberOfAvailableProducts;
+	}
+
+	public void setNumberOfAvailableProducts(int numberOfAvailableProducts) {
+		this.numberOfAvailableProducts = numberOfAvailableProducts;
+	}
+
+	public int getNumberOfItemsSold() {
+		return numberOfItemsSold;
+	}
+
+	public void setNumberOfItemsSold(int numberOfItemsSold) {
+		this.numberOfItemsSold = numberOfItemsSold;
 	}
 }

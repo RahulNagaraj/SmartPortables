@@ -193,7 +193,7 @@ public class MySqlDataStoreUtilities
 
             String selectWirelessPlan="Select * from  productDetails where productType=?";
             PreparedStatement pst = conn.prepareStatement(selectWirelessPlan);
-            pst.setString(1,"petTracker");
+            pst.setString(1,"Pet Tracker");
             ResultSet rs = pst.executeQuery();
 
             while(rs.next())
@@ -205,11 +205,13 @@ public class MySqlDataStoreUtilities
                         rs.getString("productManufacturer"),
                         rs.getString("productCondition"),
                         rs.getDouble("productDiscount"),
-                        rs.getBoolean("productRebate"),
+                        rs.getInt("manufacturerRebate"),
                         rs.getString("productDescription"),
                         rs.getBoolean("productHasWarranty"),
                         rs.getDouble("productWarranty"),
-                        rs.getString("productType")
+                        rs.getString("productType"),
+                        rs.getInt("numberOfAvailableProducts"),
+                        rs.getInt("numberOfItemsSold")
                 );
                 hm.put(rs.getString("productId"), petTracker);
                 petTracker.setId(rs.getString("productId"));
@@ -254,7 +256,7 @@ public class MySqlDataStoreUtilities
 
             String selectVirtualReality="select * from  productDetails where productType=?";
             PreparedStatement pst = conn.prepareStatement(selectVirtualReality);
-            pst.setString(1,"virtualReality");
+            pst.setString(1,"Virtual Reality");
             ResultSet rs = pst.executeQuery();
 
             while(rs.next())
@@ -266,11 +268,13 @@ public class MySqlDataStoreUtilities
                         rs.getString("productManufacturer"),
                         rs.getString("productCondition"),
                         rs.getDouble("productDiscount"),
-                        rs.getBoolean("productRebate"),
+                        rs.getInt("manufacturerRebate"),
                         rs.getString("productDescription"),
                         rs.getBoolean("productHasWarranty"),
                         rs.getDouble("productWarranty"),
-                        rs.getString("productType")
+                        rs.getString("productType"),
+                        rs.getInt("numberOfAvailableProducts"),
+                        rs.getInt("numberOfItemsSold")
                 );
                 hm.put(rs.getString("productId"), virtualReality);
                 virtualReality.setId(rs.getString("productId"));
@@ -303,11 +307,13 @@ public class MySqlDataStoreUtilities
                         rs.getString("productManufacturer"),
                         rs.getString("productCondition"),
                         rs.getDouble("productDiscount"),
-                        rs.getBoolean("productRebate"),
+                        rs.getInt("manufacturerRebate"),
                         rs.getString("productDescription"),
                         rs.getBoolean("productHasWarranty"),
                         rs.getDouble("productWarranty"),
-                        rs.getString("productType")
+                        rs.getString("productType"),
+                        rs.getInt("numberOfAvailableProducts"),
+                        rs.getInt("numberOfItemsSold")
                 );
                 hm.put(rs.getString("productId"), fitnessWatch);
                 fitnessWatch.setId(rs.getString("productId"));
@@ -338,11 +344,13 @@ public class MySqlDataStoreUtilities
                         rs.getString("productManufacturer"),
                         rs.getString("productCondition"),
                         rs.getDouble("productDiscount"),
-                        rs.getBoolean("productRebate"),
+                        rs.getInt("manufacturerRebate"),
                         rs.getString("productDescription"),
                         rs.getBoolean("productHasWarranty"),
                         rs.getDouble("productWarranty"),
-                        rs.getString("productType")
+                        rs.getString("productType"),
+                        rs.getInt("numberOfAvailableProducts"),
+                        rs.getInt("numberOfItemsSold")
                 );
                 hm.put(rs.getString("productId"), headphone);
                 headphone.setId(rs.getString("productId"));
@@ -374,11 +382,13 @@ public class MySqlDataStoreUtilities
                         rs.getString("productManufacturer"),
                         rs.getString("productCondition"),
                         rs.getDouble("productDiscount"),
-                        rs.getBoolean("productRebate"),
+                        rs.getInt("manufacturerRebate"),
                         rs.getString("productDescription"),
                         rs.getBoolean("productHasWarranty"),
                         rs.getDouble("productWarranty"),
-                        rs.getString("productType")
+                        rs.getString("productType"),
+                        rs.getInt("numberOfAvailableProducts"),
+                        rs.getInt("numberOfItemsSold")
                 );
                 hm.put(rs.getString("productId"), laptop);
                 laptop.setId(rs.getString("productId"));
@@ -410,11 +420,13 @@ public class MySqlDataStoreUtilities
                         rs.getString("productManufacturer"),
                         rs.getString("productCondition"),
                         rs.getDouble("productDiscount"),
-                        rs.getBoolean("productRebate"),
+                        rs.getInt("manufacturerRebate"),
                         rs.getString("productDescription"),
                         rs.getBoolean("productHasWarranty"),
                         rs.getDouble("productWarranty"),
-                        "Phone"
+                        rs.getString("productType"),
+                        rs.getInt("numberOfAvailableProducts"),
+                        rs.getInt("numberOfItemsSold")
                 );
                 hm.put(rs.getString("productId"), phone);
                 phone.setId(rs.getString("productId"));
@@ -447,11 +459,13 @@ public class MySqlDataStoreUtilities
                         rs.getString("productManufacturer"),
                         rs.getString("productCondition"),
                         rs.getDouble("productDiscount"),
-                        rs.getBoolean("productRebate"),
+                        rs.getInt("manufacturerRebate"),
                         rs.getString("productDescription"),
                         rs.getBoolean("productHasWarranty"),
                         rs.getDouble("productWarranty"),
-                        rs.getString("productType")
+                        rs.getString("productType"),
+                        rs.getInt("numberOfAvailableProducts"),
+                        rs.getInt("numberOfItemsSold")
                 );
                 hm.put(rs.getString("productId"), smartWatch);
                 smartWatch.setId(rs.getString("productId"));
@@ -482,11 +496,13 @@ public class MySqlDataStoreUtilities
                         rs.getString("productManufacturer"),
                         rs.getString("productCondition"),
                         rs.getDouble("productDiscount"),
-                        rs.getBoolean("productRebate"),
+                        rs.getInt("manufacturerRebate"),
                         rs.getString("productDescription"),
                         rs.getBoolean("productHasWarranty"),
                         rs.getDouble("productWarranty"),
-                        rs.getString("productType")
+                        rs.getString("productType"),
+                        rs.getInt("numberOfAvailableProducts"),
+                        rs.getInt("numberOfItemsSold")
                 );
                 hm.put(rs.getString("productId"), voiceAssistant);
                 voiceAssistant.setId(rs.getString("productId"));
@@ -507,10 +523,12 @@ public class MySqlDataStoreUtilities
             String productManufacturer,
             String productCondition,
             double productDiscount,
-            boolean productRebate,
+            int productRebate,
             String productDescription,
             boolean productHasWarranty,
             double productWarranty,
+            int numberOfAvailableProducts,
+            int numberOfItemsSold,
             String prod
     ) {
         String msg = "Product is added successfully";
@@ -526,12 +544,14 @@ public class MySqlDataStoreUtilities
                     "productManufacturer," +
                     "productCondition," +
                     "productDiscount," +
-                    "productRebate," +
+                    "manufacturerRebate," +
                     "productDescription," +
                     "productHasWarranty," +
-                    "productWarranty" +
+                    "productWarranty," +
+                    "numberOfAvailableProducts," +
+                    "numberOfItemsSold" +
                     ")" +
-                    "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
+                    "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
             String name = productType;
 
@@ -544,10 +564,12 @@ public class MySqlDataStoreUtilities
             pst.setString(6,productManufacturer);
             pst.setString(7,productCondition);
             pst.setDouble(8,productDiscount);
-            pst.setBoolean(9,productRebate);
+            pst.setInt(9,productRebate);
             pst.setString(10,productDescription);
             pst.setBoolean(11,productHasWarranty);
             pst.setDouble(12,productWarranty);
+            pst.setInt(13,numberOfAvailableProducts);
+            pst.setInt(14,numberOfItemsSold);
 
 
             pst.executeUpdate();
@@ -587,10 +609,12 @@ public class MySqlDataStoreUtilities
             String productManufacturer,
             String productCondition,
             double productDiscount,
-            boolean productRebate,
+            int productRebate,
             String productDescription,
             boolean productHasWarranty,
-            double productWarranty
+            double productWarranty,
+            int numberOfAvailableProducts,
+            int numberOfItemsSold
     ) {
         String msg = "Product is updated successfully";
         try
@@ -604,10 +628,12 @@ public class MySqlDataStoreUtilities
                     "productManufacturer=?," +
                     "productCondition=?," +
                     "productDiscount=?, " +
-                    "productRebate=?, " +
+                    "manufacturerRebate=?, " +
                     "productDescription=?, " +
                     "productHasWarranty=?," +
-                    "productWarranty=?" +
+                    "productWarranty=?," +
+                    "numberOfAvailableProducts=?," +
+                    "numberOfItemsSold=? " +
                     "where productId =?;" ;
             PreparedStatement pst = conn.prepareStatement(updateProductQurey);
 
@@ -618,11 +644,16 @@ public class MySqlDataStoreUtilities
             pst.setString(5,productManufacturer);
             pst.setString(6,productCondition);
             pst.setDouble(7,productDiscount);
-            pst.setBoolean(8,productRebate);
+            pst.setInt(8,productRebate);
             pst.setString(9,productDescription);
             pst.setBoolean(10,productHasWarranty);
             pst.setDouble(11,productWarranty);
-            pst.setString(12,productId);
+            pst.setInt(12,numberOfAvailableProducts);
+            pst.setInt(13,numberOfItemsSold);
+            pst.setString(14,productId);
+
+            System.out.println("pst : "  + pst.toString());
+
             pst.executeUpdate();
         }
         catch(Exception e) {
@@ -874,7 +905,7 @@ public class MySqlDataStoreUtilities
         {
             getConnection();
 
-            String availableProductsListQuery="SELECT productName, productPrice, productDiscount, numberOfAvailableProducts, productRebate FROM productDetails;";
+            String availableProductsListQuery="SELECT productName, productPrice, productDiscount, numberOfAvailableProducts, manufacturerRebate FROM productDetails;";
             PreparedStatement pst = conn.prepareStatement(availableProductsListQuery);
             ResultSet rs = pst.executeQuery();
 
@@ -885,7 +916,7 @@ public class MySqlDataStoreUtilities
                         rs.getString("productPrice"),
                         rs.getString("productDiscount"),
                         rs.getString("numberOfAvailableProducts"),
-                        rs.getString("productRebate")
+                        rs.getString("manufacturerRebate")
                 );
                 availableProductsList.add(product);
             }
@@ -906,7 +937,7 @@ public class MySqlDataStoreUtilities
         {
             getConnection();
 
-            String currentOnSaleProductsListQuery="SELECT productName, productPrice, productDiscount, numberOfAvailableProducts, productRebate FROM productDetails WHERE productDiscount > 0;";
+            String currentOnSaleProductsListQuery="SELECT productName, productPrice, productDiscount, numberOfAvailableProducts, manufacturerRebate FROM productDetails WHERE productDiscount > 0;";
             PreparedStatement pst = conn.prepareStatement(currentOnSaleProductsListQuery);
             ResultSet rs = pst.executeQuery();
 
@@ -917,7 +948,7 @@ public class MySqlDataStoreUtilities
                         rs.getString("productPrice"),
                         rs.getString("productDiscount") ,
                         rs.getString("numberOfAvailableProducts"),
-                        rs.getString("productRebate")
+                        rs.getString("manufacturerRebate")
                 );
                 currentOnSaleProductsList.add(product);
             }
@@ -939,7 +970,7 @@ public class MySqlDataStoreUtilities
         {
             getConnection();
 
-            String manufacturerRebateProductsListQuery="SELECT productName, productPrice, productDiscount,numberOfAvailableProducts, productRebate FROM productDetails WHERE productRebate > 0;";
+            String manufacturerRebateProductsListQuery="SELECT productName, productPrice, productDiscount,numberOfAvailableProducts, manufacturerRebate FROM productDetails WHERE manufacturerRebate > 0;";
             PreparedStatement pst = conn.prepareStatement(manufacturerRebateProductsListQuery);
             ResultSet rs = pst.executeQuery();
 
@@ -950,7 +981,7 @@ public class MySqlDataStoreUtilities
                         rs.getString("productPrice"),
                         rs.getString("productDiscount") ,
                         rs.getString("numberOfAvailableProducts") ,
-                        rs.getString("productRebate")
+                        rs.getString("manufacturerRebate")
                 );
                 manufacturerRebateProductsList.add(product);
             }

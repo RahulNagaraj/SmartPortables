@@ -43,23 +43,29 @@ public class AjaxUtility {
 	{	
 		HashMap<String,Product> data;
 		data=getData();
+
+		System.out.println("Data: "  + data);
 		
- 	    Iterator it = data.entrySet().iterator();	
-        while (it.hasNext()) 
-	    {
-                    Map.Entry pi = (Map.Entry)it.next();
-			if(pi!=null)
-			{
-				Product p=(Product)pi.getValue();                   
-                if (p.getName().toLowerCase().startsWith(searchId))
-                {
-                        sb.append("<product>");
-                        sb.append("<id>" + p.getId() + "</id>");
-                        sb.append("<productName>" + p.getName() + "</productName>");
-                        sb.append("</product>");
-                }
-			}
-       }
+ 	    Iterator it = data.entrySet().iterator();
+		 try {
+			 while (it.hasNext())
+			 {
+				 Map.Entry pi = (Map.Entry)it.next();
+				 if(pi!=null)
+				 {
+					 Product p=(Product)pi.getValue();
+					 if (p.getName().toLowerCase().startsWith(searchId))
+					 {
+						 sb.append("<product>");
+						 sb.append("<id>" + p.getId() + "</id>");
+						 sb.append("<productName>" + p.getName() + "</productName>");
+						 sb.append("</product>");
+					 }
+				 }
+			 }
+		 } catch (Exception e) {
+			 System.out.println("Error: " + e.getMessage());
+		 }
 	   
 	   return sb;
 	}
@@ -85,10 +91,12 @@ public class AjaxUtility {
 					rs.getString("productCondition"),
 					rs.getString("productType"),
 					rs.getDouble("productDiscount"),
-					rs.getBoolean("productRebate"),
+					rs.getInt("manufacturerRebate"),
 					rs.getString("productDescription"),
 					rs.getBoolean("productHasWarranty"),
-					rs.getDouble("productWarranty")
+					rs.getDouble("productWarranty"),
+					rs.getInt("numberOfAvailableProducts"),
+					rs.getInt("numberOfItemsSold")
 			);
 				hm.put(rs.getString("productId"), p);
 			}
@@ -96,6 +104,7 @@ public class AjaxUtility {
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			System.out.println("Error: " + e.getMessage());
 		}
 		return hm;			
 	}
