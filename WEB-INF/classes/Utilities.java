@@ -59,9 +59,23 @@ public class Utilities extends HttpServlet{
 									//+ "<li><a href='ProductModify?button=Updateproduct'><span class='glyphicon'>UpdateProduct</span></a></li>"
 									//+ "<li><a href='ProductModify?button=Deleteproduct'><span class='glyphicon'>DeleteProduct</span></a></li>";*/
 
-					result = result + "<li><a href='ProductModify?button=Addproduct'><span class='glyphicon'>Addproduct</span></a></li>"
+					/*result = result + "<li><a href='ProductModify?button=Addproduct'><span class='glyphicon'>Addproduct</span></a></li>"
 							+ "<li><a href='DataVisualization'><span class='glyphicon'>DataVisualization</span></a></li>"
 							+ "<li><a href='DataAnalytics'><span class='glyphicon'>DataAnalytics</span></a></li>"
+							+ "<li><a href='ViewOrder'><span class='glyphicon'>ViewOrder</span></a></li>"
+							+ "<li><a><span class='glyphicon'>Hello,"+username+"</span></a></li>"
+							+ "<li><a href='Logout'><span class='glyphicon'>Logout</span></a></li>";*/
+
+
+					result = result + "<li><div class='dropdown'><a onclick='dropdown()' class='dropbtn' style='font-family: Glyphicons Halflings;'>Reports &#9662;</a><div id='myDropdown' class='dropdown-content'>"
+							+ "<a href='Inventory' style='font-family: Glyphicons Halflings;'>Inventory</a>"
+							+ "<a href='SalesReport' style='font-family: Glyphicons Halflings;'>Sales Report</a>"
+							+ "<a href='DataAnalytics'><span class='glyphicon'>DataAnalytics</span></a>"
+							+ "<a href='DataVisualization'><span class='glyphicon'>DataVisualization</span></a>"
+							+ "</div></div></li>"
+							+ "<li><div class='dropdown'><a onclick='dropdown1()' class='dropbtn' style='font-family: Glyphicons Halflings;'>ProductsCatalog &#9662;</a><div id='myDropdown1' class='dropdown-content'>"
+							+ "<a href='ProductModify?button=Addproduct' style='font-family: Glyphicons Halflings;'>AddProduct</a>"
+							+ "</div></div></li>"
 							+ "<li><a href='ViewOrder'><span class='glyphicon'>ViewOrder</span></a></li>"
 							+ "<li><a><span class='glyphicon'>Hello,"+username+"</span></a></li>"
 							+ "<li><a href='Logout'><span class='glyphicon'>Logout</span></a></li>";

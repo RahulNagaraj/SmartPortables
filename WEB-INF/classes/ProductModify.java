@@ -163,7 +163,7 @@ public class ProductModify extends HttpServlet {
 			pw.print("<tr><td>Description</td>");
 			pw.print("<td><input class='input' type='text' name='productDescription' id ='productDescription' value='" + productDescription + "' /></td></tr>");
 			pw.print("<tr><td>Rebate</td>");
-			pw.print("<td><input class='input' type='text' name='productRebate' id ='productRebate' value='" + productRebate + "' /></td></tr>");
+			pw.print("<td><input class='input' type='text' name='productRebate' id ='productRebate' value='" + getRebate(productRebate) + "' /></td></tr>");
 			pw.print("<input class='hidden' type='text' name='productId' id ='productId' value='" + productId + "' />");
 			pw.print("<tr><td colspan='2'><input type='submit' name='button' value='Update Product' class='btnbuy'></td></tr>");
 			pw.print("</table></form></div></div></div>");
@@ -173,6 +173,10 @@ public class ProductModify extends HttpServlet {
 
 	private String isSelected(String productType, String type) {
 		return productType.equals(type) ? "selected" : "";
+	}
+
+	private String getRebate(String rebate) {
+		return rebate.equalsIgnoreCase("true") ? "Yes" : "No";
 	}
 
 }

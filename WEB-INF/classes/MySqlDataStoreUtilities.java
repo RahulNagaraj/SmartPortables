@@ -174,9 +174,9 @@ public class MySqlDataStoreUtilities
             ResultSet rs = stmt.executeQuery(selectCustomerQuery);
             while(rs.next()) {
                 User user = new User(
-                    rs.getString("username"),
-                    rs.getString("password"),
-                    rs.getString("usertype")
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("usertype")
                 );
                 hm.put(rs.getString("username"), user);
             }
@@ -864,5 +864,163 @@ public class MySqlDataStoreUtilities
             e.printStackTrace();
             System.out.println("Erro updating order: " + e.getMessage());
         }
+    }
+
+    public static ArrayList<NoOfAvailableProducts> availableProductsList()
+    {
+        ArrayList<NoOfAvailableProducts> availableProductsList = new ArrayList<NoOfAvailableProducts>();
+
+        try
+        {
+            getConnection();
+
+            String availableProductsListQuery="SELECT productName, productPrice, productDiscount, numberOfAvailableProducts, productRebate FROM productDetails;";
+            PreparedStatement pst = conn.prepareStatement(availableProductsListQuery);
+            ResultSet rs = pst.executeQuery();
+
+            while(rs.next())
+            {
+                NoOfAvailableProducts product = new NoOfAvailableProducts(
+                        rs.getString("productName"),
+                        rs.getString("productPrice"),
+                        rs.getString("productDiscount"),
+                        rs.getString("numberOfAvailableProducts"),
+                        rs.getString("productRebate")
+                );
+                availableProductsList.add(product);
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println("availableProductsList(): " + e);
+        }
+
+        return availableProductsList;
+    }
+
+    public static ArrayList<NoOfAvailableProducts> currentOnSaleProductsList()
+    {
+        ArrayList<NoOfAvailableProducts> currentOnSaleProductsList = new ArrayList<NoOfAvailableProducts>();
+
+        try
+        {
+            getConnection();
+
+            String currentOnSaleProductsListQuery="SELECT productName, productPrice, productDiscount, numberOfAvailableProducts, productRebate FROM productDetails WHERE productDiscount > 0;";
+            PreparedStatement pst = conn.prepareStatement(currentOnSaleProductsListQuery);
+            ResultSet rs = pst.executeQuery();
+
+            while(rs.next())
+            {
+                NoOfAvailableProducts product = new NoOfAvailableProducts(
+                        rs.getString("productName"),
+                        rs.getString("productPrice"),
+                        rs.getString("productDiscount") ,
+                        rs.getString("numberOfAvailableProducts"),
+                        rs.getString("productRebate")
+                );
+                currentOnSaleProductsList.add(product);
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println("currentOnSaleProductsList(): " + e);
+        }
+
+        return currentOnSaleProductsList;
+    }
+
+    //manufacturerRebateProductsList
+    public static ArrayList<NoOfAvailableProducts> manufacturerRebateProductsList()
+    {
+        ArrayList<NoOfAvailableProducts> manufacturerRebateProductsList = new ArrayList<NoOfAvailableProducts>();
+
+        try
+        {
+            getConnection();
+
+            String manufacturerRebateProductsListQuery="SELECT productName, productPrice, productDiscount,numberOfAvailableProducts, productRebate FROM productDetails WHERE productRebate > 0;";
+            PreparedStatement pst = conn.prepareStatement(manufacturerRebateProductsListQuery);
+            ResultSet rs = pst.executeQuery();
+
+            while(rs.next())
+            {
+                NoOfAvailableProducts product = new NoOfAvailableProducts(
+                        rs.getString("productName"),
+                        rs.getString("productPrice"),
+                        rs.getString("productDiscount") ,
+                        rs.getString("numberOfAvailableProducts") ,
+                        rs.getString("productRebate")
+                );
+                manufacturerRebateProductsList.add(product);
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println("manufacturerRebateProductsList(): "+e);
+        }
+
+        return manufacturerRebateProductsList;
+    }
+
+    public static ArrayList<NoOfProductsSold> totalSoldProductsList()
+    {
+        ArrayList<NoOfProductsSold> totalSoldProductsList = new ArrayList<NoOfProductsSold>();
+
+        try
+        {
+            getConnection();
+
+            String totalSoldProductsListQuery="SELECT productName, productPrice, numberOfItemsSold, (productPrice * numberOfItemsSold) AS productTotalSales FROM productDetails;";
+            PreparedStatement pst = conn.prepareStatement(totalSoldProductsListQuery);
+            ResultSet rs = pst.executeQuery();
+
+            while(rs.next())
+            {
+                NoOfProductsSold product = new NoOfProductsSold(
+                        rs.getString("productName"),
+                        rs.getString("productPrice"),
+                        rs.getString("numberOfItemsSold") ,
+                        rs.getString("productTotalSales")
+                );
+                totalSoldProductsList.add(product);
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println("totalSoldProductsList(): "+e);
+        }
+
+        return totalSoldProductsList;
+    }
+
+    public static ArrayList<TotalSalesDaily> totalSalesDailyOrdersList()
+    {
+        ArrayList<TotalSalesDaily> totalSalesDailyOrdersList = new ArrayList<TotalSalesDaily>();
+
+        try
+        {
+            getConnection();
+
+            String totalSalesDailyOrdersListQuery="SELECT purchaseDate, SUM(orderTotal) AS totalDailySales, GROUP_CONCAT(CONCAT(productName, ' (', orderTotal, ')')) AS productsListDescription FROM customerorders GROUP BY purchaseDate;";
+            PreparedStatement pst = conn.prepareStatement(totalSalesDailyOrdersListQuery);
+            ResultSet rs = pst.executeQuery();
+
+            while(rs.next())
+            {
+                TotalSalesDaily order = new TotalSalesDaily(
+                        rs.getString("purchaseDate"),
+                        rs.getString("totalDailySales"),
+                        rs.getString("productsListDescription")
+                );
+                totalSalesDailyOrdersList.add(order);
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println("totalSalesDailyOrdersList(): "+e);
+        }
+
+        return totalSalesDailyOrdersList;
     }
 }

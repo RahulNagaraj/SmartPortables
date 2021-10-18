@@ -46,6 +46,8 @@ public class ProductCrud extends HttpServlet {
         HashMap<String, Phone> allPhones = new HashMap<String, Phone>();
         HashMap<String, SmartWatch> allSmartWatches = new HashMap<String, SmartWatch>();
         HashMap<String, VoiceAssistant> allVoiceAssistants = new HashMap<String, VoiceAssistant>();
+        HashMap<String, PetTracker> allPetTracker = new HashMap<>();
+        HashMap<String, VirtualReality> allVirtualReality = new HashMap<>();
         if (action.equals("Add Product") || action.equals("Update Product")) {
             productType = request.getParameter("productType");
             productName = request.getParameter("productName");
@@ -70,30 +72,100 @@ public class ProductCrud extends HttpServlet {
                 allFitnessWatches = MySqlDataStoreUtilities.getFitnessWatches();
                 if(allFitnessWatches.containsKey(productId)) {
                     msg = "Product already available";
+                } else {
+                    allFitnessWatches.put(productId, new FitnessWatch(
+                            productName,
+                            productPrice,
+                            productImage,
+                            productManufacturer,
+                            productCondition,
+                            productDiscount,
+                            productRebate,
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty,
+                            productType
+                    ));
                 }
             }
             else if(productType.equals("headphone")) {
                 allHeadphones = MySqlDataStoreUtilities.getHeadphones();
                 if(allHeadphones.containsKey(productId)) {
                     msg = "Product already available";
+                } else {
+                    allHeadphones.put(productId, new Headphone(
+                            productName,
+                            productPrice,
+                            productImage,
+                            productManufacturer,
+                            productCondition,
+                            productDiscount,
+                            productRebate,
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty,
+                            productType
+                    ));
                 }
             }
             else if(productType.equals("laptop")) {
                 allLaptops = MySqlDataStoreUtilities.getLaptops();
                 if(allLaptops.containsKey(productId)) {
                     msg = "Product already available";
+                } else {
+                    allLaptops.put(productId, new Laptop(
+                            productName,
+                            productPrice,
+                            productImage,
+                            productManufacturer,
+                            productCondition,
+                            productDiscount,
+                            productRebate,
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty,
+                            productType
+                    ));
                 }
             }
             else if(productType.equals("phone")) {
                 allPhones = MySqlDataStoreUtilities.getPhones();
                 if(allPhones.containsKey(productId)) {
                     msg = "Product already available";
+                } else {
+                    allPhones.put(productId, new Phone(
+                            productName,
+                            productPrice,
+                            productImage,
+                            productManufacturer,
+                            productCondition,
+                            productDiscount,
+                            productRebate,
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty,
+                            productType
+                    ));
                 }
             }
             else if(productType.equals("smartWatch")) {
                 allSmartWatches = MySqlDataStoreUtilities.getSmartWatches();
                 if(allSmartWatches.containsKey(productId)) {
                     msg = "Product already available";
+                } else {
+                    allSmartWatches.put(productId, new SmartWatch(
+                            productName,
+                            productPrice,
+                            productImage,
+                            productManufacturer,
+                            productCondition,
+                            productDiscount,
+                            productRebate,
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty,
+                            productType
+                    ));
                 }
             }
             else if(productType.equals("voiceAssistant")) {
@@ -101,9 +173,64 @@ public class ProductCrud extends HttpServlet {
                 if(allVoiceAssistants.containsKey(productId))
                 {
                     msg = "Product already available";
+                } else {
+                    allVoiceAssistants.put(productId, new VoiceAssistant(
+                            productName,
+                            productPrice,
+                            productImage,
+                            productManufacturer,
+                            productCondition,
+                            productDiscount,
+                            productRebate,
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty,
+                            productType
+                    ));
                 }
             }
-
+            else if(productType.equals("petTracker")) {
+                allPetTracker = MySqlDataStoreUtilities.getPetTracker();
+                if(allPetTracker.containsKey(productId))
+                {
+                    msg = "Product already available";
+                } else {
+                    allPetTracker.put(productId, new PetTracker(
+                            productName,
+                            productPrice,
+                            productImage,
+                            productManufacturer,
+                            productCondition,
+                            productDiscount,
+                            productRebate,
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty,
+                            productType
+                    ));
+                }
+            }
+            else if(productType.equals("virtualReality")) {
+                allVirtualReality = MySqlDataStoreUtilities.getVirtualReality();
+                if(allVirtualReality.containsKey(productId))
+                {
+                    msg = "Product already available";
+                } else {
+                    allVirtualReality.put(productId, new VirtualReality(
+                            productName,
+                            productPrice,
+                            productImage,
+                            productManufacturer,
+                            productCondition,
+                            productDiscount,
+                            productRebate,
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty,
+                            productType
+                    ));
+                }
+            }
             /*
             else if (productType.equals("accessories"))
             {  
@@ -157,41 +284,167 @@ public class ProductCrud extends HttpServlet {
             }
         }
         else if(action.equals("update")) {
-            if (productType.equals("fitnessWatch")) {
+            if(productType.equals("fitnessWatch")) {
                 allFitnessWatches = MySqlDataStoreUtilities.getFitnessWatches();
-                if(!allFitnessWatches.containsKey(productId)) {
-                    msg = "Product not available";
+                if(allFitnessWatches.containsKey(productId)) {
+                    msg = "Product already available";
+                } else {
+                    allFitnessWatches.put(productId, new FitnessWatch(
+                            productName,
+                            productPrice,
+                            productImage,
+                            productManufacturer,
+                            productCondition,
+                            productDiscount,
+                            productRebate,
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty,
+                            productType
+                    ));
                 }
             }
-            else if (productType.equals("headphone")) {
+            else if(productType.equals("headphone")) {
                 allHeadphones = MySqlDataStoreUtilities.getHeadphones();
-                if(!allHeadphones.containsKey(productId)) {
-                    msg = "Product not available";
+                if(allHeadphones.containsKey(productId)) {
+                    msg = "Product already available";
+                } else {
+                    allHeadphones.put(productId, new Headphone(
+                            productName,
+                            productPrice,
+                            productImage,
+                            productManufacturer,
+                            productCondition,
+                            productDiscount,
+                            productRebate,
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty,
+                            productType
+                    ));
                 }
             }
-            else if (productType.equals("laptop")) {
+            else if(productType.equals("laptop")) {
                 allLaptops = MySqlDataStoreUtilities.getLaptops();
-                if(!allLaptops.containsKey(productId)) {
-                    msg = "Product not available";
+                if(allLaptops.containsKey(productId)) {
+                    msg = "Product already available";
+                } else {
+                    allLaptops.put(productId, new Laptop(
+                            productName,
+                            productPrice,
+                            productImage,
+                            productManufacturer,
+                            productCondition,
+                            productDiscount,
+                            productRebate,
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty,
+                            productType
+                    ));
                 }
             }
-            else if (productType.equals("phone")) {
+            else if(productType.equals("phone")) {
                 allPhones = MySqlDataStoreUtilities.getPhones();
-                if(!allPhones.containsKey(productId)) {
-                    msg = "Product not available";
+                if(allPhones.containsKey(productId)) {
+                    msg = "Product already available";
+                } else {
+                    allPhones.put(productId, new Phone(
+                            productName,
+                            productPrice,
+                            productImage,
+                            productManufacturer,
+                            productCondition,
+                            productDiscount,
+                            productRebate,
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty,
+                            productType
+                    ));
                 }
             }
-            else if (productType.equals("smartWatch")) {
+            else if(productType.equals("smartWatch")) {
                 allSmartWatches = MySqlDataStoreUtilities.getSmartWatches();
-                if(!allSmartWatches.containsKey(productId)) {
-                    msg = "Product not available";
+                if(allSmartWatches.containsKey(productId)) {
+                    msg = "Product already available";
+                } else {
+                    allSmartWatches.put(productId, new SmartWatch(
+                            productName,
+                            productPrice,
+                            productImage,
+                            productManufacturer,
+                            productCondition,
+                            productDiscount,
+                            productRebate,
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty,
+                            productType
+                    ));
                 }
             }
-            else if (productType.equals("voiceAssistant"))
-            {
+            else if(productType.equals("voiceAssistant")) {
                 allVoiceAssistants = MySqlDataStoreUtilities.getVoiceAssistants();
-                if(!allVoiceAssistants.containsKey(productId)) {
-                    msg = "Product not available";
+                if(allVoiceAssistants.containsKey(productId))
+                {
+                    msg = "Product already available";
+                } else {
+                    allVoiceAssistants.put(productId, new VoiceAssistant(
+                            productName,
+                            productPrice,
+                            productImage,
+                            productManufacturer,
+                            productCondition,
+                            productDiscount,
+                            productRebate,
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty,
+                            productType
+                    ));
+                }
+            }
+            else if(productType.equals("petTracker")) {
+                allPetTracker = MySqlDataStoreUtilities.getPetTracker();
+                if(allPetTracker.containsKey(productId))
+                {
+                    msg = "Product already available";
+                } else {
+                    allPetTracker.put(productId, new PetTracker(
+                            productName,
+                            productPrice,
+                            productImage,
+                            productManufacturer,
+                            productCondition,
+                            productDiscount,
+                            productRebate,
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty,
+                            productType
+                    ));
+                }
+            }
+            else if(productType.equals("virtualReality")) {
+                allVirtualReality = MySqlDataStoreUtilities.getVirtualReality();
+                if(allVirtualReality.containsKey(productId))
+                {
+                    msg = "Product already available";
+                } else {
+                    allVirtualReality.put(productId, new VirtualReality(
+                            productName,
+                            productPrice,
+                            productImage,
+                            productManufacturer,
+                            productCondition,
+                            productDiscount,
+                            productRebate,
+                            productDescription,
+                            productHasWarranty,
+                            productWarranty,
+                            productType
+                    ));
                 }
             }
 
