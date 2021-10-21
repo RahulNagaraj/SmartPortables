@@ -30,72 +30,30 @@ function formatJsonAccordingToGoogleChart(msg)
     var data = new Array();
     var productNameArr = new Array();
     var availableProductsArr = new Array();
+    productNameArr.push("Product Name");
+    productNameArr.push("Number of available products");
 
-    for(var i=0; i<parsedData.length; i++)
-    {
+    var newArray = [];
+    newArray.push(productNameArr);
+
+    for(var i=0; i < parsedData.length; i++) {
         var productName = parsedData[i]["productName"];
-        var availableProductsArr = parsedData[i]["numberOfAvailableProducts"];
-        if(!productNameArr.includes(productName))
-        {
-            productNameArr.push(productName);
-        }
-        
-        if(!availableProductsArr.includes(availableProductsArr))
-        {
-            availableProductsArr.push(availableProductsArr);
-        }
+        var availableProducts = Number.parseInt(parsedData[i]["numberOfAvailableProducts"]);
+        var array = [].concat([productName, availableProducts]);
+        newArray.push(array);
     }
-
-    var headingArray = new Array(availableProductsArr.length + 1);
-    headingArray[0] = "Product Name";
-    var j=0;
-
-    for(var i=1; i<=availableProductsArr.length; i++)
-    {
-        headingArray[i] = availableProductsArr[j]; 
-        j++;
-    }
-    data[0] = headingArray;
-    var m =1;
-
-    //Loop through jsondata and create an array of arrays to plot the chart;
-    for(var i=0; i<productNameArr.length; i++)
-    {
-        var dataArr = new Array(headingArray.length);
-        dataArr[0] = productNameArr[i];
-        for(var j=0; j<availableProductsArr.length; j++)
-        {
-            for(k=0; k<parsedData.length; k++)
-            {
-                if(parsedData[k]["productName"] === productNameArr[i] && parsedData[k]["numberOfAvailableProducts"] === availableProductsArr[j])
-                {
-                    dataArr[j+1] = parseInt(parsedData[k]["productPrice"]);                   
-                }                 
-            }
-        }
-
-        //Set empty cell elements to zero;
-        for(var n=1; n<headingArray.length; n++)
-        {
-            if(!(dataArr[n] > 0))
-            {
-                dataArr[n] = 0;
-            }
-        }
-        data[m] = (dataArr);
-        m++;
-    }
-    drawChart(data, productNameArr);
+    console.log("New Array: ", newArray);
+    drawChart(newArray, productNameArr);
 }
 
 //Plot the chart using 2d array and product names as subtitles;
 function drawChart(data, productNameArr)
 {
     var productNames = "";
-    for(var i=0; i<productNameArr.length; i++)
+    /*for(var i=0; i<productNameArr.length; i++)
     {
         productNames += productNameArr[i] + ",";
-    }
+    }*/
 
     //Invoke google's built in method to get data table object required by google.
     //var chartData = google.visualization.arrayToDataTable(data);
@@ -151,7 +109,6 @@ function drawChart(data, productNameArr)
     */
 
     console.log(data);
-
     var chartData = google.visualization.arrayToDataTable(data);
 
    var options = {

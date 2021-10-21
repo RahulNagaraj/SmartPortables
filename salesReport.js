@@ -35,84 +35,35 @@ function formatJsonAccordingToGoogleChart(msg)
     var productNameArr = new Array();
     var productTotalSalesArr = new Array();
 
+    productNameArr.push("Product Name");
+    productNameArr.push("Product Total Sales");
+
+    var newArray = [];
+    newArray.push(productNameArr);
+
+
     //Create an array of product name and an array of zipcodes
     for(var i=0; i<parsedData.length; i++)
     {
         var productName = parsedData[i]["productName"];
-        var productTotalSales = parsedData[i]["productTotalSales"];
-        if(!productNameArr.includes(productName))
-        {
-            productNameArr.push(productName);
-        }
-        
-        if(!productTotalSalesArr.includes(productTotalSales))
-        {
-            productTotalSalesArr.push(productTotalSales);
-        }
+        var productTotalSales = Number.parseInt(parsedData[i]["productTotalSales"]);
+
+        var array = [].concat([productName, productTotalSales]);
+        newArray.push(array);
     }
-    //alert("productNameArr: " + productNameArr + " \nproductTotalSalesArr: " + productTotalSalesArr);
-    
-    //productNameArr: Basic Plan,LG FitnessWatch,LG Headphone,LG Laptop,LG Phone,LG SmartWatch,LG SoundSystem,LG Television,LG VoiceAssistant,Microsoft FitnessWatch,Microsoft Headphone,Microsoft Laptop,Microsoft Phone,Microsoft SmartWatch,Microsoft SoundSystem,Microsoft Television,Microsoft VoiceAssistant,Onida FitnessWatch,Onida Headphone,Onida Laptop,Onida Phone,Onida SmartWatch,Onida SoundSystem,Onida Television,Onida VoiceAssistant,Premium Plan,Samsung FitnessWatch,Samsung Headphone ,Samsung Laptop,Samsung Phone,Samsung SmartWatch,Samsung SoundSystem,Samsung Television,Samsung VoiceAssistant,Sony FitnessWatch,Sony Headphone,Sony Laptop,Sony Phone,Sony SmartWatch,Sony SoundSystem,Sony Television,Sony VoiceAssistant,Ultimate Plan 
-    //productTotalSalesArr: 68.97,799.98,41.98,1379.98,779.98,579.98,145.98,175.98,399.98,81.98,299.98,1699.98,1179.98,101.98,451.47,301.98,179.98,979.98,601.98,119.98,151.98,65.98,999.98,1041.98,561.98,401.98,199.98,379.98,1099.98,225.98,239.98,85.98
-    
-
-    //Create header array for google api
-    var headingArray = new Array(productTotalSalesArr.length+1);
-    headingArray[0] = "Product Name";
-    var j=0;
-
-    for(var i=1; i<=productTotalSalesArr.length; i++)
-    {
-        headingArray[i] = productTotalSalesArr[j]; 
-        j++;
-    }
-    //alert("headingArray: " + headingArray);
-    //headingArray: Product Total Sales,Basic Plan,LG FitnessWatch,LG Headphone,LG Laptop,LG Phone,LG SmartWatch,LG SoundSystem,LG Television,LG VoiceAssistant,Microsoft FitnessWatch,Microsoft Headphone,Microsoft Laptop,Microsoft Phone,Microsoft SmartWatch,Microsoft SoundSystem,Microsoft Television,Microsoft VoiceAssistant,Onida FitnessWatch,Onida Headphone,Onida Laptop,Onida Phone,Onida SmartWatch,Onida SoundSystem,Onida Television,Onida VoiceAssistant,Premium Plan,Samsung FitnessWatch,Samsung Headphone ,Samsung Laptop,Samsung Phone,Samsung SmartWatch,Samsung SoundSystem,Samsung Television,Samsung VoiceAssistant,Sony FitnessWatch,Sony Headphone,Sony Laptop,Sony Phone,Sony SmartWatch,Sony SoundSystem,Sony Television,Sony VoiceAssistant,Ultimate Plan
-    data[0] = headingArray;
-    var m =1;
-
-    //Loop through jsondata and create an array of arrays to plot the chart;
-    for(var i=0; i<productNameArr.length; i++)
-    {
-        var dataArr = new Array(headingArray.length);
-        dataArr[0] = productNameArr[i];
-        for(var j=0; j<productTotalSalesArr.length; j++)
-        {
-            for(k=0; k<parsedData.length; k++)
-            {
-                if(parsedData[k]["productName"] === productNameArr[i] && parsedData[k]["productTotalSales"] === productTotalSalesArr[j])
-                {
-                    dataArr[j+1] = parseInt(parsedData[k]["noOfProductsSold"]);                   
-                }                 
-            }
-        }
-
-        //Set empty cell elements to zero;
-        for(var n=1; n<headingArray.length; n++)
-        {
-            if(!(dataArr[n] > 0))
-            {
-                dataArr[n] = 0;
-            }
-        }
-        data[m] = (dataArr);
-        m++;
-
-    }
-    //alert(data);
-    //Product Total Sales,Basic Plan,LG FitnessWatch,LG Headphone,LG Laptop,LG Phone,LG SmartWatch,LG SoundSystem,LG Television,LG VoiceAssistant,Microsoft FitnessWatch,Microsoft Headphone,Microsoft Laptop,Microsoft Phone,Microsoft SmartWatch,Microsoft SoundSystem,Microsoft Television,Microsoft VoiceAssistant,Onida FitnessWatch,Onida Headphone,Onida Laptop,Onida Phone,Onida SmartWatch,Onida SoundSystem,Onida Television,Onida VoiceAssistant,Premium Plan,Samsung FitnessWatch,Samsung Headphone ,Samsung Laptop,Samsung Phone,Samsung SmartWatch,Samsung SoundSystem,Samsung Television,Samsung VoiceAssistant,Sony FitnessWatch,Sony Headphone,Sony Laptop,Sony Phone,Sony SmartWatch,Sony SoundSystem,Sony Television,Sony VoiceAssistant,Ultimate Plan,68.97,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,799.98,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41.98,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1379.98,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,779.98,0,0,0,0,2,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,579.98,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,145.98,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,175.98,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,399.98,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,81.98,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,299.98,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,2,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,1699.98,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1179.98,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,101.98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,451.47,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,301.98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,179.98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,979.98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,601.98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,119.98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,151.98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65.98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,999.98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1041.98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,561.98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,401.98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,199.98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,379.98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,0,0,1099.98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,225.98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,239.98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,85.98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2
-    drawChart(data, productNameArr);
+    console.log(newArray)
+    drawChart(newArray, productNameArr);
 }
 
 //Plot the chart using 2d array and product names as subtitles;
 function drawChart(data, productNameArr)
 {
     //alert(typeof(data));
-    var productNames = "";
+    /*var productNames = "";
     for(var i=0; i<productNameArr.length; i++)
     {
         productNames += productNameArr[i] + ",";
-    }
+    }*/
 
     //Invoke google's built in method to get data table object required by google.
     var chartData = google.visualization.arrayToDataTable(data);
@@ -127,7 +78,7 @@ function drawChart(data, productNameArr)
     */
 
     var options = {
-        //'width':600,
+        // 'width':900,
         'height':650,
         chart: {
             title: 'Total Product Sales',
